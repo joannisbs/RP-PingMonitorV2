@@ -59,7 +59,7 @@ def AtualizaCor(empresa,relogio,result):
 		Var.Lista1.Cor[empresa][relogio][1]	 	= "green3"
 	elif result == 4:
 		Var.Lista1.Cor[empresa][relogio][0]   	= "cyan"
-		Var.Lista1.Cor[empresa][relogio][1] 		= "cyan"
+		#Var.Lista1.Cor[empresa][relogio][1] 		= "cyan"
 	else:
 		Var.Lista1.Cor[empresa][relogio][0]   	= "pink"
 		Var.Lista1.Cor[empresa][relogio][1] 		= "pink"
