@@ -51,22 +51,28 @@ def CriaTreads():
 			
 def AtualizaCor(empresa,relogio,result):
 	if result == 1:
-		Var.Lista1.Cor[empresa][relogio][0] 	 	= "firebrick1"
+		Var.Lista1.Cor[empresa][relogio][0] 	= "firebrick1"
 		Var.Lista1.Cor[empresa][relogio][1]  	= "firebrick1"
 	elif result == 2:
 		Var.Lista1.Cor[empresa][relogio][0]   	= "green3"
-		Var.Lista1.Cor[empresa][relogio][1] 		= "chocolate1"
+		Var.Lista1.Cor[empresa][relogio][1] 	= "chocolate1"
+		Var.Lista1.Atencao[empresa]				= "red"
+		Var.Lista1.Cor[empresa][relogio][2]		= True
 	elif result == 3:
 		Var.Lista1.Cor[empresa][relogio][0]   	= "green3"
 		Var.Lista1.Cor[empresa][relogio][1]	 	= "green3"
+		Var.Lista1.Cor[empresa][relogio][2]		= False
 	elif result == 4:
 		Var.Lista1.Cor[empresa][relogio][0]   	= "cyan"
-		#Var.Lista1.Cor[empresa][relogio][1] 		= "cyan"
+		#Var.Lista1.Cor[empresa][relogio][1] 	= "cyan"
+		#Var.Lista1.Cor[empresa][relogio][2]		= "green3"
 	else:
 		Var.Lista1.Cor[empresa][relogio][0]   	= "pink"
-		Var.Lista1.Cor[empresa][relogio][1] 		= "pink"
+		Var.Lista1.Cor[empresa][relogio][1] 	= "pink"
 
 	Telas.GUI_Tela1 .update(empresa,relogio)
+
+
 
 
 
@@ -84,11 +90,21 @@ def TestRoutine(indexempresas_lido):
 			testa = TestaPorta(IP,Porta)
 			AtualizaCor(indexempresas_lido,indexrelogios,int(testa))
 			Var.Lista1.ON[indexempresas_lido] = 0
+			FlagCount = False
 			for indexrelogios2 in range (len(Var.Lista1.relogios[indexempresas_lido])):
 				if Var.Lista1.Cor[indexempresas_lido][indexrelogios2][1]	 	== "green3":
 					Var.Lista1.ON[indexempresas_lido] = Var.Lista1.ON[indexempresas_lido] + 1
+
 					if Controle.Stop : break
-			Telas.GUI_Tela1 .updateContage(indexempresas_lido)
+
+					if Var.Lista1.Cor[indexempresas_lido][indexrelogios2][2]:
+						 FlagCount= True
+
+			Telas.GUI_Tela1.updateContage(indexempresas_lido)
+			Telas.GUI_Monitor.UpdateContage1(indexempresas_lido)
+			if FlagCount:
+				Var.Lista1.Atencao[indexempresas_lido] = "green3"
+
 			if Controle.Stop : break
 		if Controle.Stop : break
 		DelayFunction(indexempresas_lido)

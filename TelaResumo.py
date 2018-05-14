@@ -222,4 +222,18 @@ class TelaMonitor(object):
 			Controle.Status = "red"
 			Controle.Stop = True
 
+	def UpdateContage1(self,empresa):
+		self.MsgON[empresa].configure(text="  ON: " +
+								str(Var.Lista1.ON[empresa]))
+
+		self.MsgTotal[empresa].configure(text="  Total: "	+					  
+									str(Var.Lista1.Total[empresa]))
+
+		Controle.TotalON = 0
+		Quant_Empresas = len(Var.Lista1.empresas)
+		for index in range (Quant_Empresas):
+			Controle.TotalON = Controle.TotalON + Var.Lista1.ON[index]
+
+		self.msgStatusON.configure(text=str(Controle.TotalON))
+		self.botaoAtencao[empresa].configure(bg= Var.Lista1.Atencao[empresa])
 

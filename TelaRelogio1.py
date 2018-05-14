@@ -205,10 +205,12 @@ class TelaRelogio1(object):
 		Var.Lista1.ON		= []
 		Var.Lista1.Total	= []
 		Var.Lista1.Hora 	= []
+		Var.Lista1.Atencao 	= []
 
 		Quant_Empresas = len(Var.Lista1.empresas)
 		for indexempresas in range (Quant_Empresas):
 			Var.Lista1.ON.append(0)
+			Var.Lista1.Atencao.append("green3")
 			Var.Lista1.Hora.append('')
 			botaorow = []
 			botaoRrow = []
@@ -251,7 +253,7 @@ class TelaRelogio1(object):
 				
 
 								
-				corrow.append(["yellow","yellow"])
+				corrow.append(["yellow","yellow","green3"])
 				botaorow.append(button)
 				botaoRrow.append(buttonR)
 
@@ -264,13 +266,15 @@ class TelaRelogio1(object):
 
 		self.botaoModulo[empresa][relogio].configure(bg= Var.Lista1.Cor[empresa][relogio][0])
 		self.botaoRelogio[empresa][relogio].configure(bg= Var.Lista1.Cor[empresa][relogio][1])
-
+		#self.botaoAtencao[empresa].configure(bg= Var.Lista1.Atencao[empresa])
 
 	def updateContage(self,empresa):
 
 		self.botaoContage[empresa].configure(text=
 								(str(Var.Lista1.ON[empresa]) + "/" +  
 									str(Var.Lista1.Total[empresa])))
+		self.botaoAtencao[empresa].configure(bg= Var.Lista1.Atencao[empresa])
+
 
 	def updateHora(self,empresa):
 		hora = "Hora: " + Var.Lista1.Hora[empresa]
