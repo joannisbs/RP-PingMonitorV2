@@ -14,12 +14,129 @@ class TelaMonitor(object):
 
 		self.Create_containers(root)
 		self.Create_daods()
+		self.Create_ButoesEmpresas()
+
+
+
+
+	def Create_ButoesEmpresas(self):
+		self.MsgName= Label (
+											self.ContaineEmpresas1,
+											text = "Tela 1 :",
+											font="arialblack 12 bold",
+											bg="black",
+											fg="white")
+
+		self.MsgName.grid 	(row=0,
+											column=0,columnspan=4,
+											sticky = "N")
+
+
+		self.botaoAtencao =[]
+		self.MsgTotal =[]
+		self.MsgNames =[]
+		self.MsgON =[]
+
+
+		Quant_Empresas = len(Var.Lista1.empresas)
+		for index in range (Quant_Empresas):
+
+			self.botaoAtencao.append 		(" ")
+			self.MsgTotal.append 			(" ")
+			self.MsgNames.append 			(" ")
+			self.MsgON.append 	(" ")
+
+			Id_empresa			= int(Var.Lista1.empresas[index][0])
+
+
+			Nome_empresa	 	= Var.Lista1.empresas[index][1] 
+	
+
+
+
+
+			
+			self.MsgNames[Id_empresa]= Label (
+											self.ContaineEmpresas1,
+											text = Nome_empresa,
+											font="arialblack 12 bold",
+											bg="black",
+											fg="white")
+
+			self.MsgNames[Id_empresa].grid 	(row=index+1,
+											column=0,
+											sticky = "N")
+
+
+			
+
+
+
+
+
+
+
+
+			self.botaoAtencao[Id_empresa]  = Button( 
+											self.ContaineEmpresas1,
+											font="arial 11 bold" , 
+											highlightbackground="black",
+											activebackground="black",
+											activeforeground="white",
+											text='A',
+											bg="green3",
+											width=2,
+											height=1)
+
+			self.botaoAtencao[Id_empresa].grid  (row=index+1,
+												column=1,
+												sticky = "N")
+
+
+
+
+
+
+
+
+
+			
+			self.MsgON[Id_empresa] = Label 	(
+											self.ContaineEmpresas1,
+									text = "ON: X",
+									font="arial 11 bold",
+									bg="black",
+									fg="white")
+																			
+			self.MsgON[Id_empresa].grid 		(row=index+1,
+									column=2,
+									pady=3.5, 
+									sticky = "N")
+
+
+
+			
+			self.MsgTotal[Id_empresa] = Label 	(
+											self.ContaineEmpresas1,
+									text = "Total: ",
+									font="arial 11 bold",
+									bg="black",
+									fg="white")
+																			
+			self.MsgTotal[Id_empresa].grid 		(row=index+1,
+									column=3,
+									pady=3.5, 
+									sticky = "N")
+
 
 
 
 
 	def Create_daods(self):
-		self.msgStaus = Label (self.ContainerStatus,text = "Servico")
+		self.msgStaus = Label (self.ContainerStatus,text = "Servico",
+									font="arial 12 bold",
+									bg="black",
+									fg="white")
 		self.msgStaus["height"] = 1
 		self.msgStaus.grid(row=0,column=0)
 
@@ -34,29 +151,45 @@ class TelaMonitor(object):
 
 
 
-		self.msgInformativaON = Label (self.ContainerStatus,text = "On-Line : ")
+		self.msgInformativaON = Label (self.ContainerStatus,text = "On-Line : ",
+									font="arial 12 bold",
+									bg="black",
+									fg="white")
 		self.msgInformativaON["height"] = 1
 		self.msgInformativaON.grid(row=0,column=2)
 
-		self.msgStatusON = Label (self.ContainerStatus,text =str(Controle.TotalON))
+		self.msgStatusON = Label (self.ContainerStatus,text =str(Controle.TotalON),
+									font="arial 12 bold",
+									bg="black",
+									fg="white")
 		self.msgStatusON["height"] = 1
 		self.msgStatusON.grid(row=0,column=3)
 
-		self.msgInformativaTotal = Label (self.ContainerStatus,text = "Total : ")
+		self.msgInformativaTotal = Label (self.ContainerStatus,text = "Total : ",
+									font="arial 12 bold",
+									bg="black",
+									fg="white")
 		self.msgInformativaTotal["height"] = 1
 		self.msgInformativaTotal.grid(row=0,column=4)
 
-		self.msgStatusTotal = Label (self.ContainerStatus,text = str(Controle.TotalRelogios))
+		self.msgStatusTotal = Label (self.ContainerStatus,text = str(Controle.TotalRelogios),
+									font="arial 12 bold",
+									bg="black",
+									fg="white")
 		self.msgStatusTotal["height"] = 1
 		self.msgStatusTotal.grid(row=0,column=5)
 
 	def Create_containers(self,root):
 
 
-		self.ContainerStatus              = Frame (root)
+		self.ContainerStatus              = Frame (root,bg="black")
 		self.ContainerStatus.grid                 (row=0, sticky = "N")
 
+		self.ContaineParte2				= Frame(root,bg="black")
+		self.ContaineParte2.grid                 (row=1, sticky = "N")
 
+		self.ContaineEmpresas1			= Frame(self.ContaineParte2,bg="black")
+		self.ContaineEmpresas1.grid                 (row=0, column=0, sticky = "N")
 
 	def update(self):
 
@@ -67,18 +200,6 @@ class TelaMonitor(object):
 
 	def IniciaThreadTela1(self):
 			
-		#ThreadloopBuilding().start()
-		#ThreadloopCasaCristo().start()
-		#ThreadloopBestInClass().start()
-		#ThreadloopIsoRadio().start()
-		#ThreadloopLaser().start()
-		#ThreadloopGravex().start()
-		#ThreadloopGrupoNk().start()
-		#hreadloopLotten().start()
-		#ThreadloopElRio().start()
-		#ThreadloopSBCP().start()
-		#ThreadloopPredman().start()
-		#ThreadloopOlimpark().start()
 		CriaTreads()
 
 	def Inicia(self,event):
