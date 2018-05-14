@@ -11,6 +11,7 @@ class Var(object):
 		Cor         ="null"
 		ON 			="null"
 		Total     	="null"
+		Hora		='null'
 
 	class Lista2(object):
 

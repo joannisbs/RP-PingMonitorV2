@@ -184,13 +184,13 @@ class TelaRelogio1(object):
 
 
 			
-			self.MsgHora = Label 	(self.Container_Empresa[Id_empresa],
-									text = "00:00",
-									font="arial 11",
+			self.MsgHora[Id_empresa] = Label 	(self.Container_Empresa[Id_empresa],
+									text = "Hora 00:00",
+									font="arial 11 bold",
 									bg="black",
 									fg="white")
 																			
-			self.MsgHora.grid 		(row=1,
+			self.MsgHora[Id_empresa].grid 		(row=1,
 									column=0,
 									pady=3.5, 
 									sticky = "N")
@@ -204,10 +204,12 @@ class TelaRelogio1(object):
 		Var.Lista1.Cor 		= []
 		Var.Lista1.ON		= []
 		Var.Lista1.Total	= []
+		Var.Lista1.Hora 	= []
 
 		Quant_Empresas = len(Var.Lista1.empresas)
 		for indexempresas in range (Quant_Empresas):
 			Var.Lista1.ON.append(0)
+			Var.Lista1.Hora.append('')
 			botaorow = []
 			botaoRrow = []
 			corrow=[]
@@ -269,3 +271,7 @@ class TelaRelogio1(object):
 		self.botaoContage[empresa].configure(text=
 								(str(Var.Lista1.ON[empresa]) + "/" +  
 									str(Var.Lista1.Total[empresa])))
+
+	def updateHora(self,empresa):
+		hora = "Hora: " + Var.Lista1.Hora[empresa]
+		self.MsgHora[empresa].configure(text=hora)

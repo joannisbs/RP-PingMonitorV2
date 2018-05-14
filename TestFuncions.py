@@ -4,12 +4,14 @@ import shutil
 import threading
 import time
 
-
+from Classes import *
 from VariaveisGlobais import * 
 
 
 def DelayFunction(indexempresas_lido):
 	time.sleep(60)
+
+
 
 def TestaPorta(ip,port):
 	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -72,7 +74,8 @@ def AtualizaCor(empresa,relogio,result):
 
 def TestRoutine(indexempresas_lido):
 	while(1):
-
+		Var.Lista1.Hora[indexempresas_lido] = GetTime().horaminuto()
+		Telas.GUI_Tela1 .updateHora(indexempresas_lido)
 		for indexrelogios in range (len(Var.Lista1.relogios[indexempresas_lido])):
 			IP  	= Var.Lista1.relogios[indexempresas_lido][indexrelogios][3]
 			Porta 	= Var.Lista1.relogios[indexempresas_lido][indexrelogios][4]
