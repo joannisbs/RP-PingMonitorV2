@@ -35,12 +35,11 @@ class TelaRelogio1(object):
 
 	def Create_container(self,root):
 
-		self.ContainerRelogios = Frame 	(root)
+		self.ContainerRelogios = Frame 	(root,bg="black")
 
 		self.ContainerRelogios.grid   	(row=0, 
 										column= 0,
-										sticky = N + S + E + W,
-										bg="black")
+										sticky = N + S + E + W)
 		
 
 	def Create_container_empresas(self,root):
@@ -63,9 +62,7 @@ class TelaRelogio1(object):
 												pady=5, 
 												padx=2, 
 												columnspan=1, 
-												sticky="N",
-												bg="black")
-
+												sticky="N")
 
 	def Create_Labels_And_Commun_Mensages(self,root):
 
