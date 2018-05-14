@@ -60,7 +60,7 @@ class TelaRelogio1(object):
 												row=0,
 												column=coluna,
 												pady=5, 
-												padx=0, 
+												padx=3, 
 												columnspan=1, 
 												sticky="N")
 
@@ -221,7 +221,7 @@ class TelaRelogio1(object):
 									activebackground="black",
 									activeforeground="white",
 									text=Nome_Relogio,
-									width = 13,
+									width = 12,
 									height = 1,
 									bg = "yellow")
 
