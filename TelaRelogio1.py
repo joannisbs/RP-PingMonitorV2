@@ -199,15 +199,19 @@ class TelaRelogio1(object):
 
 
 	def Create_Relogios(self,root):
-		self.botaoModulo = []
-		self.botaoRelogio = []
-		Var.Lista1.Cor = []
+		self.botaoModulo 	= []
+		self.botaoRelogio 	= []
+		Var.Lista1.Cor 		= []
+		Var.Lista1.ON		= []
+		Var.Lista1.Total	= []
+
 		Quant_Empresas = len(Var.Lista1.empresas)
 		for indexempresas in range (Quant_Empresas):
+			Var.Lista1.ON.append(0)
 			botaorow = []
 			botaoRrow = []
 			corrow=[]
-
+			Var.Lista1.Total.append(len(Var.Lista1.relogios[indexempresas]))
 			for indexrelogios in range (len(Var.Lista1.relogios[indexempresas])):
 				Id_emp = int(Var.Lista1.relogios[indexempresas][indexrelogios][0])
 
@@ -260,4 +264,8 @@ class TelaRelogio1(object):
 		self.botaoRelogio[empresa][relogio].configure(bg= Var.Lista1.Cor[empresa][relogio][1])
 
 
+	def updateContage(self,empresa):
 
+		self.botaoContage[empresa].configure(text=
+								(str(Var.Lista1.ON[empresa]) + "/" +  
+									str(Var.Lista1.Total[empresa])))

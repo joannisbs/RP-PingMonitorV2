@@ -10,7 +10,7 @@ class Var(object):
 		Relogios	="null"
 		Cor         ="null"
 		ON 			="null"
-		TotalON     ="null"
+		Total     	="null"
 
 	class Lista2(object):
 

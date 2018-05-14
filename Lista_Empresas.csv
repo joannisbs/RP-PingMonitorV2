@@ -1,6 +1,6 @@
 Tela,id_empresa,empresa,coluna,linha,
 1,0,Best In Class,0,0,
-1,1,Iso Radiologia,0,1,
+1,1,Iso Radio.,0,1,
 1,2,Gravex,0,2,
 1,3,Lotten,1,0,
 1,4,Grupo Nk,1,1,
@@ -13,10 +13,10 @@ Tela,id_empresa,empresa,coluna,linha,
 1,11,Tarek,4,0,
 1,12,Laser,4,1,
 1,13,SBCP,4,2,
-1,14,Casa Cristo,4,3,
-1,15,Fancold-1,5,0,
-1,16,Fancold-2,6,0,
-1,17,Jaime-1,7,0,
-1,18,Jame-2,7,1
-1,19,Jaime-3,8,0
-1,20,Jaime-4,8,1
+1,14,Casa Cristo,5,0,
+1,15,Fancold-1,8,0,
+1,16,Fancold-2,9,0,
+1,17,Jaime-1,5,1,
+1,18,Jame-2,6,0
+1,19,Jaime-3,7,0
+1,20,Jaime-4,7,1

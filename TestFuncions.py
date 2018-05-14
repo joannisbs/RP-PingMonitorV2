@@ -8,8 +8,8 @@ import time
 from VariaveisGlobais import * 
 
 
-def DelayFunction():
-	pass
+def DelayFunction(indexempresas_lido):
+	time.sleep(60)
 
 def TestaPorta(ip,port):
 	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -68,6 +68,8 @@ def AtualizaCor(empresa,relogio,result):
 
 
 
+
+
 def TestRoutine(indexempresas_lido):
 	while(1):
 
@@ -78,7 +80,13 @@ def TestRoutine(indexempresas_lido):
 			AtualizaCor(indexempresas_lido,indexrelogios,int(testa))
 			testa = TestaPorta(IP,Porta)
 			AtualizaCor(indexempresas_lido,indexrelogios,int(testa))
+			Var.Lista1.ON[indexempresas_lido] = 0
+			for indexrelogios2 in range (len(Var.Lista1.relogios[indexempresas_lido])):
+				if Var.Lista1.Cor[indexempresas_lido][indexrelogios2][1]	 	== "green3":
+					Var.Lista1.ON[indexempresas_lido] = Var.Lista1.ON[indexempresas_lido] + 1
+					if Controle.Stop : break
+			Telas.GUI_Tela1 .updateContage(indexempresas_lido)
 			if Controle.Stop : break
 		if Controle.Stop : break
-		DelayFunction()
+		DelayFunction(indexempresas_lido)
 		if Controle.Stop : break
