@@ -15,9 +15,14 @@ class Var(object):
 		Atencao		="null"
 
 	class Lista2(object):
-
+		
 		Empresas	="null"
 		Relogios	="null"
+		Cor         ="null"
+		ON 			="null"
+		Total     	="null"
+		Hora		='null'
+		Atencao		="null"
 
 class Controle(object):
 	Status 		      		        = "red"

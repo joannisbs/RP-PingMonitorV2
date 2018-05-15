@@ -15,6 +15,7 @@ def leBanco():
 	Var.Lista2.empresas = []
 
 	Var.Lista1.relogios = [[]for _ in range (len(empresas))]
+	Var.Lista2.relogios = [[]for _ in range (len(empresas))]
 	
 
 	for line in empresas:
@@ -44,11 +45,17 @@ def leBanco():
 	Controle.TotalRelogios = len(relogios)
 
 	for line in relogios:
+
 		word              = line.split(",")
 		#Var.Lista1.relogios.append(word)
-		Id_empresa			= int(word[0])
-		Var.Lista1.relogios[Id_empresa].append(word)
+		Tela				=int(word[0])
+		if int(Tela) == 1 :
+			Id_empresa			= int(word[1])
+			Var.Lista1.relogios[Id_empresa].append(word[1:])
 
+		if int(Tela) == 2 :
+			Id_empresa			= int(word[1])
+			Var.Lista2.relogios[Id_empresa].append(word[1:])
 	
 
 
