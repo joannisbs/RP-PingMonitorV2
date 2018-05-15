@@ -29,6 +29,8 @@ class Controle(object):
 	Stop							= False
 	StatusWord                      = "Parado"
 	TotalON							= 0
+	TotalON1						= 0
+	TotalON2						= 0
 	TotalRelogios					= 0
 
 
