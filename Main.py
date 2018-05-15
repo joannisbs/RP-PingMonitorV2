@@ -64,7 +64,7 @@ class Iniciooo:
 		self.Relo2 = Toplevel(master=None)
 		self.Relo2.geometry('1950x950')
 		self.state2 = False
-		self.Relo1.bind('<F11>',self.togglefull2)
+		self.Relo2.bind('<F11>',self.togglefull2)
 		self.Relo2.update()
 		self.Relo2.grid_rowconfigure(0,weight=1)
 		self.Relo2.grid_columnconfigure(0,weight=1)
