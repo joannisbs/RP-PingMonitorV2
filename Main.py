@@ -46,31 +46,34 @@ class Iniciooo:
 	def __init__(self,root):
 		lable1 = Label(Telas.root, text = "LOAGING...")
 		lable1.grid(row=0,pady=5,padx=20)
-
-		Relo1 = Toplevel(master=None)
-		Relo1.geometry('1950x950')
-		Relo1.update()
-		Relo1.grid_rowconfigure(0,weight=1)
-		Relo1.grid_columnconfigure(0,weight=1)
-		Relo1.resizable(True,True)
-		Relo1.configure(background="black")		
+		self.state = False
+		self.Relo1 = Toplevel(master=None)
+		self.Relo1.geometry('1950x950')
+		self.Relo1.bind('<F11>',self.togglefull1)
+		self.Relo1.update()
+		self.Relo1.grid_rowconfigure(0,weight=1)
+		self.Relo1.grid_columnconfigure(0,weight=1)
+		self.Relo1.resizable(True,True)
+		self.Relo1.configure(background="black")		
 		#Relo1.geometry(Relo1.geometry())
-		Relo1.title("Monitor Relogios 1")
-		Relo1.protocol("WM_DELETE_WINDOW",on_closing)
-		Telas.GUI_Tela1 = TelaRelogio1(Relo1)
+		self.Relo1.title("Monitor Relogios 1")
+		self.Relo1.protocol("WM_DELETE_WINDOW",on_closing)
+		Telas.GUI_Tela1 = TelaRelogio1(self.Relo1)
 
 
-		Relo2 = Toplevel(master=None)
-		Relo2.geometry('1950x950')
-		Relo2.update()
-		Relo2.grid_rowconfigure(0,weight=1)
-		Relo2.grid_columnconfigure(0,weight=1)
-		Relo2.resizable(True,True)
-		Relo2.configure(background="black")		
-		#Relo2.geometry(Relo2.geometry())
-		Relo2.title("Monitor Relogios 2")
-		Relo2.protocol("WM_DELETE_WINDOW",on_closing)
-		Telas.GUI_Tela2 = TelaRelogio2(Relo2)
+		self.Relo2 = Toplevel(master=None)
+		self.Relo2.geometry('1950x950')
+		self.state2 = False
+		self.Relo1.bind('<F11>',self.togglefull2)
+		self.Relo2.update()
+		self.Relo2.grid_rowconfigure(0,weight=1)
+		self.Relo2.grid_columnconfigure(0,weight=1)
+		self.Relo2.resizable(True,True)
+		self.Relo2.configure(background="black")		
+		#self.Relo2.geometry(self.Relo2.geometry())
+		self.Relo2.title("Monitor Relogios 2")
+		self.Relo2.protocol("WM_DELETE_WINDOW",on_closing)
+		Telas.GUI_Tela2 = TelaRelogio2(self.Relo2)
 
 		
 		
@@ -83,9 +86,14 @@ class Iniciooo:
 		lable1.grid(row=0,pady=5,padx=20)
 
 
+		
+	def togglefull1(self,event):
+		self.state = not self.state
+		self.Relo1.attributes("-fullscreen",self.state)
 
-
-
+	def togglefull2(self,event):
+		self.state2 = not self.state2
+		self.Relo2.attributes("-fullscreen",self.state2)
 
 
 
