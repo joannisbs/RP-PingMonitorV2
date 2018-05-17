@@ -53,6 +53,7 @@ class ScremInit:
 		time.sleep(1)
 
 
+
 		self.Inicia_Scream1()
 		self.Inicia_Scream2()
 
