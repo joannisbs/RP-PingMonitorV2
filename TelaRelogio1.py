@@ -3,6 +3,20 @@
 from VariaveisGlobais import * 
 from Tkinter import *
 
+
+class Tela1:
+
+	def __init__(self,root):
+
+		self.ContainerRelogios = Frame 	(root,bg="black")
+
+		self.ContainerRelogios.grid   	(row=0, 
+										column= 0,
+										sticky = N + S + E + W)
+
+	def Create_emp(self):
+		pass
+
 class TelaRelogio1(object):
 
 

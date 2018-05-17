@@ -2,28 +2,38 @@
 
 from VariaveisGlobais import * 
 from Tkinter import *
-from TelaRelogio1 import *
+from TelaRelogio1 import Tela1
 from TelaRelogio2 import *
 from TelaResumo import *
 import tkMessageBox as messagebox
 
-import LeBanco
+from LeBanco import Mysqldb
 
 
 
 def main():
 
-	LeBanco.leBanco()
-	Telas.root = Tk()
 
-	Iniciooo(Telas.root)
+	db = Mysqldb()
+	db.connect()
+	db.CarregarEmpresas()
+	db.close()
+
+	tela = Tk()
+	Tela1(tela)
+	tela.mainloop()
+
+	#LeBanco.leBanco()
+	#Telas.root = Tk()
+
+	#Iniciooo(Telas.root)
 
 
-	Telas.root.wm_withdraw()
+	#Telas.root.wm_withdraw()
 
 
 #Relo1.mainloop()
-	Telas.root.mainloop()
+	#Telas.root.mainloop()
 
 
 
@@ -31,11 +41,7 @@ def on_closing():
 	if messagebox.askokcancel("Quit","Quer realmente sair?"):
 		#Controle.Stop = True
 		#Telas.root.deiconify()
-
-
 		#time.sleep(5)
-
-
 		#while Flag.quit is False:
 		#	pass
 		Telas.root.destroy()

@@ -4,7 +4,7 @@ class Var(object):
 
 
 
-	class Lista1(object):
+	class Lista(object):
 
 		Empresas	="null"
 		Relogios	="null"

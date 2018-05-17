@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 from VariaveisGlobais import * 
 
+import mysql.connector
+from VariaveisGlobais import * 
+import sys
+
 
 def leBanco():
 
@@ -64,3 +68,47 @@ def leBanco():
 		
 
 	
+
+class Mysqldb:
+	def __init__(self):
+		pass
+
+	def connect(self):
+		try:
+			db = mysql.connector.connect(host="192.168.0.150",user="ping",password='realponto102030',db="db_ping")
+			self.connection = db
+			self.cursor = db.cursor()
+
+			print "connection has been established with successful"
+		except:
+			print "error conection with db"
+
+
+	def close(self):
+		self.cursor.close()
+		self.connection.close()
+		print "connection has closed"
+
+
+	def CarregarEmpresas(self):
+
+		Var.Lista.empresas = []
+		Var.Lista2.empresas = []
+
+
+		self.cursor.execute("SELECT COUNT(*) FROM db_ping.tbl_emp")
+		count = self.cursor.fetchone()
+		numtotal = int(count[0])
+
+
+		self.cursor.execute("SELECT * FROM db_ping.tbl_emp")
+		num = 1
+		#print len(self.cursor.fetchall())
+		print "loading company list "
+		for row in self.cursor.fetchall():
+			Var.Lista.empresas.append(row)
+			sys.stdout.write( "\r{0}%".format((num*100)/numtotal) )
+			sys.stdout.flush()
+
+			num = num + 1
+		print "\ncompany list load successful"
