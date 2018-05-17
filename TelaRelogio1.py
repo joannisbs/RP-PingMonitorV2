@@ -4,9 +4,27 @@ from VariaveisGlobais import *
 from Tkinter import *
 
 
-class Tela1:
+class Scream1:
 
 	def __init__(self,root):
+
+		self.Init_List()
+		self.Create_container_geral(root)
+		self.Create_container_colunas(root)
+		self.Create_emps()
+
+
+	def Init_List(self):
+		self.Container_Empresa	= []
+		self.MsgName 			= []
+		self.botaoAtencao 		= []
+		self.botaoContage		= []
+		self.MsgHora 			= []
+		self.ContainerColuna 	= []
+		self.Container_Empresa 	= []
+
+
+	def Create_container_geral(self,root):
 
 		self.ContainerRelogios = Frame 	(root,bg="black")
 
@@ -14,8 +32,152 @@ class Tela1:
 										column= 0,
 										sticky = N + S + E + W)
 
-	def Create_emp(self):
-		pass
+
+
+	def Create_container_colunas(self,root):
+
+		#Cria os containers de cada empresa.
+		for coluna in range (11):
+
+			#Inicializção de variaveis, 
+			#criando a lista com os espaços necessários
+
+			self.ContainerColuna.append(coluna)
+
+			
+			self.ContainerColuna[coluna] = Frame (self.ContainerRelogios,
+																bg="black")
+
+			self.ContainerColuna[coluna].grid	(
+												row=0,
+												column=coluna,
+												pady=5, 
+												padx=2, 
+												columnspan=1, 
+												sticky="N")
+
+	def Create_emps(self):
+
+		id_emp_scream1 = 0
+		for item in  range (len(Var.Lista.empresas)):
+			if Var.Lista.empresas[item][2] == 1:
+				Var.Lista.empresas[item][8] = id_emp_scream1
+				self.Create_emp(item)
+				id_emp_scream1 = id_emp_scream1 + 1
+ 
+
+
+
+	def Create_emp(self,id_emp):
+		
+		self.Container_Empresa.append("")
+		self.MsgName.append("")
+		self.botaoAtencao.append("")
+		self.botaoContage.append("")
+		self.MsgHora.append("")
+
+		name_emp 			= Var.Lista.empresas[id_emp][1]
+		Coluna_container	= Var.Lista.empresas[id_emp][3]
+		Linha_container		= Var.Lista.empresas[id_emp][4]
+		id_emp_scream 		= Var.Lista.empresas[id_emp][8]
+
+
+		
+
+
+		self.Container_Empresa[id_emp_scream]	= Frame(
+									self.ContainerColuna[Coluna_container],
+									bg="black")
+
+
+		self.Container_Empresa[id_emp_scream].grid(
+									row=Linha_container,
+									column=0,
+									pady=0, 
+									padx=2, 
+									columnspan=1, 
+									sticky="N")
+
+
+
+		self.MsgName[id_emp_scream]				= Label (
+									self.Container_Empresa[id_emp_scream],
+									text = name_emp,
+									font="arialblack 12 bold",
+									bg="black",
+									fg="white")
+
+		self.MsgName[id_emp_scream].grid(
+									row=0,
+									column=0,
+									sticky = "N")
+
+
+			
+
+
+		self.botaoAtencao[id_emp_scream]  		= Button( 
+									self.Container_Empresa[id_emp_scream],
+									font="arial 11 bold" , 
+									highlightbackground="black",
+									activebackground="black",
+									activeforeground="white",
+									text='A',
+									bg="green3",
+									width=2,
+									height=1)
+
+		self.botaoAtencao[id_emp_scream].grid (
+									row=0,
+									column=1,
+									sticky = "N")
+
+
+
+
+
+		
+		self.botaoContage[id_emp_scream] 		= Button (
+									self.Container_Empresa[id_emp_scream],
+									text = "00/00",
+									font="arial 11 bold",
+									bg="black",
+									fg="white",
+									highlightbackground="black",
+									activebackground="black",
+									activeforeground="white",
+									width=2,
+									bd=0,
+									height = 1)
+
+			
+		self.botaoContage[id_emp_scream].grid (
+									row=1,
+									column=1,
+									pady=1,
+									sticky = "N")
+
+
+
+
+
+
+			
+		self.MsgHora[id_emp_scream] 				= Label (
+									self.Container_Empresa[id_emp_scream],
+									text = "Hora 00:00",
+									font="arial 11 bold",
+									bg="black",
+									fg="white")
+																			
+		self.MsgHora[id_emp_scream].grid (
+									row=1,
+									column=0,
+									pady=3.5, 
+									sticky = "N")
+
+		
+
 
 class TelaRelogio1(object):
 

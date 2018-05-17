@@ -2,49 +2,107 @@
 
 from VariaveisGlobais import * 
 from Tkinter import *
-from TelaRelogio1 import Tela1
+from TelaRelogio1 import Scream1
 from TelaRelogio2 import *
 from TelaResumo import *
+import time
 import tkMessageBox as messagebox
 
 from LeBanco import Mysqldb
 
 
 
+telas = 0
 def main():
 
 
+	
 	db = Mysqldb()
 	db.connect()
 	db.CarregarEmpresas()
 	db.close()
 
-	tela = Tk()
-	Tela1(tela)
-	tela.mainloop()
-
 	#LeBanco.leBanco()
-	#Telas.root = Tk()
+	Telas.root = Tk()
 
-	#Iniciooo(Telas.root)
+	ScremInit(Telas.root)
 
 
 	#Telas.root.wm_withdraw()
 
 
 #Relo1.mainloop()
-	#Telas.root.mainloop()
+	Telas.root.mainloop()
 
+
+
+
+ 
 
 
 def on_closing():
 	if messagebox.askokcancel("Quit","Quer realmente sair?"):
-		#Controle.Stop = True
-		#Telas.root.deiconify()
-		#time.sleep(5)
-		#while Flag.quit is False:
-		#	pass
+		time.sleep(5)
 		Telas.root.destroy()
+
+
+class ScremInit:
+	def __init__(self,root):
+		lable1 = Label(Telas.root, text = "REAL PONTO - LOADING...")
+		lable1.grid(row=0,pady=5,padx=20)
+		time.sleep(1)
+
+
+		self.Inicia_Scream1()
+		self.Inicia_Scream2()
+
+
+
+
+
+
+
+
+	def Inicia_Scream1(self):
+
+		self.state = False
+		self.Relo1 = Toplevel(master=None)
+		self.Relo1.geometry('1950x950')
+		self.Relo1.bind('<F11>',self.togglefull1)
+		self.Relo1.update()
+		self.Relo1.grid_rowconfigure(0,weight=1)
+		self.Relo1.grid_columnconfigure(0,weight=1)
+		self.Relo1.resizable(True,True)
+		self.Relo1.configure(background="black")		
+		#Relo1.geometry(Relo1.geometry())
+		self.Relo1.title("Monitor Relogios 1")
+		self.Relo1.protocol("WM_DELETE_WINDOW",on_closing)
+		Telas.GUI_Tela1 = Scream1(self.Relo1)
+
+	def Inicia_Scream2(self):
+
+		self.Relo2 = Toplevel(master=None)
+		self.Relo2.geometry('1950x950')
+		self.state2 = False
+		self.Relo2.bind('<F11>',self.togglefull2)
+		self.Relo2.update()
+		self.Relo2.grid_rowconfigure(0,weight=1)
+		self.Relo2.grid_columnconfigure(0,weight=1)
+		self.Relo2.resizable(True,True)
+		self.Relo2.configure(background="black")		
+		#self.Relo2.geometry(self.Relo2.geometry())
+		self.Relo2.title("Monitor Relogios 2")
+		self.Relo2.protocol("WM_DELETE_WINDOW",on_closing)
+		Telas.GUI_Tela2 = Scream2(self.Relo2)
+
+
+	def togglefull1(self,event):
+		self.state = not self.state
+		self.Relo1.attributes("-fullscreen",self.state)
+
+	def togglefull2(self,event):
+		self.state2 = not self.state2
+		self.Relo2.attributes("-fullscreen",self.state2)
 
 
 class Iniciooo:

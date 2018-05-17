@@ -70,6 +70,7 @@ def leBanco():
 	
 
 class Mysqldb:
+
 	def __init__(self):
 		pass
 
@@ -106,6 +107,7 @@ class Mysqldb:
 		#print len(self.cursor.fetchall())
 		print "loading company list "
 		for row in self.cursor.fetchall():
+			row = list(row + ("0",))
 			Var.Lista.empresas.append(row)
 			sys.stdout.write( "\r{0}%".format((num*100)/numtotal) )
 			sys.stdout.flush()
