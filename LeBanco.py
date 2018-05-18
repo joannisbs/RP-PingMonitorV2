@@ -133,6 +133,7 @@ class Mysqldb:
 			Var.Lista.Relogios.append(row)
 			sys.stdout.write( "\r{0}%".format((num*100)/numtotal) )
 			sys.stdout.flush()
+			#print " ",row[0], " ", row[1], " ", row[2], " ", row[3] ," ", row[4]
 
 			num = num + 1
 		print " Its Done!\nrep list load successful"

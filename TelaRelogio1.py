@@ -12,6 +12,7 @@ class Scream1:
 		self.Create_container_geral(root)
 		self.Create_container_colunas(root)
 		self.Create_emps()
+		self.Create_reps()
 
 
 	def Init_List(self):
@@ -24,6 +25,7 @@ class Scream1:
 		self.Container_Empresa 	= []
 		self.ButtonList			= []
 		self.ButtonListR		= []
+		self.listrow 			= []
 
 	def Create_container_geral(self,root):
 
@@ -76,6 +78,8 @@ class Scream1:
 		self.botaoAtencao.append 		("")
 		self.botaoContage.append 		("")
 		self.MsgHora.append 			("")
+		self.listrow.append 			(0)
+
 
 		name_emp 			= Var.Lista.Empresas[id_emp][1]
 		Coluna_container	= Var.Lista.Empresas[id_emp][3]
@@ -177,37 +181,50 @@ class Scream1:
 									pady=3.5, 
 									sticky = "N")
 
+
+	def Create_reps(self):
+
+		id_rep = 0
+		for item in  range (len(Var.Lista.Relogios)):
+			id_emp 	= Var.Lista.Relogios[item][1]
+			print id_emp
+
+			if Var.Lista.Empresas[id_emp-1][2] == 1:
+				Var.Lista.Relogios[item][9] = id_rep
+				self.Create_rep(item)
+				print Var.Lista.Relogios[item][2]
+				id_rep = id_rep + 1
 		
 	def Create_rep(self,id_rep):
-
+		print "rpdamdp"
 
 		self.ButtonList.append 		("")
 		self.ButtonListR.append 	("")
 		
-		id_emp 				= Var.Lista.Relogios[id_rep][1]
+		id_emp 				= int(Var.Lista.Relogios[id_rep][1])-1
+		name_rep			= Var.Lista.Relogios[id_rep][2]
+		coontainer_emp		= Var.Lista.Empresas[id_emp][8]
+		buton_id			= Var.Lista.Relogios[id_rep][9]
 
-		Coluna_container	= Var.Lista.empresas[id_emp][3]
-		Linha_container		= Var.Lista.empresas[id_emp][4]
-		id_emp_scream 		= Var.Lista.empresas[id_emp][8]
 
 
-		self.ButtonList = Button(
-									self.Container_Empresa[Coluna_container],
+		self.ButtonList[buton_id] = Button(
+									self.Container_Empresa[coontainer_emp],
 									font="arial 11 bold" ,  
 									highlightbackground="black",
 									activebackground="black",
 									activeforeground="white",
-									text=Nome_Relogio,
+									text=name_rep,
 									width = 12,
 									height = 1,
 									bg = "yellow")
 
-		self.ButtonList.grid       (row=indexrelogios+2, 
+		self.ButtonList[buton_id].grid       (row=self.listrow[coontainer_emp]+2, 
 														column=0, sticky = "N")
 
 				
-		self.ButtonListR= Button(
-									self.Container_Empresa[Id_emp],
+		self.ButtonListR[buton_id]= Button(
+									self.Container_Empresa[coontainer_emp],
 									font="arial 11 bold" ,  
 									highlightbackground="black",
 									activebackground="black",
@@ -217,9 +234,14 @@ class Scream1:
 									height = 1,
 									bg = "yellow")
 
-		self.ButtonListR.grid       (row=indexrelogios+2, 
-														column=1, sticky = "N")
+		self.ButtonListR[buton_id].grid       (
+									row=self.listrow[coontainer_emp]+2, 
+								 	column=1, 
+								 	sticky = "N")
 
+
+
+		self.listrow[coontainer_emp] = self.listrow[coontainer_emp] + 1
 
 class TelaRelogio1(object):
 
