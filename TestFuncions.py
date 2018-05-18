@@ -3,17 +3,46 @@ import os
 import shutil
 import threading
 import time
+import sys
 
 from Classes import *
 from VariaveisGlobais import * 
 
 
+class StopThread(StopIteration):
+	pass
+threading.SystemExit = SystemExit, StopThread
+
+class Threads(threading.Thread):
+	def stop(self):
+		self.__stop = True
+
+
+	def _bootstrap(self, stop_thread=False):
+		
+		
+		self.__stop = False
+		sys.settrace(self.__trace)
+		super()._bootstrap()
+
+	def __trace(self, frame, event, arg):
+		if self.__stop:
+			raise StopThread()
+		return self.__trace
+
+
+
+
+
 def DelayFunction(qntd_relos):
 	if qntd_relos < 3:
+		if Controle.Stop : return 5
 		time.sleep(120)
 	elif qntd_relos < 7:
+		if Controle.Stop : return 5
 		time.sleep(60)
 
+	if Controle.Stop : return 5
 	time.sleep(30)
 
 
@@ -23,8 +52,9 @@ def TestaPorta(ip,port):
 	#print ip + " porta = " + port
 	#print "Test Ping"
 	if TestaPing(ip):
-
+		if Controle.Stop : return 5
 		try:
+			if Controle.Stop : return 5
 			s.connect((ip,int(port)))		
 			s.close()
 			return 3
@@ -36,20 +66,33 @@ def TestaPorta(ip,port):
 		return 1
 
 def TestaPing(ip):
-	resposta = os.system("ping " + ip + " -c 4 > logping.txt")
-	if resposta == 0 :
-		#print "ping ok"
-		return True
-	else:
-		#print "Falha ping"
+	if Controle.Stop : return False
+	try:
+		resposta = os.system("ping " + ip + " -c 4 > logping.txt")
+		if resposta == 0 :
+			#print "ping ok"
+			return True
+		else:
+			#print "Falha ping"
+			return False	
+	except:
 		return False
 
-
-def CriaTreads():
+def StoppT():
 	Quant_Empresas = len(Var.Lista.Empresas)
 	for indexempresas in range (Quant_Empresas):
-			t = threading.Thread(target=LoppTest,kwargs={'Thread_index':indexempresas})
-			t.start()
+		Controle.tlistTheads[indexempresas].stop()
+		print "thread ",indexempresas," stopped here!"
+		Controle.listTheads[indexempresas] = False
+def CriaTreads():
+	Controle.listTheads = []
+	Controle.tlistTheads=[]
+	Quant_Empresas = len(Var.Lista.Empresas)
+	for indexempresas in range (Quant_Empresas):
+			Controle.tlistTheads.append("")
+			Controle.listTheads.append(True)
+			Controle.tlistTheads[indexempresas] = Threads(target=LoppTest,kwargs={'Thread_index':indexempresas})
+			Controle.tlistTheads[indexempresas].start()
 			print "Criado!", indexempresas
 	
 
@@ -62,10 +105,12 @@ def LoppTest(Thread_index):
 	relos 		= 0
 	while(True):
 		for rep in range (Quant_Rep):
+			if Controle.Stop : break
 			if Var.Lista.Relogios[rep][1] == id_emp:
 				IP_rep			= Var.Lista.Relogios[rep][3]
 				Porta_rep		= Var.Lista.Relogios[rep][4]
 				Var.Lista.Relogios[rep][10] = 4
+				if Controle.Stop : break
 				#pinta de azul
 				if tela == 1:
 					Telas.GUI_Tela1.update(rep)
@@ -73,6 +118,7 @@ def LoppTest(Thread_index):
 					Telas.GUI_Tela2.update(rep)
 
 				#testa:
+				if Controle.Stop : break
 				Var.Lista.Relogios[rep][10] =TestaPorta(IP_rep,Porta_rep)
 				relos = relos + 1
 				if tela == 1:
@@ -86,6 +132,9 @@ def LoppTest(Thread_index):
 		if Controle.Stop : break
 		DelayFunction(relos)
 		relos = 0
+
+	print "thread ",Thread_index," stopped!"
+	Controle.listTheads[Thread_index] = False
 
 
 

@@ -234,7 +234,7 @@ class Scream2:
 									text=name_rep,
 									width = 12,
 									height = 1,
-									bg = "yellow")
+									bg = "white")
 
 		self.ButtonList[buton_id].grid       (row=self.listrow[coontainer_emp]+2, 
 														column=0, sticky = "N")
@@ -249,7 +249,7 @@ class Scream2:
 									text="R",
 									width = 2,
 									height = 1,
-									bg = "yellow")
+									bg = "white")
 
 		self.ButtonListR[buton_id].grid       (
 									row=self.listrow[coontainer_emp]+2, 

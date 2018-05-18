@@ -244,7 +244,7 @@ class Scream1:
 									text=name_rep,
 									width = 12,
 									height = 1,
-									bg = "yellow")
+									bg = "white")
 
 		self.ButtonList[buton_id].grid       (row=self.listrow[coontainer_emp]+2, 
 														column=0, sticky = "N")
@@ -259,7 +259,7 @@ class Scream1:
 									text="R",
 									width = 2,
 									height = 1,
-									bg = "yellow")
+									bg = "white")
 
 		self.ButtonListR[buton_id].grid       (
 									row=self.listrow[coontainer_emp]+2, 
@@ -278,16 +278,16 @@ class Scream1:
 		Case_color	= Var.Lista.Relogios[index_rep][10]
 
 		if Case_color == 1:
-			self.ButtonList[Id_scream].config 	(bg = "firebrick1")
-			self.ButtonListR[Id_scream].config 	(bg = "firebrick1")
+			self.ButtonList[Id_scream].config 	(bg = "red",fg = "white")
+			self.ButtonListR[Id_scream].config 	(bg = "red",fg = "white")
 		if Case_color == 2:
-			self.ButtonList[Id_scream].config 	(bg = "green3")
-			self.ButtonListR[Id_scream].config 	(bg = "white")
+			self.ButtonList[Id_scream].config 	(bg = "green3",fg = "black")
+			self.ButtonListR[Id_scream].config 	(bg = "gold",fg = "black")
 		if Case_color == 3:
-			self.ButtonList[Id_scream].config 	(bg = "green3")
-			self.ButtonListR[Id_scream].config 	(bg = "green3")
+			self.ButtonList[Id_scream].config 	(bg = "green3",fg = "black")
+			self.ButtonListR[Id_scream].config 	(bg = "green3",fg = "black")
 		if Case_color == 4:
-			self.ButtonList[Id_scream].config 	(bg = "cyan")
+			self.ButtonList[Id_scream].config 	(bg = "cyan",fg = "black")
 			
 
 

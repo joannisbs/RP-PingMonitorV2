@@ -32,6 +32,7 @@ class Controle(object):
 	TotalON1						= 0
 	TotalON2						= 0
 	TotalRelogios					= 0
+	listTheads	=	[]
 
 
 

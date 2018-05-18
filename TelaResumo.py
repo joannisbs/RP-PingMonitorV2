@@ -6,6 +6,7 @@ from Tkinter import *
 #from Thread import *
 from VariaveisGlobais import * 
 from TestFuncions import *
+from LeBanco import Mysqldb
 
 
 
@@ -13,12 +14,25 @@ class Monitor:
 
 	def __init__(self,root):
 
+		self.MenuBar(root)
 		self.IniciaList()
 		self.Create_containers(root)
 		self.Create_emps()
 
 
 
+	def MenuBar(self,root):
+		menubar 			= Menu(root)
+		root.configure(menu = menubar)
+		menuReports 		= Menu(menubar)
+		menuDatabase	 	= Menu(menubar)
+		menuAbout			= Menu(menubar)
+
+		menubar.add_cascade(label = 'Relatórios',menu=menuReports)
+		menubar.add_cascade(label = 'Database',menu=menuDatabase)
+		menubar.add_cascade(label = 'Sobre',menu=menuAbout)
+
+		menuDatabase.add_command(label="AtualizarDB", command=self.AtualizarDatabase)
 
 	def IniciaList(self):
 		self.MsgName 		=[]
@@ -36,9 +50,36 @@ class Monitor:
 		self.ContaineEmpresas1			= Frame(self.ContaineParte2,bg="black")
 		self.ContaineEmpresas1.grid                 (row=0, column=0, sticky = "N")
 
+	def AtualizarDatabase(self):
+		
+		StoppT()
+		#self.StopTreads()
+		StoppT()
+
+
+		db = Mysqldb()
+		db.connect()
+		db.CarregarEmpresas()
+		db.CarregarRelogios()
+		db.close()
+
+		time.sleep(5)
+		print "start threads"
+
+		CriaTreads()
 
 
 
+	def StopTreads(self):
+		print "stopping Threads"
+		Controle.Stop = True
+		loop = True
+		while(loop):
+			loop = False
+			for qnt in range (len(Controle.listTheads)):
+				if Controle.listTheads:
+					loop = True
+		print "thread stopped"
 
 	def Create_emps(self):
 
