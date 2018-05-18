@@ -263,7 +263,22 @@ class Scream2:
 
 
 
+	def update(self,index_rep):
 
+		Id_scream 	= Var.Lista.Relogios[index_rep][9]
+		Case_color	= Var.Lista.Relogios[index_rep][10]
+
+		if Case_color == 1:
+			self.ButtonList[Id_scream].config 	(bg = "firebrick1")
+			self.ButtonListR[Id_scream].config 	(bg = "firebrick1")
+		if Case_color == 2:
+			self.ButtonList[Id_scream].config 	(bg = "green3")
+			self.ButtonListR[Id_scream].config 	(bg = "white")
+		if Case_color == 3:
+			self.ButtonList[Id_scream].config 	(bg = "green3")
+			self.ButtonListR[Id_scream].config 	(bg = "green3")
+		if Case_color == 4:
+			self.ButtonList[Id_scream].config 	(bg = "cyan")
 
 
 

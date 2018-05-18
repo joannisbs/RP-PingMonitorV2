@@ -27,6 +27,8 @@ class Scream1:
 		self.ButtonListR		= []
 		self.listrow 			= []
 
+
+
 	def Create_container_geral(self,root):
 
 
@@ -69,6 +71,9 @@ class Scream1:
 												padx=1, 
 												columnspan=1, 
 												sticky="N")
+
+
+
 
 	def Create_emps(self):
 
@@ -193,6 +198,8 @@ class Scream1:
 									sticky = "N")
 
 
+
+
 	def Create_reps(self):
 
 		id_rep = 0
@@ -211,6 +218,8 @@ class Scream1:
 			if Var.Lista.Empresas[item][2] == 1:
 				idd = Var.Lista.Empresas[item][8]
 				Var.Lista.Empresas[item][10] = self.listrow[idd]
+
+
 
 
 	def Create_rep(self,id_rep):
@@ -260,6 +269,35 @@ class Scream1:
 
 
 		self.listrow[coontainer_emp] = self.listrow[coontainer_emp] + 1
+
+
+
+	def update(self,index_rep):
+
+		Id_scream 	= Var.Lista.Relogios[index_rep][9]
+		Case_color	= Var.Lista.Relogios[index_rep][10]
+
+		if Case_color == 1:
+			self.ButtonList[Id_scream].config 	(bg = "firebrick1")
+			self.ButtonListR[Id_scream].config 	(bg = "firebrick1")
+		if Case_color == 2:
+			self.ButtonList[Id_scream].config 	(bg = "green3")
+			self.ButtonListR[Id_scream].config 	(bg = "white")
+		if Case_color == 3:
+			self.ButtonList[Id_scream].config 	(bg = "green3")
+			self.ButtonListR[Id_scream].config 	(bg = "green3")
+		if Case_color == 4:
+			self.ButtonList[Id_scream].config 	(bg = "cyan")
+			
+
+
+
+
+
+
+
+
+
 
 class TelaRelogio1(object):
 
@@ -520,7 +558,7 @@ class TelaRelogio1(object):
 			Var.Lista1.Cor.append(corrow)
 
 
-	def update(self,empresa,relogio):
+	def updateasa(self,empresa,relogio):
 
 		self.botaoModulo[empresa][relogio].configure(bg= Var.Lista1.Cor[empresa][relogio][0])
 		self.botaoRelogio[empresa][relogio].configure(bg= Var.Lista1.Cor[empresa][relogio][1])

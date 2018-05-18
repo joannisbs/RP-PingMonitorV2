@@ -61,10 +61,15 @@ class Monitor:
 		total_rep 			= Var.Lista.Empresas[id_emp][10]
 
 
-		if id_emp > 30:
+		if 60 > id_emp > 29:
 			coluna = 4
+			row_line = id_emp - 30
+		elif id_emp > 59:
+			coluna = 8
+			row_line = id_emp - 60
 		else:
 			coluna = 0
+			row_line = id_emp
 
 		
 
@@ -79,7 +84,7 @@ class Monitor:
 									width=15)
 
 		self.MsgName[id_emp].grid(
-									row=id_emp,
+									row=row_line,
 									column=coluna,
 									sticky = "N")
 
@@ -99,7 +104,7 @@ class Monitor:
 									height=1)
 
 		self.botaoAtencao[id_emp].grid (
-									row=id_emp,
+									row=row_line,
 									column=coluna+1,
 									sticky = "N")
 
@@ -123,7 +128,7 @@ class Monitor:
 
 			
 		self.MsgContageON[id_emp].grid (
-									row=id_emp,
+									row=row_line,
 									column=coluna+2,
 									pady=1,
 									sticky = "N")
@@ -144,7 +149,7 @@ class Monitor:
 
 			
 		self.MsgContagetot[id_emp].grid (
-									row=id_emp,
+									row=row_line,
 									column=coluna+3,
 									pady=1,
 									sticky = "N")

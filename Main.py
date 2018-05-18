@@ -7,6 +7,7 @@ from TelaRelogio2 import Scream2
 from TelaResumo import Monitor
 import time
 import tkMessageBox as messagebox
+from TestFuncions import CriaTreads
 
 from LeBanco import Mysqldb
 
@@ -29,7 +30,7 @@ def main():
 	ScremInit(Telas.root)
 
 
-	#Telas.root.wm_withdraw()
+	Telas.root.wm_withdraw()
 
 
 #Relo1.mainloop()
@@ -58,6 +59,9 @@ class ScremInit:
 		self.Inicia_Scream1()
 		self.Inicia_Scream2()
 		self.Inicia_Monitor()
+		time.sleep(2)
+		CriaTreads()
+
 
 
 
