@@ -29,10 +29,20 @@ class Scream1:
 
 	def Create_container_geral(self,root):
 
-		self.ContainerRelogios = Frame 	(root,bg="black")
+
+		self.Containerpai = Frame 	(root,bg="black")
+
+		self.Containerpai.grid   	(row=0, 
+										column= 0,
+										sticky = N + S + E + W)
+
+
+		self.ContainerRelogios = Frame 	(self.Containerpai,bg="black")
 
 		self.ContainerRelogios.grid   	(row=0, 
 										column= 0,
+										padx=3,
+										pady=5,
 										sticky = N + S + E + W)
 
 
@@ -40,6 +50,7 @@ class Scream1:
 	def Create_container_colunas(self,root):
 
 		#Cria os containers de cada empresa.
+		
 		for coluna in range (11):
 
 			#Inicializção de variaveis, 
@@ -53,9 +64,9 @@ class Scream1:
 
 			self.ContainerColuna[coluna].grid	(
 												row=0,
-												column=coluna,
+												column=coluna+1,
 												pady=5, 
-												padx=2, 
+												padx=1, 
 												columnspan=1, 
 												sticky="N")
 
@@ -187,16 +198,16 @@ class Scream1:
 		id_rep = 0
 		for item in  range (len(Var.Lista.Relogios)):
 			id_emp 	= Var.Lista.Relogios[item][1]
-			print id_emp
+			
 
 			if Var.Lista.Empresas[id_emp-1][2] == 1:
 				Var.Lista.Relogios[item][9] = id_rep
 				self.Create_rep(item)
-				print Var.Lista.Relogios[item][2]
+				
 				id_rep = id_rep + 1
 		
 	def Create_rep(self,id_rep):
-		print "rpdamdp"
+
 
 		self.ButtonList.append 		("")
 		self.ButtonListR.append 	("")
