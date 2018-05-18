@@ -20,6 +20,7 @@ def main():
 	db = Mysqldb()
 	db.connect()
 	db.CarregarEmpresas()
+	db.CarregarRelogios()
 	db.close()
 
 	#LeBanco.leBanco()

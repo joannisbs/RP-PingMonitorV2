@@ -59,9 +59,9 @@ class Scream2:
 	def Create_emps(self):
 
 		id_emp_scream = 0
-		for item in  range (len(Var.Lista.empresas)):
-			if Var.Lista.empresas[item][2] == 2:
-				Var.Lista.empresas[item][8] = id_emp_scream
+		for item in  range (len(Var.Lista.Empresas)):
+			if Var.Lista.Empresas[item][2] == 2:
+				Var.Lista.Empresas[item][8] = id_emp_scream
 				self.Create_emp(item)
 				id_emp_scream = id_emp_scream + 1
  
@@ -76,10 +76,10 @@ class Scream2:
 		self.botaoContage.append("")
 		self.MsgHora.append("")
 
-		name_emp 			= Var.Lista.empresas[id_emp][1]
-		Coluna_container	= Var.Lista.empresas[id_emp][3]
-		Linha_container		= Var.Lista.empresas[id_emp][4]
-		id_emp_scream 		= Var.Lista.empresas[id_emp][8]
+		name_emp 			= Var.Lista.Empresas[id_emp][1]
+		Coluna_container	= Var.Lista.Empresas[id_emp][3]
+		Linha_container		= Var.Lista.Empresas[id_emp][4]
+		id_emp_scream 		= Var.Lista.Empresas[id_emp][8]
 
 
 		

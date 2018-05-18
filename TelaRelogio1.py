@@ -22,7 +22,8 @@ class Scream1:
 		self.MsgHora 			= []
 		self.ContainerColuna 	= []
 		self.Container_Empresa 	= []
-
+		self.ButtonList			= []
+		self.ButtonListR		= []
 
 	def Create_container_geral(self,root):
 
@@ -59,9 +60,9 @@ class Scream1:
 	def Create_emps(self):
 
 		id_emp_scream1 = 0
-		for item in  range (len(Var.Lista.empresas)):
-			if Var.Lista.empresas[item][2] == 1:
-				Var.Lista.empresas[item][8] = id_emp_scream1
+		for item in  range (len(Var.Lista.Empresas)):
+			if Var.Lista.Empresas[item][2] == 1:
+				Var.Lista.Empresas[item][8] = id_emp_scream1
 				self.Create_emp(item)
 				id_emp_scream1 = id_emp_scream1 + 1
  
@@ -70,16 +71,16 @@ class Scream1:
 
 	def Create_emp(self,id_emp):
 		
-		self.Container_Empresa.append("")
-		self.MsgName.append("")
-		self.botaoAtencao.append("")
-		self.botaoContage.append("")
-		self.MsgHora.append("")
+		self.Container_Empresa.append 	("")
+		self.MsgName.append				("")
+		self.botaoAtencao.append 		("")
+		self.botaoContage.append 		("")
+		self.MsgHora.append 			("")
 
-		name_emp 			= Var.Lista.empresas[id_emp][1]
-		Coluna_container	= Var.Lista.empresas[id_emp][3]
-		Linha_container		= Var.Lista.empresas[id_emp][4]
-		id_emp_scream 		= Var.Lista.empresas[id_emp][8]
+		name_emp 			= Var.Lista.Empresas[id_emp][1]
+		Coluna_container	= Var.Lista.Empresas[id_emp][3]
+		Linha_container		= Var.Lista.Empresas[id_emp][4]
+		id_emp_scream 		= Var.Lista.Empresas[id_emp][8]
 
 
 		
@@ -177,6 +178,47 @@ class Scream1:
 									sticky = "N")
 
 		
+	def Create_rep(self,id_rep):
+
+
+		self.ButtonList.append 		("")
+		self.ButtonListR.append 	("")
+		
+		id_emp 				= Var.Lista.Relogios[id_rep][1]
+
+		Coluna_container	= Var.Lista.empresas[id_emp][3]
+		Linha_container		= Var.Lista.empresas[id_emp][4]
+		id_emp_scream 		= Var.Lista.empresas[id_emp][8]
+
+
+		self.ButtonList = Button(
+									self.Container_Empresa[Coluna_container],
+									font="arial 11 bold" ,  
+									highlightbackground="black",
+									activebackground="black",
+									activeforeground="white",
+									text=Nome_Relogio,
+									width = 12,
+									height = 1,
+									bg = "yellow")
+
+		self.ButtonList.grid       (row=indexrelogios+2, 
+														column=0, sticky = "N")
+
+				
+		self.ButtonListR= Button(
+									self.Container_Empresa[Id_emp],
+									font="arial 11 bold" ,  
+									highlightbackground="black",
+									activebackground="black",
+									activeforeground="white",
+									text="R",
+									width = 2,
+									height = 1,
+									bg = "yellow")
+
+		self.ButtonListR.grid       (row=indexrelogios+2, 
+														column=1, sticky = "N")
 
 
 class TelaRelogio1(object):

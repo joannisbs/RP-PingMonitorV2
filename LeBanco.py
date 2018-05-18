@@ -75,6 +75,7 @@ class Mysqldb:
 		pass
 
 	def connect(self):
+		print "trying connect to database with hos t= 192.168.0.150 , user = ping "
 		try:
 			db = mysql.connector.connect(host="192.168.0.150",user="ping",password='realponto102030',db="db_ping")
 			self.connection = db
@@ -93,8 +94,8 @@ class Mysqldb:
 
 	def CarregarEmpresas(self):
 
-		Var.Lista.empresas = []
-		Var.Lista2.empresas = []
+		Var.Lista.Empresas = []
+		
 
 
 		self.cursor.execute("SELECT COUNT(*) FROM db_ping.tbl_emp")
@@ -108,9 +109,30 @@ class Mysqldb:
 		print "loading company list "
 		for row in self.cursor.fetchall():
 			row = list(row + ("0",))
-			Var.Lista.empresas.append(row)
+			Var.Lista.Empresas.append(row)
 			sys.stdout.write( "\r{0}%".format((num*100)/numtotal) )
 			sys.stdout.flush()
 
 			num = num + 1
-		print "\ncompany list load successful"
+		print " Its Done!\ncompany list load successful"
+
+	def CarregarRelogios(self):
+		Var.Lista.Relogios = []
+
+		self.cursor.execute("SELECT COUNT(*) FROM db_ping.tbl_rep")
+		count = self.cursor.fetchone()
+		numtotal = int(count[0])
+
+
+		self.cursor.execute("SELECT * FROM db_ping.tbl_rep")
+		num = 1
+		#print len(self.cursor.fetchall())
+		print "loading rep list "
+		for row in self.cursor.fetchall():
+			row = list(row + ("0",))
+			Var.Lista.Relogios.append(row)
+			sys.stdout.write( "\r{0}%".format((num*100)/numtotal) )
+			sys.stdout.flush()
+
+			num = num + 1
+		print " Its Done!\nrep list load successful"
