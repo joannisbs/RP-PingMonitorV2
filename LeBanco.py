@@ -95,7 +95,6 @@ class Mysqldb:
 	def CarregarEmpresas(self):
 
 		Var.Lista.Empresas = []
-		
 
 
 		self.cursor.execute("SELECT COUNT(*) FROM db_ping.tbl_emp")
@@ -108,7 +107,7 @@ class Mysqldb:
 		#print len(self.cursor.fetchall())
 		print "loading company list "
 		for row in self.cursor.fetchall():
-			row = list(row + ("0",))
+			row = list(row + ("0","0","0"))
 			Var.Lista.Empresas.append(row)
 			sys.stdout.write( "\r{0}%".format((num*100)/numtotal) )
 			sys.stdout.flush()
