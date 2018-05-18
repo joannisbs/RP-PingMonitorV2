@@ -205,7 +205,14 @@ class Scream1:
 				self.Create_rep(item)
 				
 				id_rep = id_rep + 1
+
 		
+		for item in  range (len(Var.Lista.Empresas)):
+			if Var.Lista.Empresas[item][2] == 1:
+				idd = Var.Lista.Empresas[item][8]
+				Var.Lista.Empresas[item][10] = self.listrow[idd]
+
+
 	def Create_rep(self,id_rep):
 
 

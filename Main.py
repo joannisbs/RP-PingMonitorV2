@@ -3,8 +3,8 @@
 from VariaveisGlobais import * 
 from Tkinter import *
 from TelaRelogio1 import Scream1
-from TelaRelogio2 import *
-from TelaResumo import *
+from TelaRelogio2 import Scream2
+from TelaResumo import Monitor
 import time
 import tkMessageBox as messagebox
 
@@ -57,7 +57,7 @@ class ScremInit:
 
 		self.Inicia_Scream1()
 		self.Inicia_Scream2()
-
+		self.Inicia_Monitor()
 
 
 
@@ -97,6 +97,15 @@ class ScremInit:
 		self.Relo2.protocol("WM_DELETE_WINDOW",on_closing)
 		Telas.GUI_Tela2 = Scream2(self.Relo2)
 
+
+	def Inicia_Monitor(self):
+
+
+		self.telaMonitor = Toplevel(master=None)
+		self.telaMonitor.title("Monitoramento e Controle")
+		self.telaMonitor.protocol("WM_DELETE_WINDOW",on_closing)
+		Telas.GUI_Monitor = Monitor(self.telaMonitor)
+	
 
 	def togglefull1(self,event):
 		self.state = not self.state

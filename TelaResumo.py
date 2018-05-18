@@ -8,14 +8,165 @@ from VariaveisGlobais import *
 from TestFuncions import *
 
 
+
+class Monitor:
+
+	def __init__(self,root):
+
+		self.IniciaList()
+		self.Create_containers(root)
+		self.Create_emps()
+
+
+
+
+	def IniciaList(self):
+		self.MsgName 		=[]
+		self.botaoAtencao 	=[]
+		self.MsgContageON 	=[]
+		self.MsgContagetot 	=[]
+
+	def Create_containers(self,root):
+		self.ContainerStatus              = Frame (root,bg="black")
+		self.ContainerStatus.grid                 (row=0, sticky = "N")
+
+		self.ContaineParte2				= Frame(root,bg="black")
+		self.ContaineParte2.grid                 (row=1, sticky = "N")
+
+		self.ContaineEmpresas1			= Frame(self.ContaineParte2,bg="black")
+		self.ContaineEmpresas1.grid                 (row=0, column=0, sticky = "N")
+
+
+
+
+
+	def Create_emps(self):
+
+		
+		for item in  range (len(Var.Lista.Empresas)):
+			self.Create_emp(item)
+
+
+
+	def Create_emp(self,id_emp):
+		
+		self.MsgName.append				("")
+		self.botaoAtencao.append 		("")
+		self.MsgContageON.append		("")
+		self.MsgContagetot.append 		("")
+
+
+		name_emp 			= Var.Lista.Empresas[id_emp][1]
+		On_Line_rep			= 00
+		total_rep 			= Var.Lista.Empresas[id_emp][10]
+
+
+		if id_emp > 30:
+			coluna = 4
+		else:
+			coluna = 0
+
+		
+
+
+
+		self.MsgName[id_emp]				= Label (
+									self.ContaineEmpresas1,
+									text = name_emp,
+									font="arialblack 12 bold",
+									bg="black",
+									fg="white",
+									width=15)
+
+		self.MsgName[id_emp].grid(
+									row=id_emp,
+									column=coluna,
+									sticky = "N")
+
+
+			
+
+
+		self.botaoAtencao[id_emp]  		= Button( 
+									self.ContaineEmpresas1,
+									font="arial 11 bold" , 
+									highlightbackground="black",
+									activebackground="black",
+									activeforeground="white",
+									text='A',
+									bg="green3",
+									width=2,
+									height=1)
+
+		self.botaoAtencao[id_emp].grid (
+									row=id_emp,
+									column=coluna+1,
+									sticky = "N")
+
+
+
+
+
+		
+		self.MsgContageON[id_emp] 		= Label (
+									self.ContaineEmpresas1,
+									text = " On-Line: " + (str(On_Line_rep)).zfill(2),
+									font="arial 11 bold",
+									bg="black",
+									fg="white",
+									highlightbackground="black",
+									activebackground="black",
+									activeforeground="white",
+									width=20,
+									bd=0,
+									height = 1)
+
+			
+		self.MsgContageON[id_emp].grid (
+									row=id_emp,
+									column=coluna+2,
+									pady=1,
+									sticky = "N")
+
+
+		self.MsgContagetot[id_emp] 		= Label (
+									self.ContaineEmpresas1,
+									text = " Total: " + (str(total_rep)).zfill(2),
+									font="arial 11 bold",
+									bg="black",
+									fg="white",
+									highlightbackground="black",
+									activebackground="black",
+									activeforeground="white",
+									width=20,
+									bd=0,
+									height = 1)
+
+			
+		self.MsgContagetot[id_emp].grid (
+									row=id_emp,
+									column=coluna+3,
+									pady=1,
+									sticky = "N")
+
+
+
+			
+
+
+
+
+
 class TelaMonitor(object):
 
 	def __init__(self,root):
 
-		self.Create_containers(root)
-		self.Create_daods()
-		self.Create_ButoesEmpresas()
-		self.Create_ButoesEmpresas2()
+		#self.Create_containers(root)
+		#self.Create_daods()
+		#self.Create_ButoesEmpresas()
+		#self.Create_ButoesEmpresas2()
+
+		pass
 
 
 
@@ -238,9 +389,6 @@ class TelaMonitor(object):
 									column=3,
 									pady=3.5, 
 									sticky = "N")
-
-
-
 
 
 
