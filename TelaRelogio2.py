@@ -269,17 +269,17 @@ class Scream2:
 		Case_color	= Var.Lista.Relogios[index_rep][10]
 
 		if Case_color == 1:
-			self.ButtonList[Id_scream].config 	(bg = "firebrick1")
-			self.ButtonListR[Id_scream].config 	(bg = "firebrick1")
+			self.ButtonList[Id_scream].config 	(bg = "red",fg = "white")
+			self.ButtonListR[Id_scream].config 	(bg = "red",fg = "white")
 		if Case_color == 2:
-			self.ButtonList[Id_scream].config 	(bg = "green3")
-			self.ButtonListR[Id_scream].config 	(bg = "white")
+			self.ButtonList[Id_scream].config 	(bg = "green3",fg = "black")
+			self.ButtonListR[Id_scream].config 	(bg = "DarkOrange1",fg = "black")
 		if Case_color == 3:
-			self.ButtonList[Id_scream].config 	(bg = "green3")
-			self.ButtonListR[Id_scream].config 	(bg = "green3")
+			self.ButtonList[Id_scream].config 	(bg = "green3",fg = "black")
+			self.ButtonListR[Id_scream].config 	(bg = "green3",fg = "black")
 		if Case_color == 4:
-			self.ButtonList[Id_scream].config 	(bg = "cyan")
-
+			self.ButtonList[Id_scream].config 	(bg = "cyan",fg = "black")
+			
 
 
 
