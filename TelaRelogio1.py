@@ -2,7 +2,7 @@
 
 from VariaveisGlobais import * 
 from Tkinter import *
-
+from Popups import PopupRel
 
 class Scream1:
 
@@ -261,6 +261,7 @@ class Scream1:
 									width = 2,
 									height = 1,
 									bg = "white")
+		self.ButtonListR[buton_id].bind  ("<Button-1>",lambda e: PopupRel(id_rep))
 
 		self.ButtonListR[buton_id].grid       (
 									row=self.listrow[coontainer_emp]+2, 
@@ -270,6 +271,12 @@ class Scream1:
 
 
 		self.listrow[coontainer_emp] = self.listrow[coontainer_emp] + 1
+
+       			
+
+
+
+
 
 
 
@@ -292,7 +299,6 @@ class Scream1:
 			
 		if Case_color == 5:
 			self.ButtonList[Id_scream].config 	(bg = "red",fg = "cyan")
-
 
 
 

@@ -44,7 +44,10 @@ def main():
 
 def on_closing():
 	if messagebox.askokcancel("Quit","Quer realmente sair?"):
-		time.sleep(5)
+		serv = Servico()
+		serv.Stop()
+
+		time.sleep(15)
 		Telas.root.destroy()
 
 

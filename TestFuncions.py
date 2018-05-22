@@ -7,7 +7,7 @@ import sys
 
 from Classes import *
 from VariaveisGlobais import * 
-
+import tkMessageBox as messagebox
 
 class StopThread(StopIteration):
 	pass
@@ -150,6 +150,7 @@ def TestaEmp(Emp_index):
 		if Var.Lista.Relogios[rep][1] == id_emp:
 			IP_rep			= Var.Lista.Relogios[rep][3]
 			Porta_rep		= Var.Lista.Relogios[rep][4]
+			name_rep		= Var.Lista.Relogios[rep][2]
 			Var.Lista.Relogios[rep][10] = 4
 			if Controle.Stop : break
 			#pinta de azul
@@ -160,6 +161,14 @@ def TestaEmp(Emp_index):
 			#testa:
 			if Controle.Stop : break
 			Var.Lista.Relogios[rep][10] =TestaPorta(IP_rep,Porta_rep)
+			if Var.Lista.Relogios[rep][10] == 3:
+				if Var.Lista.Relogios[rep][11]:
+					messagebox.showinfo("Relogio On", 
+						"O Relogio " + name_rep +
+						"\nDa Empresa " + name +
+						 "\nIP:  " + IP_rep + 
+						 "\nFicou On-Line!")
+					Var.Lista.Relogios[rep][11] = False
 			if Controle.Stop : break
 			if tela == 1:
 				Telas.GUI_Tela1.update(rep)
@@ -184,6 +193,7 @@ def TestaRelo(Rp_index):
 	id_emp 			= Var.Lista.Relogios[Rp_index][1]
 	IP_rep			= Var.Lista.Relogios[Rp_index][3]
 	Porta_rep		= Var.Lista.Relogios[Rp_index][4]
+	name_rep		= Var.Lista.Relogios[Rp_index][2]
 	Index_emp = 0
 	Quant_Empresas = len(Var.Lista.Empresas)
 	for indexempresas in range (Quant_Empresas):
@@ -192,7 +202,7 @@ def TestaRelo(Rp_index):
 			break
 
 	tela 		= Var.Lista.Empresas[Index_emp][2]
-
+	name		= Var.Lista.Empresas[Index_emp][1]
 	resultado = TestaPorta(IP_rep,Porta_rep)
 	
 
@@ -201,19 +211,32 @@ def TestaRelo(Rp_index):
 			
 			resultado = TestaPorta(IP_rep,Porta_rep)
 			if Controle.Stop : break
+			#if resultado == 3:
+			#	if Var.Lista.Relogios[Rp_index][11]:
+			#		messagebox.showinfo("Relogio On", 
+			#			"O Relogio " + name +
+				#		 "\nIP:  " + IP_rep + 
+					#	 "\nFicou On-Line!")
+					#Var.Lista.Relogios[Rp_index][11] = False
 			if resultado != 1:
 				break
 		if Controle.Stop :return
 	if Var.Lista.Relogios[Rp_index][10] != 4:
-		if Var.Lista.Relogios[Rp_index][10] == 3:
-			if Var.Lista.Relogios[Rp_index][11]:
-				pass #SHOW POPUP
+		
 		Var.Lista.Relogios[Rp_index][10] = resultado
 		if Controle.Stop : return
 		if tela == 1:
 			Telas.GUI_Tela1.update(Rp_index)
 		elif tela == 2: 
 			Telas.GUI_Tela2.update(Rp_index)
+		if Var.Lista.Relogios[Rp_index][10] == 3:
+			if Var.Lista.Relogios[Rp_index][11]:
+				messagebox.showinfo("Relogio On", 
+					"O Relogio " + name_rep +
+					"\nDa Empresa " + name +
+					 "\nIP:  " + IP_rep + 
+					 "\nFicou On-Line!")
+				Var.Lista.Relogios[Rp_index][11] = False
 
 
 

@@ -2,7 +2,7 @@
 
 from VariaveisGlobais import * 
 from Tkinter import *
-
+from Popups import PopupRel
 
 class Scream2:
 
@@ -250,6 +250,8 @@ class Scream2:
 									width = 2,
 									height = 1,
 									bg = "white")
+		
+		self.ButtonListR[buton_id].bind  ("<Button-1>",lambda e: PopupRel(id_rep))
 
 		self.ButtonListR[buton_id].grid       (
 									row=self.listrow[coontainer_emp]+2, 
