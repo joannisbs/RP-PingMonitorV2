@@ -8,6 +8,8 @@ from VariaveisGlobais import *
 from TestFuncions import *
 from LeBanco import Mysqldb
 
+import sys
+import os
 
 
 class Monitor:
@@ -52,20 +54,16 @@ class Monitor:
 
 	def AtualizarDatabase(self):
 		
-		test = Servico.Stop()
-
-
-		db = Mysqldb()
-		db.connect()
-		db.CarregarEmpresas()
-		db.CarregarRelogios()
-		db.close()
-
-		time.sleep(5)
-		print "start threads"
-
 		serv = Servico()
-		serv.Servico.Start()
+		serv.Stop()
+
+		time.sleep(15)
+		Telas.root.destroy()
+
+		python = sys.executable
+		os.execl(python, python, * sys.argv)
+
+
 
 
 	def StopTreads(self):

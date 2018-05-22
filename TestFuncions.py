@@ -82,19 +82,21 @@ def TestaPing(ip):
 class Servico:
 
 	def __init__(self):
-		pass
+		self.principal = Threads(target=Loop)
+		self.principal2 = Threads(target=Loop2)
 
 	def Start(self):
 		print "start service"
-		self.principal = Threads(target=Loop)
+		Controle.Roda = True
+		Controle.Stop = False
 		self.principal.start()
-		self.principal = Threads(target=Loop2)
-		self.principal.start()
+		self.principal2.start()
 
 	def Stop(self):
 		Controle.Roda = False
 		Controle.Stop = True
 		self.principal.stop()
+		self.principal2.stop()
 		time.sleep(2)
 		print "stop service"
 		return True
@@ -108,9 +110,11 @@ def Loop():
 			pass
 		else:
 			qnt_rep = len(Var.Lista.Relogios)
+			if Controle.Stop : return
 			for index_rep in range (qnt_rep):
 				RT = Threads(target=TestaRelo,kwargs={'Rp_index':index_rep})
 				RT.start()
+				if Controle.Stop : return
 		time.sleep(1)
 		volta = volta + 1
 		if volta > 450:
@@ -156,6 +160,7 @@ def TestaEmp(Emp_index):
 			#testa:
 			if Controle.Stop : break
 			Var.Lista.Relogios[rep][10] =TestaPorta(IP_rep,Porta_rep)
+			if Controle.Stop : break
 			if tela == 1:
 				Telas.GUI_Tela1.update(rep)
 			elif tela == 2: 
@@ -173,9 +178,6 @@ def TestaEmp(Emp_index):
 		if Controle.Stop : return
 		RT = Threads(target=TestaEmp,kwargs={'Emp_index':Emp_index})
 		RT.start()
-
-
-
 
 
 def TestaRelo(Rp_index):
@@ -198,61 +200,20 @@ def TestaRelo(Rp_index):
 		for value in range(30):
 			
 			resultado = TestaPorta(IP_rep,Porta_rep)
-			
+			if Controle.Stop : break
 			if resultado != 1:
 				break
-
+		if Controle.Stop :return
 	if Var.Lista.Relogios[Rp_index][10] != 4:
 		if Var.Lista.Relogios[Rp_index][10] == 3:
 			if Var.Lista.Relogios[Rp_index][11]:
 				pass #SHOW POPUP
 		Var.Lista.Relogios[Rp_index][10] = resultado
+		if Controle.Stop : return
 		if tela == 1:
 			Telas.GUI_Tela1.update(Rp_index)
 		elif tela == 2: 
 			Telas.GUI_Tela2.update(Rp_index)
 
 
-
-	
-
-
-
-def LoppTest(Thread_index):
-	id_emp 		= Var.Lista.Empresas[Thread_index][0]
-	tela 		= Var.Lista.Empresas[Thread_index][2]
-	Quant_Rep 	= len(Var.Lista.Relogios)
-	relos 		= 0
-	while(True):
-		for rep in range (Quant_Rep):
-			if Controle.Stop : break
-			if Var.Lista.Relogios[rep][1] == id_emp:
-				IP_rep			= Var.Lista.Relogios[rep][3]
-				Porta_rep		= Var.Lista.Relogios[rep][4]
-				Var.Lista.Relogios[rep][10] = 4
-				if Controle.Stop : break
-				#pinta de azul
-				if tela == 1:
-					Telas.GUI_Tela1.update(rep)
-				elif tela == 2: 
-					Telas.GUI_Tela2.update(rep)
-
-				#testa:
-				if Controle.Stop : break
-				Var.Lista.Relogios[rep][10] =TestaPorta(IP_rep,Porta_rep)
-				relos = relos + 1
-				if tela == 1:
-					Telas.GUI_Tela1.update(rep)
-				elif tela == 2: 
-					Telas.GUI_Tela2.update(rep)
-				time.sleep(2)
-
-			if Controle.Stop : break
-
-		if Controle.Stop : break
-		DelayFunction(relos)
-		relos = 0
-
-	print "thread ",Thread_index," stopped!"
-	Controle.listTheads[Thread_index] = False
 
