@@ -6,66 +6,6 @@ from VariaveisGlobais import *
 import sys
 
 
-def leBanco():
-
-
-	listaping = open("Lista_Empresas.csv","r")
-	
-	empresas = listaping.readlines()[1:]
-
-	listaping.close()
-
-	Var.Lista1.empresas = []
-	Var.Lista2.empresas = []
-
-	Var.Lista1.relogios = [[]for _ in range (len(empresas))]
-	Var.Lista2.relogios = [[]for _ in range (len(empresas))]
-	
-
-	for line in empresas:
-
-		word              = line.split(",")
-		if word[0]=="1":
-			Var.Lista1.empresas.append((word)[1:])
-			#Var.Lista1.relogios.append(word[1])
-
-		if word[0]=="2":
-			Var.Lista2.empresas.append((word)[1:])
-
-
-		#Var.Lista1.relogios.append("null")
-	
-	
-
-	listarel = open("lista_relogio.csv","r")
-
-	relogios = listarel.readlines()[1:]
-
-	listarel.close()
-
-	Quant_Empresas = len(Var.Lista1.empresas)
-
-
-	Controle.TotalRelogios = len(relogios)
-
-	for line in relogios:
-
-		word              = line.split(",")
-		#Var.Lista1.relogios.append(word)
-		Tela				=int(word[0])
-		if int(Tela) == 1 :
-			Id_empresa			= int(word[1])
-			Var.Lista1.relogios[Id_empresa].append(word[1:])
-
-		if int(Tela) == 2 :
-			Id_empresa			= int(word[1])
-			Var.Lista2.relogios[Id_empresa].append(word[1:])
-	
-
-
-		
-
-		
 
 	
 
@@ -93,8 +33,9 @@ class Mysqldb:
 
 
 	def CarregarEmpresas(self):
-
+		Var.Lista.Empresas = "oi"
 		Var.Lista.Empresas = []
+		lista = []
 
 
 		self.cursor.execute("SELECT COUNT(*) FROM db_ping.tbl_emp")
@@ -108,12 +49,14 @@ class Mysqldb:
 		print "loading company list "
 		for row in self.cursor.fetchall():
 			row = list(row + ("0","0","0"))
-			Var.Lista.Empresas.append(row)
+			lista.append(row)
 			sys.stdout.write( "\r{0}%".format((num*100)/numtotal) )
 			sys.stdout.flush()
 
 			num = num + 1
 		print " Its Done!\ncompany list load successful"
+		Var.Lista.Empresas = lista
+
 
 	def CarregarRelogios(self):
 		Var.Lista.Relogios = []
@@ -128,7 +71,7 @@ class Mysqldb:
 		#print len(self.cursor.fetchall())
 		print "loading rep list "
 		for row in self.cursor.fetchall():
-			row = list(row + ("0","0",))
+			row = list(row + ("0","0","0",))
 			Var.Lista.Relogios.append(row)
 			sys.stdout.write( "\r{0}%".format((num*100)/numtotal) )
 			sys.stdout.flush()
