@@ -279,6 +279,9 @@ class Scream2:
 			self.ButtonListR[Id_scream].config 	(bg = "green3",fg = "black")
 		if Case_color == 4:
 			self.ButtonList[Id_scream].config 	(bg = "cyan",fg = "black")
+		if Case_color == 5:
+			self.ButtonList[Id_scream].config 	(bg = "red",fg = "white")
+			self.ButtonListR[Id_scream].config 	(bg = "red",fg = "cyan")
 			
 
 

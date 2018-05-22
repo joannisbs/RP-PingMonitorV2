@@ -52,9 +52,7 @@ class Monitor:
 
 	def AtualizarDatabase(self):
 		
-		StoppT()
-		#self.StopTreads()
-		StoppT()
+		test = Servico.Stop()
 
 
 		db = Mysqldb()
@@ -66,8 +64,8 @@ class Monitor:
 		time.sleep(5)
 		print "start threads"
 
-		CriaTreads()
-
+		serv = Servico()
+		serv.Servico.Start()
 
 
 	def StopTreads(self):

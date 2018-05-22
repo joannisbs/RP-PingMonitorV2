@@ -7,7 +7,7 @@ from TelaRelogio2 import Scream2
 from TelaResumo import Monitor
 import time
 import tkMessageBox as messagebox
-from TestFuncions import CriaTreads
+from TestFuncions import Servico
 
 from LeBanco import Mysqldb
 
@@ -60,7 +60,9 @@ class ScremInit:
 		self.Inicia_Scream2()
 		self.Inicia_Monitor()
 		time.sleep(2)
-		CriaTreads()
+		serv = Servico()
+		serv.Start()
+
 
 
 

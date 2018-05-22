@@ -27,13 +27,13 @@ class Var(object):
 class Controle(object):
 	Status 		      		        = "red"
 	Stop							= False
+	Roda							= True
 	StatusWord                      = "Parado"
 	TotalON							= 0
 	TotalON1						= 0
 	TotalON2						= 0
 	TotalRelogios					= 0
-	listTheads	=	[]
-
+	Finished						= False
 
 
 class Telas(object):
