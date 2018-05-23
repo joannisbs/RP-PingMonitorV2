@@ -82,20 +82,20 @@ def TestaPing(ip):
 class Servico:
 
 	def __init__(self):
-		self.principal = Threads(target=Loop)
+		#self.principal = Threads(target=Loop)
 		self.principal2 = Threads(target=Loop2)
 
 	def Start(self):
 		print "start service"
 		Controle.Roda = True
 		Controle.Stop = False
-		self.principal.start()
+		#self.principal.start()
 		self.principal2.start()
 
 	def Stop(self):
 		Controle.Roda = False
 		Controle.Stop = True
-		self.principal.stop()
+		#self.principal.stop()
 		self.principal2.stop()
 		time.sleep(2)
 		print "stop service"
@@ -139,9 +139,109 @@ def Loop2():
 			#volta = 0
 		#if Controle.Stop : break
 
+
+
+def RepOff(Rp_index):
+
+	id_emp 			= Var.Lista.Relogios[Rp_index][1]
+	IP_rep			= Var.Lista.Relogios[Rp_index][3]
+	Porta_rep		= Var.Lista.Relogios[Rp_index][4]
+	name_rep		= Var.Lista.Relogios[Rp_index][2]
+	Index_emp = 0
+	Quant_Empresas = len(Var.Lista.Empresas)
+	for indexempresas in range (Quant_Empresas):
+		if id_emp == Var.Lista.Empresas[indexempresas][0]:
+			Index_emp = indexempresas
+			break
+
+	tela 		= Var.Lista.Empresas[Index_emp][2]
+	name		= Var.Lista.Empresas[Index_emp][1]
+
+	while(True):
+
+		if Controle.Stop : return
+
+		resultado = TestaPorta(IP_rep,Porta_rep)
+		
+		if Controle.Stop : return
+
+		if resultado != 1:
+			break
+		
+		time.sleep(5)
+		
+		if Controle.Stop : return
+
+		time.sleep(5)
+		
+		if Controle.Stop : return
+
+		time.sleep(5)
+		
+		if Controle.Stop : return
+
+		time.sleep(5)
+		
+		if Controle.Stop : return
+
+		time.sleep(5)
+		
+		if Controle.Stop : return
+
+
+		time.sleep(5)
+		
+		if Controle.Stop : return
+
+		time.sleep(5)
+		
+		if Controle.Stop : return
+
+		time.sleep(5)
+		
+		if Controle.Stop : return
+
+		time.sleep(5)
+		
+		if Controle.Stop : return
+
+		time.sleep(5)
+		
+		if Controle.Stop : return
+
+
+
+	if Var.Lista.Relogios[Rp_index][10] != 4:
+		
+		Var.Lista.Relogios[Rp_index][10] = resultado
+		
+		if Controle.Stop : return
+
+		if tela == 1:
+			Telas.GUI_Tela1.update(Rp_index)
+		elif tela == 2: 
+			Telas.GUI_Tela2.update(Rp_index)
+		
+
+		if Var.Lista.Relogios[Rp_index][10] == 3:
+			
+			if Var.Lista.Relogios[Rp_index][11]:
+				messagebox.showinfo("Relogio On", 
+					"O Relogio " + name_rep +
+					"\nDa Empresa " + name +
+					 "\nIP:  " + IP_rep + 
+					 "\nFicou On-Line!")
+				Var.Lista.Relogios[Rp_index][11] = False
+
+				return
+
+
+
+
 def TestaEmp(Emp_index):
 	id_emp 		= Var.Lista.Empresas[Emp_index][0]
 	tela 		= Var.Lista.Empresas[Emp_index][2]
+	name		= Var.Lista.Empresas[Emp_index][1]
 	Quant_Rep 	= len(Var.Lista.Relogios)
 	relos 		= 0
 
@@ -161,6 +261,16 @@ def TestaEmp(Emp_index):
 			#testa:
 			if Controle.Stop : break
 			Var.Lista.Relogios[rep][10] =TestaPorta(IP_rep,Porta_rep)
+
+
+			if Var.Lista.Relogios[rep][10] == 1:
+				if not Var.Lista.Relogios[rep][12]:
+					Var.Lista.Relogios[rep][12] = True
+					RT = Threads(target=RepOff,kwargs={'Rp_index':rep})
+					RT.start()
+
+
+
 			if Var.Lista.Relogios[rep][10] == 3:
 				if Var.Lista.Relogios[rep][11]:
 					messagebox.showinfo("Relogio On", 
@@ -169,6 +279,8 @@ def TestaEmp(Emp_index):
 						 "\nIP:  " + IP_rep + 
 						 "\nFicou On-Line!")
 					Var.Lista.Relogios[rep][11] = False
+			
+
 			if Controle.Stop : break
 			if tela == 1:
 				Telas.GUI_Tela1.update(rep)
