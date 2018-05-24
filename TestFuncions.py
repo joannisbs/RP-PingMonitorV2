@@ -32,7 +32,27 @@ class Threads(threading.Thread):
 
 
 
+class Servico:
 
+	def __init__(self):
+		#self.principal = Threads(target=Loop)
+		self.principal2 = Threads(target=Loop2)
+
+	def Start(self):
+		print "start service"
+		Controle.Roda = True
+		Controle.Stop = False
+		#self.principal.start()
+		self.principal2.start()
+
+	def Stop(self):
+		Controle.Roda = False
+		Controle.Stop = True
+		#self.principal.stop()
+		self.principal2.stop()
+		time.sleep(2)
+		print "stop service"
+		return True
 
 def DelayFunction(qntd_relos):
 	if qntd_relos < 3:
@@ -65,6 +85,8 @@ def TestaPorta(ip,port):
 	else:
 		return 1
 
+
+
 def TestaPing(ip):
 	if Controle.Stop : return False
 	try:
@@ -79,27 +101,6 @@ def TestaPing(ip):
 		return False
 
 
-class Servico:
-
-	def __init__(self):
-		#self.principal = Threads(target=Loop)
-		self.principal2 = Threads(target=Loop2)
-
-	def Start(self):
-		print "start service"
-		Controle.Roda = True
-		Controle.Stop = False
-		#self.principal.start()
-		self.principal2.start()
-
-	def Stop(self):
-		Controle.Roda = False
-		Controle.Stop = True
-		#self.principal.stop()
-		self.principal2.stop()
-		time.sleep(2)
-		print "stop service"
-		return True
 
 def Loop():
 	Controle.Roda = True
@@ -120,6 +121,8 @@ def Loop():
 		if volta > 450:
 			volta = 0
 		if Controle.Stop : break
+
+
 
 def Loop2():
 	Controle.Roda = True
@@ -187,7 +190,6 @@ def RepOff(Rp_index):
 		time.sleep(5)
 		
 		if Controle.Stop : return
-
 
 		time.sleep(5)
 		
@@ -297,6 +299,13 @@ def TestaEmp(Emp_index):
 		DelayFunction(relos)
 		relos = 0
 		if Controle.Stop : return
+		hora = GetTime()
+		time = hora.horaminuto()
+		Var.Lista.Empresas[Emp_index][9] = time
+		if tela == 1:
+			Telas.GUI_Tela1.updHora(Emp_index)
+		elif tela == 2: 
+			Telas.GUI_Tela2.updHora(Emp_index)
 		RT = Threads(target=TestaEmp,kwargs={'Emp_index':Emp_index})
 		RT.start()
 

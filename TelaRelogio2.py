@@ -286,7 +286,11 @@ class Scream2:
 			self.ButtonListR[Id_scream].config 	(bg = "red",fg = "cyan")
 			
 
+	def updHora(self, emp_index):
+		Id_scream 	= Var.Lista.Empresas[emp_index][8]
+		hora 		= Var.Lista.Empresas[emp_index][9]
 
+		self.MsgHora[Id_scream].config (text = hora)
 
 
 

@@ -1,6 +1,5 @@
 from datetime import datetime
 
-
 class GetTime(object):
 	
 	def __init__(self):
@@ -15,3 +14,8 @@ class GetTime(object):
 						str(self.minuto).zfill(2) ) 
 						
 		return horaminuto
+
+
+
+	
+
