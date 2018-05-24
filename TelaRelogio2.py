@@ -267,6 +267,7 @@ class Scream2:
 
 	def update(self,index_rep):
 
+		id_emp 		=  Var.Lista.Relogios[index_rep][1]
 		Id_scream 	= Var.Lista.Relogios[index_rep][9]
 		Case_color	= Var.Lista.Relogios[index_rep][10]
 
@@ -284,6 +285,30 @@ class Scream2:
 		if Case_color == 5:
 			self.ButtonList[Id_scream].config 	(bg = "red",fg = "white")
 			self.ButtonListR[Id_scream].config 	(bg = "red",fg = "cyan")
+
+
+
+
+		qnt_on = 0
+		for item in  range (len(Var.Lista.Relogios)):
+			if id_emp == Var.Lista.Relogios[item][1]:
+				if Var.Lista.Relogios[item][10] == 3:
+					qnt_on = qnt_on + 1
+
+		for item in  range (len(Var.Lista.Empresas)):
+			if Var.Lista.Empresas[item][0] == id_emp:
+				index_empp 	= item
+				Id_scream 	= Var.Lista.Empresas[item][8]
+				total_rep 	= Var.Lista.Empresas[item][10]
+				break
+
+		
+		self.botaoContage[Id_scream].config (text= str(qnt_on)
+									 + "/" + str(total_rep))
+
+		Telas.GUI_Monitor.updateContage(index_empp,qnt_on)
+
+
 			
 
 	def updHora(self, emp_index):
@@ -295,6 +320,7 @@ class Scream2:
 
 
 
+		
 
 
 
