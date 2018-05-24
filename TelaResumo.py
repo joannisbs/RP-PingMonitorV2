@@ -34,7 +34,7 @@ class Monitor:
 
 		self.MsgContageONTotal 		= Label (
 									self.ContainerStatus,
-									text = " On-Line: " ,
+									text = "  On-Line: " ,
 									font="arialblack 26 bold",
 									bg="black",
 									fg="white",
@@ -57,7 +57,7 @@ class Monitor:
 									text = "000" ,
 									font="arialblack 26 bold",
 									bg="black",
-									fg="white",
+									fg="green3",
 									highlightbackground="black",
 									activebackground="black",
 									activeforeground="white",
@@ -74,7 +74,7 @@ class Monitor:
 
 		self.MsgContageTotal 		= Label (
 									self.ContainerStatus,
-									text = "  Total: " ,
+									text = " Total: " ,
 									font="arialblack 26 bold",
 									bg="black",
 									fg="white",
@@ -88,7 +88,7 @@ class Monitor:
 			
 		self.MsgContageTotal.grid (
 									row=0,
-									column=2,
+									column=3,
 									pady=1)
 
 
@@ -108,8 +108,434 @@ class Monitor:
 			
 		self.MsgContTotal.grid (
 									row=0,
-									column=3,
+									column=4,
 									pady=1)
+
+
+		self.MesPercents 		= Label (
+									self.ContainerStatus,
+									text = " 0%" ,
+									font="arialblack 26 bold",
+									bg="black",
+									fg="white",
+									highlightbackground="black",
+									activebackground="black",
+									activeforeground="white",
+									
+									bd=0,
+									height = 1)
+
+			
+		self.MesPercents.grid (
+									row=0,
+									column=2,
+									pady=1)
+
+		separate 		= Label (
+									self.ContainerStatus,
+									text = "|" ,
+									font="arialblack 30 bold",
+									bg="black",
+									fg="yellow",
+									highlightbackground="black",
+									activebackground="black",
+									activeforeground="white",
+									
+									bd=0,
+									height = 1)
+
+			
+		separate.grid (
+									row=0,
+									column=5,
+									pady=1)
+
+
+
+		MsgVivo 					= Label (
+									self.ContainerStatus,
+									text = " Vivo " ,
+									font="arialblack 22 bold",
+									bg="black",
+									fg="white",
+									highlightbackground="black",
+									activebackground="black",
+									activeforeground="white",
+									
+									bd=0,
+									height = 1)
+
+			
+		MsgVivo.grid (
+									row=0,
+									column=6,
+									pady=1)
+
+		self.MesVivoCountOn 			= Label (
+									self.ContainerStatus,
+									text = "000" ,
+									font="arialblack 22 bold",
+									bg="black",
+									fg="green3",
+									highlightbackground="black",
+									activebackground="black",
+									activeforeground="white",
+									
+									bd=0,
+									height = 1)
+
+			
+		self.MesVivoCountOn.grid (
+									row=0,
+									column=8,
+									pady=1)
+
+
+		self.MesVivoCount 			= Label (
+									self.ContainerStatus,
+									text = "-000 " ,
+									font="arialblack 22 bold",
+									bg="black",
+									fg="white",
+									highlightbackground="black",
+									activebackground="black",
+									activeforeground="white",
+									
+									bd=0,
+									height = 1)
+
+			
+		self.MesVivoCount.grid (
+									row=0,
+									column=9,
+									pady=1)
+
+
+
+
+		self.MesVivoPerc 			= Label (
+									self.ContainerStatus,
+									text = "0% " ,
+									font="arialblack 22 bold",
+									bg="black",
+									fg="white",
+									highlightbackground="black",
+									activebackground="black",
+									activeforeground="white",
+									
+									bd=0,
+									height = 1)
+
+			
+		self.MesVivoPerc.grid (
+									row=0,
+									column=7,
+									pady=1)
+
+
+
+		separate 		= Label (
+									self.ContainerStatus,
+									text = "|" ,
+									font="arialblack 30 bold",
+									bg="black",
+									fg="yellow",
+									highlightbackground="black",
+									activebackground="black",
+									activeforeground="white",
+									
+									bd=0,
+									height = 1)
+
+			
+		separate.grid (
+									row=0,
+									column=10,
+									pady=1)
+
+
+		MsgClaro 					= Label (
+									self.ContainerStatus,
+									text = " Claro " ,
+									font="arialblack 22 bold",
+									bg="black",
+									fg="white",
+									highlightbackground="black",
+									activebackground="black",
+									activeforeground="white",
+									
+									bd=0,
+									height = 1)
+
+			
+		MsgClaro.grid (
+									row=0,
+									column=11,
+									pady=1)
+
+
+		self.MsgClaroCountOn 			= Label (
+									self.ContainerStatus,
+									text = "000" ,
+									font="arialblack 22 bold",
+									bg="black",
+									fg="green3",
+									highlightbackground="black",
+									activebackground="black",
+									activeforeground="white",
+									
+									bd=0,
+									height = 1)
+
+			
+		self.MsgClaroCountOn.grid (
+									row=0,
+									column=13,
+									pady=1)
+
+
+		self.MsgClaroCount 			= Label (
+									self.ContainerStatus,
+									text = "-000 " ,
+									font="arialblack 22 bold",
+									bg="black",
+									fg="white",
+									highlightbackground="black",
+									activebackground="black",
+									activeforeground="white",
+									
+									bd=0,
+									height = 1)
+
+			
+		self.MsgClaroCount.grid (
+									row=0,
+									column=14,
+									pady=1)
+
+
+		self.MsgClaroPerc 			= Label (
+									self.ContainerStatus,
+									text = "0% " ,
+									font="arialblack 22 bold",
+									bg="black",
+									fg="white",
+									highlightbackground="black",
+									activebackground="black",
+									activeforeground="white",
+									
+									bd=0,
+									height = 1)
+
+			
+		self.MsgClaroPerc.grid (
+									row=0,
+									column=12,
+									pady=1)
+
+
+		separate 		= Label (
+									self.ContainerStatus,
+									text = "|" ,
+									font="arialblack 30 bold",
+									bg="black",
+									fg="yellow",
+									highlightbackground="black",
+									activebackground="black",
+									activeforeground="white",
+									
+									bd=0,
+									height = 1)
+
+			
+		separate.grid (
+									row=0,
+									column=15,
+									pady=1)
+
+
+
+		MsgPorto 					= Label (
+									self.ContainerStatus,
+									text = " Porto " ,
+									font="arialblack 22 bold",
+									bg="black",
+									fg="white",
+									highlightbackground="black",
+									activebackground="black",
+									activeforeground="white",
+									
+									bd=0,
+									height = 1)
+
+			
+		MsgPorto.grid (
+									row=0,
+									column=16,
+									pady=1)
+
+
+		self.MsgPortoCountOn 			= Label (
+									self.ContainerStatus,
+									text = "000" ,
+									font="arialblack 22 bold",
+									bg="black",
+									fg="green3",
+									highlightbackground="black",
+									activebackground="black",
+									activeforeground="white",
+									
+									bd=0,
+									height = 1)
+
+			
+		self.MsgPortoCountOn.grid (
+									row=0,
+									column=18,
+									pady=1)
+
+
+		self.MsgPortoCount 			= Label (
+									self.ContainerStatus,
+									text = "-000 " ,
+									font="arialblack 22 bold",
+									bg="black",
+									fg="white",
+									highlightbackground="black",
+									activebackground="black",
+									activeforeground="white",
+									
+									bd=0,
+									height = 1)
+
+			
+		self.MsgPortoCount.grid (
+									row=0,
+									column=19,
+									pady=1)
+
+
+		self.MsgPortoPerc 			= Label (
+									self.ContainerStatus,
+									text = "0% " ,
+									font="arialblack 22 bold",
+									bg="black",
+									fg="white",
+									highlightbackground="black",
+									activebackground="black",
+									activeforeground="white",
+									
+									bd=0,
+									height = 1)
+
+			
+		self.MsgPortoPerc.grid (
+									row=0,
+									column=17,
+									pady=1)
+
+
+		separate 		= Label (
+									self.ContainerStatus,
+									text = "|" ,
+									font="arialblack 30 bold",
+									bg="black",
+									fg="yellow",
+									highlightbackground="black",
+									activebackground="black",
+									activeforeground="white",
+									
+									bd=0,
+									height = 1)
+
+			
+		separate.grid (
+									row=0,
+									column=20,
+									pady=1)
+
+
+
+		MsgOi 					= Label (
+									self.ContainerStatus,
+									text = " Oi " ,
+									font="arialblack 22 bold",
+									bg="black",
+									fg="white",
+									highlightbackground="black",
+									activebackground="black",
+									activeforeground="white",
+									
+									bd=0,
+									height = 1)
+
+			
+		MsgOi.grid (
+									row=0,
+									column=21,
+									pady=1)
+
+
+		self.MsgOiCountOn 			= Label (
+									self.ContainerStatus,
+									text = "000" ,
+									font="arialblack 22 bold",
+									bg="black",
+									fg="green3",
+									highlightbackground="black",
+									activebackground="black",
+									activeforeground="white",
+									
+									bd=0,
+									height = 1)
+
+			
+		self.MsgOiCountOn.grid (
+									row=0,
+									column=23,
+									pady=1)
+
+		self.MsgOiCount 			= Label (
+									self.ContainerStatus,
+									text = "-000 " ,
+									font="arialblack 22 bold",
+									bg="black",
+									fg="white",
+									highlightbackground="black",
+									activebackground="black",
+									activeforeground="white",
+									
+									bd=0,
+									height = 1)
+
+			
+		self.MsgOiCount.grid (
+									row=0,
+									column=24,
+									pady=1)
+
+
+		self.MsgOiPerc 			= Label (
+									self.ContainerStatus,
+									text = "0% " ,
+									font="arialblack 22 bold",
+									bg="black",
+									fg="white",
+									highlightbackground="black",
+									activebackground="black",
+									activeforeground="white",
+									
+									bd=0,
+									height = 1)
+
+			
+		self.MsgOiPerc.grid (
+									row=0,
+									column=22,
+									pady=1)
+
+
+
 
 	def MenuBar(self,root):
 		menubar 			= Menu(root)
@@ -141,7 +567,7 @@ class Monitor:
 		self.ContainerDiv2.grid                 (row=1,pady=1, sticky = N + W + E)
 
 		self.ContaineParte2				= Frame(root,bg="black")
-		self.ContaineParte2.grid                 (row=2, sticky = "N")
+		self.ContaineParte2.grid                 (row=2,sticky = N + W + E + S)
 
 		self.ContaineEmpresas1			= Frame(self.ContaineParte2,bg="black")
 		self.ContaineEmpresas1.grid                 (row=0,pady=2, column=0, sticky = "N")
@@ -350,4 +776,6 @@ class Monitor:
 				qnt_On_tot = qnt_On_tot + 1
 
 		self.MsgContONTotal.config(text =  str(qnt_On_tot).zfill(4))
+		percent = ((qnt_On_tot*100)/len(Var.Lista.Relogios))
+		self.MesPercents.config(text = "  " + str(percent).zfill(2) + "%") 
 
