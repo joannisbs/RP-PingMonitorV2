@@ -274,12 +274,15 @@ class Scream2:
 		if Case_color == 1:
 			self.ButtonList[Id_scream].config 	(bg = "red",fg = "white")
 			self.ButtonListR[Id_scream].config 	(bg = "red",fg = "white")
+			Var.Lista.Relogios[index_rep][7] = False
 		if Case_color == 2:
 			self.ButtonList[Id_scream].config 	(bg = "green3",fg = "black")
 			self.ButtonListR[Id_scream].config 	(bg = "DarkOrange1",fg = "black")
+			Var.Lista.Relogios[index_rep][7] = False
 		if Case_color == 3:
 			self.ButtonList[Id_scream].config 	(bg = "green3",fg = "black")
 			self.ButtonListR[Id_scream].config 	(bg = "green3",fg = "black")
+			Var.Lista.Relogios[index_rep][7] = True
 		if Case_color == 4:
 			self.ButtonList[Id_scream].config 	(bg = "cyan",fg = "black")
 		if Case_color == 5:
@@ -287,26 +290,26 @@ class Scream2:
 			self.ButtonListR[Id_scream].config 	(bg = "red",fg = "cyan")
 
 
+		if Case_color != 4:
 
+			qnt_on = 0
+			for item in  range (len(Var.Lista.Relogios)):
+				if id_emp == Var.Lista.Relogios[item][1]:
+					if Var.Lista.Relogios[item][7] == True:
+						qnt_on = qnt_on + 1
 
-		qnt_on = 0
-		for item in  range (len(Var.Lista.Relogios)):
-			if id_emp == Var.Lista.Relogios[item][1]:
-				if Var.Lista.Relogios[item][10] == 3:
-					qnt_on = qnt_on + 1
+			for item in  range (len(Var.Lista.Empresas)):
+				if Var.Lista.Empresas[item][0] == id_emp:
+					index_empp 	= item
+					Id_scream 	= Var.Lista.Empresas[item][8]
+					total_rep 	= Var.Lista.Empresas[item][10]
+					break
 
-		for item in  range (len(Var.Lista.Empresas)):
-			if Var.Lista.Empresas[item][0] == id_emp:
-				index_empp 	= item
-				Id_scream 	= Var.Lista.Empresas[item][8]
-				total_rep 	= Var.Lista.Empresas[item][10]
-				break
+			
+			self.botaoContage[Id_scream].config (text= str(qnt_on)
+										 + "/" + str(total_rep))
 
-		
-		self.botaoContage[Id_scream].config (text= str(qnt_on)
-									 + "/" + str(total_rep))
-
-		Telas.GUI_Monitor.updateContage(index_empp,qnt_on)
+			Telas.GUI_Monitor.updateContage(index_empp,qnt_on)
 
 
 			
