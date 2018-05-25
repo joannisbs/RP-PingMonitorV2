@@ -71,7 +71,7 @@ class Mysqldb:
 		#print len(self.cursor.fetchall())
 		print "loading rep list "
 		for row in self.cursor.fetchall():
-			row = list(row + ("0","0",False,False))
+			row = list(row + ("0","0",False,False,0,))
 			Var.Lista.Relogios.append(row)
 			sys.stdout.write( "\r{0}%".format((num*100)/numtotal) )
 			sys.stdout.flush()

@@ -18,12 +18,41 @@ class Monitor:
 
 		self.MenuBar(root)
 		self.IniciaList()
-
+		self.Calc_Op()
 		self.Create_containers(root)
 
 		self.Create_Status()
 		self.Create_emps()
 
+
+	def Calc_Op(self):
+		self.total_vivo 	= 0
+		self.total_claro 	= 0
+		self.total_porto 	= 0
+		self.total_oi 		= 0
+		self.total_4G 		= 0
+
+		for item in  range (len(Var.Lista.Relogios)):
+			ips = Var.Lista.Relogios[item][3]
+			if ips[0:5] == "10.26":
+				Var.Lista.Relogios[item][13] = 1
+				self.total_vivo = self.total_vivo + 1
+
+			elif ips[0:6] == "172.40":
+				Var.Lista.Relogios[item][13] = 2
+				self.total_claro = self.total_claro + 1
+
+			elif ips[0:6] == "10.115":
+				Var.Lista.Relogios[item][13] = 3
+				self.total_porto = self.total_porto + 1
+
+			elif ips[0:5] == "10.50":
+				Var.Lista.Relogios[item][13] = 4
+				self.total_oi = self.total_oi + 1
+
+			elif ips[0] != "1":
+				Var.Lista.Relogios[item][13] = 5
+				self.total_4G = self.total_4G + 1
 
 
 	def Create_Status(self):
@@ -34,8 +63,8 @@ class Monitor:
 
 		self.MsgContageONTotal 		= Label (
 									self.ContainerStatus,
-									text = "  On-Line: " ,
-									font="arialblack 26 bold",
+									text = " On-Line: " ,
+									font="arialblack 21 bold",
 									bg="black",
 									fg="white",
 									highlightbackground="black",
@@ -55,7 +84,7 @@ class Monitor:
 		self.MsgContONTotal 		= Label (
 									self.ContainerStatus,
 									text = "000" ,
-									font="arialblack 26 bold",
+									font="arialblack 21 bold",
 									bg="black",
 									fg="green3",
 									highlightbackground="black",
@@ -74,8 +103,8 @@ class Monitor:
 
 		self.MsgContageTotal 		= Label (
 									self.ContainerStatus,
-									text = " Total: " ,
-									font="arialblack 26 bold",
+									text = "Total: " ,
+									font="arialblack 21 bold",
 									bg="black",
 									fg="white",
 									highlightbackground="black",
@@ -95,7 +124,7 @@ class Monitor:
 		self.MsgContTotal 		= Label (
 									self.ContainerStatus,
 									text = str(Ttotal).zfill(4) ,
-									font="arialblack 26 bold",
+									font="arialblack 21 bold",
 									bg="black",
 									fg="white",
 									highlightbackground="black",
@@ -115,7 +144,7 @@ class Monitor:
 		self.MesPercents 		= Label (
 									self.ContainerStatus,
 									text = " 0%" ,
-									font="arialblack 26 bold",
+									font="arialblack 21 bold",
 									bg="black",
 									fg="white",
 									highlightbackground="black",
@@ -133,7 +162,7 @@ class Monitor:
 
 		separate 		= Label (
 									self.ContainerStatus,
-									text = "|" ,
+									text = " |" ,
 									font="arialblack 30 bold",
 									bg="black",
 									fg="yellow",
@@ -155,7 +184,7 @@ class Monitor:
 		MsgVivo 					= Label (
 									self.ContainerStatus,
 									text = " Vivo " ,
-									font="arialblack 22 bold",
+									font="arialblack 18 bold",
 									bg="black",
 									fg="white",
 									highlightbackground="black",
@@ -174,7 +203,7 @@ class Monitor:
 		self.MesVivoCountOn 			= Label (
 									self.ContainerStatus,
 									text = "000" ,
-									font="arialblack 22 bold",
+									font="arialblack 18 bold",
 									bg="black",
 									fg="green3",
 									highlightbackground="black",
@@ -191,10 +220,10 @@ class Monitor:
 									pady=1)
 
 
-		self.MesVivoCount 			= Label (
+		MesVivoCount 			= Label (
 									self.ContainerStatus,
-									text = "-000 " ,
-									font="arialblack 22 bold",
+									text = "-"+str(self.total_vivo).zfill(3)+" " ,
+									font="arialblack 18 bold",
 									bg="black",
 									fg="white",
 									highlightbackground="black",
@@ -205,7 +234,7 @@ class Monitor:
 									height = 1)
 
 			
-		self.MesVivoCount.grid (
+		MesVivoCount.grid (
 									row=0,
 									column=9,
 									pady=1)
@@ -215,8 +244,8 @@ class Monitor:
 
 		self.MesVivoPerc 			= Label (
 									self.ContainerStatus,
-									text = "0% " ,
-									font="arialblack 22 bold",
+									text = "00% " ,
+									font="arialblack 18 bold",
 									bg="black",
 									fg="white",
 									highlightbackground="black",
@@ -257,7 +286,7 @@ class Monitor:
 		MsgClaro 					= Label (
 									self.ContainerStatus,
 									text = " Claro " ,
-									font="arialblack 22 bold",
+									font="arialblack 18 bold",
 									bg="black",
 									fg="white",
 									highlightbackground="black",
@@ -277,7 +306,7 @@ class Monitor:
 		self.MsgClaroCountOn 			= Label (
 									self.ContainerStatus,
 									text = "000" ,
-									font="arialblack 22 bold",
+									font="arialblack 18 bold",
 									bg="black",
 									fg="green3",
 									highlightbackground="black",
@@ -294,10 +323,10 @@ class Monitor:
 									pady=1)
 
 
-		self.MsgClaroCount 			= Label (
+		MsgClaroCount 			= Label (
 									self.ContainerStatus,
-									text = "-000 " ,
-									font="arialblack 22 bold",
+									text = "-"+str(self.total_claro).zfill(3)+" " ,
+									font="arialblack 18 bold",
 									bg="black",
 									fg="white",
 									highlightbackground="black",
@@ -308,7 +337,7 @@ class Monitor:
 									height = 1)
 
 			
-		self.MsgClaroCount.grid (
+		MsgClaroCount.grid (
 									row=0,
 									column=14,
 									pady=1)
@@ -316,8 +345,8 @@ class Monitor:
 
 		self.MsgClaroPerc 			= Label (
 									self.ContainerStatus,
-									text = "0% " ,
-									font="arialblack 22 bold",
+									text = "00% " ,
+									font="arialblack 18 bold",
 									bg="black",
 									fg="white",
 									highlightbackground="black",
@@ -358,7 +387,7 @@ class Monitor:
 		MsgPorto 					= Label (
 									self.ContainerStatus,
 									text = " Porto " ,
-									font="arialblack 22 bold",
+									font="arialblack 18 bold",
 									bg="black",
 									fg="white",
 									highlightbackground="black",
@@ -378,7 +407,7 @@ class Monitor:
 		self.MsgPortoCountOn 			= Label (
 									self.ContainerStatus,
 									text = "000" ,
-									font="arialblack 22 bold",
+									font="arialblack 18 bold",
 									bg="black",
 									fg="green3",
 									highlightbackground="black",
@@ -395,10 +424,10 @@ class Monitor:
 									pady=1)
 
 
-		self.MsgPortoCount 			= Label (
+		MsgPortoCount 			= Label (
 									self.ContainerStatus,
-									text = "-000 " ,
-									font="arialblack 22 bold",
+									text = "-"+str(self.total_porto).zfill(3)+" " ,
+									font="arialblack 18 bold",
 									bg="black",
 									fg="white",
 									highlightbackground="black",
@@ -409,7 +438,7 @@ class Monitor:
 									height = 1)
 
 			
-		self.MsgPortoCount.grid (
+		MsgPortoCount.grid (
 									row=0,
 									column=19,
 									pady=1)
@@ -417,8 +446,8 @@ class Monitor:
 
 		self.MsgPortoPerc 			= Label (
 									self.ContainerStatus,
-									text = "0% " ,
-									font="arialblack 22 bold",
+									text = "00% " ,
+									font="arialblack 18 bold",
 									bg="black",
 									fg="white",
 									highlightbackground="black",
@@ -459,7 +488,7 @@ class Monitor:
 		MsgOi 					= Label (
 									self.ContainerStatus,
 									text = " Oi " ,
-									font="arialblack 22 bold",
+									font="arialblack 18 bold",
 									bg="black",
 									fg="white",
 									highlightbackground="black",
@@ -479,7 +508,7 @@ class Monitor:
 		self.MsgOiCountOn 			= Label (
 									self.ContainerStatus,
 									text = "000" ,
-									font="arialblack 22 bold",
+									font="arialblack 18 bold",
 									bg="black",
 									fg="green3",
 									highlightbackground="black",
@@ -495,10 +524,10 @@ class Monitor:
 									column=23,
 									pady=1)
 
-		self.MsgOiCount 			= Label (
+		MsgOiCount 			= Label (
 									self.ContainerStatus,
-									text = "-000 " ,
-									font="arialblack 22 bold",
+									text = "-"+str(self.total_oi).zfill(3)+" ",
+									font="arialblack 18 bold",
 									bg="black",
 									fg="white",
 									highlightbackground="black",
@@ -509,7 +538,7 @@ class Monitor:
 									height = 1)
 
 			
-		self.MsgOiCount.grid (
+		MsgOiCount.grid (
 									row=0,
 									column=24,
 									pady=1)
@@ -517,8 +546,8 @@ class Monitor:
 
 		self.MsgOiPerc 			= Label (
 									self.ContainerStatus,
-									text = "0% " ,
-									font="arialblack 22 bold",
+									text = "00% " ,
+									font="arialblack 18 bold",
 									bg="black",
 									fg="white",
 									highlightbackground="black",
@@ -534,6 +563,105 @@ class Monitor:
 									column=22,
 									pady=1)
 
+
+		separate 		= Label (
+									self.ContainerStatus,
+									text = "|" ,
+									font="arialblack 30 bold",
+									bg="black",
+									fg="yellow",
+									highlightbackground="black",
+									activebackground="black",
+									activeforeground="white",
+									
+									bd=0,
+									height = 1)
+
+			
+		separate.grid (
+									row=0,
+									column=25,
+									pady=1)
+
+
+
+		Msg4G 					= Label (
+									self.ContainerStatus,
+									text = " 4G " ,
+									font="arialblack 18 bold",
+									bg="black",
+									fg="white",
+									highlightbackground="black",
+									activebackground="black",
+									activeforeground="white",
+									
+									bd=0,
+									height = 1)
+
+			
+		Msg4G.grid (
+									row=0,
+									column=26,
+									pady=1)
+
+
+		self.Msg4GCountOn 			= Label (
+									self.ContainerStatus,
+									text = "000" ,
+									font="arialblack 18 bold",
+									bg="black",
+									fg="green3",
+									highlightbackground="black",
+									activebackground="black",
+									activeforeground="white",
+									
+									bd=0,
+									height = 1)
+
+			
+		self.Msg4GCountOn.grid (
+									row=0,
+									column=28,
+									pady=1)
+
+		self.Msg4GCount 			= Label (
+									self.ContainerStatus,
+									text = "-"+str(self.total_4G).zfill(3)+" " ,
+									font="arialblack 18 bold",
+									bg="black",
+									fg="white",
+									highlightbackground="black",
+									activebackground="black",
+									activeforeground="white",
+									
+									bd=0,
+									height = 1)
+
+			
+		self.Msg4GCount.grid (
+									row=0,
+									column=29,
+									pady=1)
+
+
+		self.Msg4GPerc 			= Label (
+									self.ContainerStatus,
+									text = "00% " ,
+									font="arialblack 18 bold",
+									bg="black",
+									fg="white",
+									highlightbackground="black",
+									activebackground="black",
+									activeforeground="white",
+									
+									bd=0,
+									height = 1)
+
+			
+		self.Msg4GPerc.grid (
+									row=0,
+									column=27,
+									pady=1)
 
 
 
@@ -770,12 +898,55 @@ class Monitor:
 		self.MsgContageON[Id_scream].config ( text= (str(qnt_On)).zfill(2))
 
 
-		qnt_On_tot = 0
+
+
+
+		qnt_On_tot 		= 0
+		qnt_On_vivo 	= 0
+		qnt_On_claro 	= 0
+		qnt_On_porto 	= 0
+		qnt_On_oi 		= 0
+		qnt_On_4G 	 	= 0
 		for item in  range (len(Var.Lista.Relogios)):
 			if Var.Lista.Relogios[item][7] == True:
 				qnt_On_tot = qnt_On_tot + 1
+
+				if Var.Lista.Relogios[item][13] == 1:
+					qnt_On_vivo = qnt_On_vivo + 1
+
+				elif Var.Lista.Relogios[item][13] == 2:
+					qnt_On_claro = qnt_On_claro + 1
+
+				elif Var.Lista.Relogios[item][13] == 3:
+					qnt_On_porto = qnt_On_porto + 1
+
+				elif Var.Lista.Relogios[item][13] == 4:
+					qnt_On_oi = qnt_On_oi + 1
+
+				elif Var.Lista.Relogios[item][13] == 5:
+					qnt_On_4G = qnt_On_4G + 1
 
 		self.MsgContONTotal.config(text =  str(qnt_On_tot).zfill(4))
 		percent = ((qnt_On_tot*100)/len(Var.Lista.Relogios))
 		self.MesPercents.config(text = "  " + str(percent).zfill(2) + "%") 
 
+		self.MesVivoCountOn.config(text =str(qnt_On_vivo).zfill(3) )
+		self.MsgClaroCountOn.config(text =str(qnt_On_claro).zfill(3) )
+		self.MsgPortoCountOn.config(text =str(qnt_On_porto).zfill(3) )
+		self.MsgOiCountOn.config(text =str(qnt_On_oi).zfill(3) )
+		self.Msg4GCountOn.config(text =str(qnt_On_4G).zfill(3) )
+
+		percent = ((qnt_On_vivo*100)/self.total_vivo)
+		self.MesVivoPerc.config(text =str(percent).zfill(2) + "% " )
+
+		percent = ((qnt_On_claro*100)/self.total_claro)
+		self.MsgClaroPerc.config(text =str(percent).zfill(2) + "% " )
+
+		percent = ((qnt_On_porto*100)/self.total_porto )
+		self.MsgPortoPerc.config(text =str(percent).zfill(2) + "% " )
+
+		percent = ((qnt_On_oi*100)//self.total_oi )
+		self.MsgOiPerc.config(text =str(percent).zfill(2) + "% " )
+
+		percent = ((qnt_On_4G*100)//self.total_4G )
+		self.Msg4GPerc.config(text =str(percent).zfill(2) + "% " )
