@@ -13,6 +13,9 @@ class Var(object):
 		Total     	="null"
 		Hora		='null'
 		Atencao		="null"
+		graphOn_x		= []
+		graphOn_y		= []
+		graphOn_n	=[]
 
 	class Lista2(object):
 		

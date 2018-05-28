@@ -1,4 +1,12 @@
 # -*- coding: utf-8 -*-
+# instal matplotlib
+# instal mysql.connector
+
+
+
+
+
+
 
 from VariaveisGlobais import * 
 from Tkinter import *
@@ -111,6 +119,14 @@ class ScremInit:
 
 
 		self.telaMonitor = Toplevel(master=None)
+		self.telaMonitor.geometry('1950x950')
+		self.state3 = False
+		self.telaMonitor.bind('<F11>',self.togglefull3)
+		self.telaMonitor.update()
+		#self.telaMonitor.grid_rowconfigure(0,weight=1)
+		#self.telaMonitor.grid_columnconfigure(0,weight=1)
+		self.telaMonitor.resizable(True,True)
+		self.telaMonitor.configure(background="black")
 		self.telaMonitor.title("Monitoramento e Controle")
 		self.telaMonitor.protocol("WM_DELETE_WINDOW",on_closing)
 		Telas.GUI_Monitor = Monitor(self.telaMonitor)
@@ -123,6 +139,11 @@ class ScremInit:
 	def togglefull2(self,event):
 		self.state2 = not self.state2
 		self.Relo2.attributes("-fullscreen",self.state2)
+
+
+	def togglefull3(self,event):
+		self.state3 = not self.state3
+		self.telaMonitor.attributes("-fullscreen",self.state3)
 
 
 class Iniciooo:

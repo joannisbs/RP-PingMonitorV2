@@ -7,6 +7,12 @@ from Tkinter import *
 from VariaveisGlobais import * 
 from TestFuncions import *
 from LeBanco import Mysqldb
+import matplotlib
+matplotlib.use('TkAgg')
+import matplotlib.pyplot as plt
+from matplotlib.figure import Figure
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg 
+
 
 import sys
 import os
@@ -24,6 +30,141 @@ class Monitor:
 		self.Create_Status()
 		self.Create_emps()
 
+		#self.Create_Graph()
+		self.Creat_Graph2()
+
+
+
+	def Creat_Graph2(self):
+		x = [0,1,2,3,4,5]
+		y = [50,57,60,68,63,64]
+		label= ['a','b','c','d','e','f']
+		
+		self.pltgra1 = plt
+
+		fig = self.pltgra1.figure(figsize=(6,3),facecolor="black")
+		
+
+		self.graph1 = self.pltgra1.subplot(111)
+		
+		self.graph1.set_ylim(0,100)
+
+
+		self.pltgra1.plot(x,y,"yellow", linewidth=2.0)
+		self.pltgra1.xticks(x,label)
+		
+
+		self.graph1.tick_params(axis='x', colors= 'white')
+		self.graph1.tick_params(axis='y', colors= 'white')
+
+		self.graph1.grid( color='gray', linestyle='--', linewidth=0.5)
+		
+		self.graph1.set_axis_bgcolor("black")
+
+		self.graph1.spines['left'].set_color('white')
+		self.graph1.spines['right'].set_color('white')	
+		self.graph1.spines['top'].set_color('white')
+		self.graph1.spines['bottom'].set_color('white')
+
+		self.canvas = FigureCanvasTkAgg(fig,master = self.ContainerGrafc)
+		self.canvas.get_tk_widget().grid(row=0,column = 0)
+		self.canvas.draw()
+
+
+
+
+
+
+
+	def Create_Graph(self):
+
+		x = [0,1,2,3,4,5]
+		y = [50,57,60,68,63,64]
+		label= ['a','b','c','d','e','f']
+
+		fig = Figure(figsize=(6,3),facecolor="black")
+
+		self.graph1 = plt.subplot(111)
+		self.graph1.set_axis_bgcolor("black")
+		self.graph1.spines['left'].set_color('white')
+		self.graph1.spines['right'].set_color('white')	
+		self.graph1.spines['top'].set_color('white')
+		self.graph1.spines['bottom'].set_color('white')
+
+		self.graph1.tick_params(axis='x', colors= 'white')
+		self.graph1.tick_params(axis='y', colors= 'white')
+		self.graph1.set_ylabel("Valores em Porcentagem %",color="white")
+		self.graph1.set_title("OnLine na ultima hora",color="white")
+		self.graph1.set_xlabel("Ultima Hora",color="white")
+		
+
+		self.graph1.grid( color='gray', linestyle='--', linewidth=0.5)
+		self.graph1.plot(label,y,"yellow", linewidth=2.0)
+		
+		#self.graph1.set_xticklabels(label, rotation = 'vertical', color='white')
+
+		self.canvas = FigureCanvasTkAgg(fig,master = self.ContainerGrafc)
+		self.canvas.get_tk_widget().grid(row=0,column = 0)
+		self.canvas.draw()
+
+
+
+
+		fig2 = Figure(figsize=(6,3),facecolor="black")
+		self.graph2 = fig2.add_subplot(111)
+
+		self.graph2.plot(x,y)
+		self.graph2.set_title("OnLine ao longo do dia")
+		self.canva2 = FigureCanvasTkAgg(fig,master = self.ContainerGrafc)
+		self.canva2.get_tk_widget().grid(row=0,column = 1)
+		self.canva2.draw()
+
+
+		fig3 = Figure(figsize=(6,3),facecolor="black")
+
+		self.graph3 = fig3.add_subplot(111)
+		self.graph3.plot(x,y)
+		self.graph3.set_ylabel("Vivo ao longo do dia")
+		self.canva3 = FigureCanvasTkAgg(fig,master = self.ContainerGrafc)
+		self.canva3.get_tk_widget().grid(row=1,column = 0)
+		self.canva3.draw()
+
+		fig4 = Figure(figsize=(6,3),facecolor="black")
+
+
+		self.graph4 = fig4.add_subplot(111)
+		self.graph4.plot(x,y)
+		self.graph4.set_ylabel("Claro ao longo do dia")
+		self.canva4 = FigureCanvasTkAgg(fig,master = self.ContainerGrafc)
+		self.canva4.get_tk_widget().grid(row=1,column = 1)
+		self.canva4.draw()
+
+		fig5 = Figure(figsize=(6,3),facecolor="black")
+
+		self.graph5 = fig5.add_subplot(111)
+		self.graph5.plot(x,y)
+		self.graph5.set_ylabel("Porto ao longo do dia")
+		self.canva5 = FigureCanvasTkAgg(fig,master = self.ContainerGrafc)
+		self.canva5.get_tk_widget().grid(row=2,column = 0)
+		self.canva5.draw()
+
+		fig6 = Figure(figsize=(6,3),facecolor="black")
+
+		self.graph6 = fig6.add_subplot(111)
+		self.graph6.plot(x,y)
+		self.graph6.set_ylabel("Oi ao longo do dia")
+		self.canva6 = FigureCanvasTkAgg(fig,master = self.ContainerGrafc)
+		self.canva6.get_tk_widget().grid(row=2,column = 1)
+		self.canva6.draw()
+
+		fig7 = Figure(figsize=(6,3),facecolor="black")
+
+		self.graph7 = fig7.add_subplot(111)
+		self.graph7.plot(x,y)
+		self.graph7.set_ylabel("4G ao longo do dia")
+		self.canva7 = FigureCanvasTkAgg(fig,master = self.ContainerGrafc)
+		self.canva7.get_tk_widget().grid(row=3,column = 0)
+		self.canva7.draw()
 
 	def Calc_Op(self):
 		self.total_vivo 	= 0
@@ -162,7 +303,7 @@ class Monitor:
 
 		separate 		= Label (
 									self.ContainerStatus,
-									text = " |" ,
+									text = "|" ,
 									font="arialblack 30 bold",
 									bg="black",
 									fg="yellow",
@@ -683,22 +824,29 @@ class Monitor:
 		self.botaoAtencao 	=[]
 		self.MsgContageON 	=[]
 		self.MsgContagetot 	=[]
+		self.graphTot = GraphOn()
 
 	def Create_containers(self,root):
-		self.ContainerStatus              = Frame (root,bg="black")
+		self.ContainerStatus           	 	= Frame (root,bg="black")
 		self.ContainerStatus.grid                 (row=0, sticky = N + W + E)
 
-		self.ContainerDiv              = Frame (root,bg="yellow")
+		self.ContainerDiv             		= Frame (root,bg="yellow")
 		self.ContainerDiv.grid                 (row=1, sticky = N + W + E)
 
-		self.ContainerDiv2              = Frame (self.ContainerDiv,bg="yellow")
+		self.ContainerDiv2              	= Frame (self.ContainerDiv,bg="yellow")
 		self.ContainerDiv2.grid                 (row=1,pady=1, sticky = N + W + E)
 
-		self.ContaineParte2				= Frame(root,bg="black")
+		self.ContaineParte2					= Frame(root,bg="black")
 		self.ContaineParte2.grid                 (row=2,sticky = N + W + E + S)
 
-		self.ContaineEmpresas1			= Frame(self.ContaineParte2,bg="black")
+		self.ContaineEmpresas1				= Frame(self.ContaineParte2,bg="black")
 		self.ContaineEmpresas1.grid                 (row=0,pady=2, column=0, sticky = "N")
+
+		self.Containesep					= Frame(self.ContaineParte2,bg="yellow")
+		self.Containesep.grid                 (row=0,padx=2, column=1, sticky = "N")
+
+		self.ContainerGrafc					= Frame(self.ContaineParte2,bg="blue")
+		self.ContainerGrafc.grid                 (row=0,padx=2, column=2, sticky = N + W + E + S)
 
 	def AtualizarDatabase(self):
 		
@@ -736,12 +884,12 @@ class Monitor:
 		Var.Lista.Empresas[id_emp][12] = id_emp
 
 
-		if 60 > id_emp > 29:
+		if 40 > id_emp > 29:
 			coluna = 4
 			row_line = id_emp - 30 + 1
-		elif id_emp > 59:
+		elif id_emp > 39:
 			coluna = 8
-			row_line = id_emp - 60 + 1
+			row_line = id_emp - 40 + 1
 		else:
 			coluna = 0
 			row_line = id_emp + 1
@@ -928,7 +1076,11 @@ class Monitor:
 
 		self.MsgContONTotal.config(text =  str(qnt_On_tot).zfill(4))
 		percent = ((qnt_On_tot*100)/len(Var.Lista.Relogios))
-		self.MesPercents.config(text = "  " + str(percent).zfill(2) + "%") 
+		self.MesPercents.config(text = "  " + str(percent).zfill(2) + "% ") 
+
+
+
+		self.graphTot.insert(percent,qnt_On_tot)
 
 		self.MesVivoCountOn.config(text =str(qnt_On_vivo).zfill(3) )
 		self.MsgClaroCountOn.config(text =str(qnt_On_claro).zfill(3) )
@@ -950,3 +1102,159 @@ class Monitor:
 
 		percent = ((qnt_On_4G*100)//self.total_4G )
 		self.Msg4GPerc.config(text =str(percent).zfill(2) + "% " )
+
+
+	def updateGraphtot(self):
+				
+		self.graph1.cla()
+				
+		
+		
+		self.graph1.set_ylim(0,100)
+
+		#self.pltgra1.marker('+')
+		
+
+		#self.graph1.tick_params(axis='x', colors= 'white')
+		#self.graph1.tick_params(axis='y', colors= 'white')
+
+		self.graph1.grid( color='gray', linestyle='--', linewidth=0.5)
+		
+		#self.graph1.set_axis_bgcolor("black")
+
+		#self.graph1.spines['left'].set_color('white')
+		#self.graph1.spines['right'].set_color('white')	
+		#self.graph1.spines['top'].set_color('white')
+		#self.graph1.spines['bottom'].set_color('white')
+
+		self.graph1.set_ylabel("Valores em Porcentagem %",color="white")
+		self.graph1.set_title("OnLine na ultima hora",color="white")
+
+
+		if len(Var.Lista.graphOn_n)>63:
+			list_n = Var.Lista.graphOn_n[-63:]
+			list_x = Var.Lista.graphOn_x[-63:]
+			list_y = Var.Lista.graphOn_y[-63:]
+
+			Var.Lista.graphOn_n = Var.Lista.graphOn_n[-63:]
+			Var.Lista.graphOn_x = Var.Lista.graphOn_x[-63:]
+			Var.Lista.graphOn_y = Var.Lista.graphOn_y[-63:]
+			
+			self.pltgra1.plot(list_n,list_y,"yellow",marker='o', linewidth=2.0)
+			self.pltgra1.xticks(list_n[::9],list_x[::9])
+
+		elif 56 > len(Var.Lista.graphOn_n)>49:
+			list_n = Var.Lista.graphOn_n
+			list_x = Var.Lista.graphOn_x
+			list_y = Var.Lista.graphOn_y
+
+			
+			self.pltgra1.plot(list_n,list_y,"yellow",marker='o', linewidth=2.0)
+			self.pltgra1.xticks(list_n[::8],list_x[::8])
+
+
+
+		elif 50 > len(Var.Lista.graphOn_n)>42:
+			list_n = Var.Lista.graphOn_n
+			list_x = Var.Lista.graphOn_x
+			list_y = Var.Lista.graphOn_y
+
+			
+			self.pltgra1.plot(list_n,list_y,"yellow",marker='o', linewidth=2.0)
+			self.pltgra1.xticks(list_n[::7],list_x[::7])
+
+
+		elif 43 > len(Var.Lista.graphOn_n)>35:
+			list_n = Var.Lista.graphOn_n
+			list_x = Var.Lista.graphOn_x
+			list_y = Var.Lista.graphOn_y
+
+			
+			self.pltgra1.plot(list_n,list_y,"yellow",marker='o', linewidth=2.0)
+			self.pltgra1.xticks(list_n[::6],list_x[::6])
+
+
+		elif 36 > len(Var.Lista.graphOn_n)>28:
+			list_n = Var.Lista.graphOn_n
+			list_x = Var.Lista.graphOn_x
+			list_y = Var.Lista.graphOn_y
+
+			
+			self.pltgra1.plot(list_n,list_y,"yellow",marker='o', linewidth=2.0)
+			self.pltgra1.xticks(list_n[::5],list_x[::5])
+
+
+
+
+		elif 29 > len(Var.Lista.graphOn_n)>21:
+			list_n = Var.Lista.graphOn_n
+			list_x = Var.Lista.graphOn_x
+			list_y = Var.Lista.graphOn_y
+
+			
+			self.pltgra1.plot(list_n,list_y,"yellow",marker='o', linewidth=2.0)
+			self.pltgra1.xticks(list_n[::4],list_x[::4])
+
+		
+		elif 22 > len(Var.Lista.graphOn_n)>14:
+			list_n = Var.Lista.graphOn_n
+			list_x = Var.Lista.graphOn_x
+			list_y = Var.Lista.graphOn_y
+
+			
+			self.pltgra1.plot(list_n,list_y,"yellow",marker='o', linewidth=2.0)
+			self.pltgra1.xticks(list_n[::3],list_x[::3])
+		
+
+
+		elif 15 > len(Var.Lista.graphOn_n) > 7:
+			list_n = Var.Lista.graphOn_n
+			list_x = Var.Lista.graphOn_x
+			list_y = Var.Lista.graphOn_y
+
+			
+			self.pltgra1.plot(list_n,list_y,"yellow",marker='o', linewidth=2.0)
+			self.pltgra1.xticks(list_n[::2],list_x[::2])
+		
+
+
+		else:
+			
+			self.pltgra1.plot(Var.Lista.graphOn_n,Var.Lista.graphOn_y,"yellow",marker='o', linewidth=2.0)
+			self.pltgra1.xticks(Var.Lista.graphOn_n,Var.Lista.graphOn_x)
+		
+
+
+		self.canvas.draw()
+
+
+	def up2(self):
+		print "aqui"
+		self.graph1.cla()		
+
+
+		self.graph1.tick_params(axis='x', colors= 'white')
+		self.graph1.tick_params(axis='y', colors= 'white')
+		self.graph1.set_ylabel("Valores em Porcentagem %",color="white")
+		self.graph1.set_title("OnLine na ultima hora",color="white")
+		#self.graph1.set_xlabel("Ultima Hora",color="white")
+		self.graph1.grid( color='gray', linestyle='-.', linewidth=0.5)
+
+		#self.graph1.set_ylabel("Valores em Porcentagem %")
+		#self.graph1.set_title("OnLine na ultima hora")
+		
+		if len(Var.Lista.graphOn_n)>50:
+			list_n = Var.Lista.graphOn_n[-50:]
+			list_x = Var.Lista.graphOn_x[-50:]
+			list_y = Var.Lista.graphOn_y[-50:]
+
+			self.graph1.plot(list_n,list_y,"yellow", linewidth=2.0)
+			#self.graph1.set_xticklabels(list_x, rotation = 'vertical', color='white')
+		else:
+			self.graph1.plot(Var.Lista.graphOn_x,Var.Lista.graphOn_y,"yellow", linewidth=2.0)
+			#self.graph1.set_xticklabels(Var.Lista.graphOn_x, rotation = 'vertical', color='white')
+		
+		
+
+	
+		self.canvas.draw()

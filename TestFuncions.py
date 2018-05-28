@@ -31,6 +31,34 @@ class Threads(threading.Thread):
 		return self.__trace
 
 
+class GraphOn:
+	def __init__(self):
+		self.hora = GetTime()
+		self.minutos  = "0"
+		self.n = 0
+
+	def insert(self,value,number):
+
+		self.hora2 = GetTime()
+
+		if self.hora2.sominuto() != self.minutos:
+			self.minutos = self.hora2.sominuto()
+
+			Var.Lista.graphOn_x.append(self.hora2.horaminuto())
+			Var.Lista.graphOn_y.append(value)
+			Var.Lista.graphOn_n.append(self.n)
+
+			data = self.hora2.completa()
+
+
+			loggeral = open ("LogPercentsTotal.csv","ab+")
+			loggeral.write  (str(self.n)+";"+str(number)+";"+ data +" \n")
+			loggeral.close
+			
+
+
+			self.n = self.n + 1
+			Telas.GUI_Monitor.updateGraphtot()
 
 class Servico:
 
