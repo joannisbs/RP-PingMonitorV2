@@ -1160,12 +1160,22 @@ class Monitor:
 			self.list_x = Var.Lista.graphOn_x[-60:]
 			self.list_y = Var.Lista.graphOn_y[-60:]
 
+			self.listv_y = Var.Lista.graphVivo_y[-60:]
+			self.listc_y = Var.Lista.graphClaro_y[-60:]
+			self.listp_y = Var.Lista.graphPorto_y[-60:]
+			self.listo_y = Var.Lista.graphOI_y[-60:]
+			self.listg_y = Var.Lista.graph4G_y[-60:]
+
 			Var.Lista.graphOn_n = Var.Lista.graphOn_n[-59:]
 			Var.Lista.graphOn_x = Var.Lista.graphOn_x[-59:]
 			Var.Lista.graphOn_y = Var.Lista.graphOn_y[-59:]
 			
 
-
+			Var.Lista.graphVivo_y = Var.Lista.graphVivo_y[-59:]
+			Var.Lista.graphClaro_y = Var.Lista.graphClaro_y[-59:]
+			Var.Lista.graphPorto_y = Var.Lista.graphPorto_y[-59:]
+			Var.Lista.graphOI_y = Var.Lista.graphOI_y[-59:]
+			Var.Lista.graph4G_y = Var.Lista.graph4G_y[-59:]
 
 
 			self.listl_n = self.list_n[::10]

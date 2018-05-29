@@ -23,6 +23,11 @@ class GetTime(object):
 		minutos = str(self.minuto).zfill(2)			
 		return minutos
 
+	def sohora(self):
+		
+		sohora = str(self.hora).zfill(2)			
+		return sohora
+
 	def completa(self):
 		date = (str(self.year).zfill(4)+"_"+
 				str(self.mes).zfill(2)+"_"+
