@@ -56,9 +56,9 @@ class GraphOn:
 		self.hora2 = GetTime()
 
 		
-		if self.hora2.sosegundo() != self.minutos1 and int(self.hora2.sosegundo()) % 3 == 0:
+		if self.hora2.sominuto() != self.minutos1:
 
-			self.minutos1 = self.hora2.sosegundo()
+			self.minutos1 = self.hora2.sominuto()
 
 			Var.Lista.graphOn_x.append(self.hora2.horaminuto())
 			Var.Lista.graphOn_y.append(percentt)
@@ -84,7 +84,7 @@ class GraphOn:
 
 			self.n = self.n + 1
 
-			if self.hora2.sominuto() != self.horinha:
+			if self.hora2.sohora() != self.horinha:
 				ho_dia = self.hora2.horaminuto()
 				if self.horinha == '0':
 					
@@ -166,7 +166,7 @@ class GraphOn:
 					Var.Lista.graphH_g.append(media)
 
 
-				self.horinha = self.hora2.sominuto()
+				self.horinha = self.hora2.sohora()
 
 				self.num_hor = self.num_hor + 1
 					

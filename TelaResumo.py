@@ -1709,7 +1709,7 @@ class Monitor:
 		self.canvas2.draw()
 
 	def close(self):
-		plt.close()
+		pass
 
 
 
@@ -1717,8 +1717,9 @@ class Monitor:
 		print "aqui"
 
 		plt.cla()	
+
 		
-		fig = plt.figure(figsize=(12,6),facecolor="black")
+		self.fig = plt.figure(figsize=(12,6),facecolor="black")
 
 
 		ax = plt.subplot(2,2,1)
@@ -1811,6 +1812,6 @@ class Monitor:
 		plt.grid( color='gray', linewidth=0.5)
 
 
-		self.canvas = FigureCanvasTkAgg(fig,master = self.ContainerGrafc)
+		self.canvas = FigureCanvasTkAgg(self.fig,master = self.ContainerGrafc)
 		self.canvas.get_tk_widget().grid(row=0,column = 0)
 		self.canvas.draw()
