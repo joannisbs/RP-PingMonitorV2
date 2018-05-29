@@ -31,18 +31,24 @@ class Monitor:
 		self.Create_emps()
 
 		#self.Create_Graph()
-		self.Creat_Graph2()
+		self.Create_Graphs()
+
+	def Create_Graphs(self):
+		self.Create_GraphTotal()
+		#self.Create_GraphToOp()
 
 
 
-	def Creat_Graph2(self):
+
+
+	def Create_GraphTotal(self):
 		x = [0,1,2,3,4,5]
 		y = [50,57,60,68,63,64]
 		label= ['a','b','c','d','e','f']
 		
 		self.pltgra1 = plt
 
-		fig = self.pltgra1.figure(figsize=(6,3),facecolor="black")
+		fig = self.pltgra1.figure(figsize=(6,6),facecolor="black")
 		
 
 		self.graph1 = self.pltgra1.subplot(111)
@@ -72,10 +78,43 @@ class Monitor:
 
 
 
+	def Create_GraphToOp(self):
+
+		x = [0,1,2,3,4,5]
+		y = [50,57,60,68,63,64]
+
+		label= ['a','b','c','d','e','f']
+		
+		self.pltgra2 = plt
+
+		#fig2 = self.pltgra2.figure(figsize=(6,3),facecolor="black")
+		
+
+		self.graph2 = self.pltgra2.subplot(121)
+		
+		self.graph2.set_ylim(0,100)
 
 
+		self.pltgra2.plot(x,y,"yellow", linewidth=1.0)
+		self.pltgra2.xticks(x,label)
+		
 
+		self.graph2.tick_params(axis='x', colors= 'white')
+		self.graph2.tick_params(axis='y', colors= 'white')
 
+		self.graph2.grid( color='gray', linestyle='--', linewidth=0.5)
+		
+		self.graph2.set_axis_bgcolor("black")
+
+		self.graph2.spines['left'].set_color('white')
+		self.graph2.spines['right'].set_color('white')	
+		self.graph2.spines['top'].set_color('white')
+		self.graph2.spines['bottom'].set_color('white')
+
+		#self.canvas2 = FigureCanvasTkAgg(fig,master = self.ContainerGrafc)
+		#self.canvas2.get_tk_widget().grid(row=1,column = 0)
+		#self.canvas2.draw()
+		self.canvas.draw()
 	def Create_Graph(self):
 
 		x = [0,1,2,3,4,5]
@@ -1106,14 +1145,12 @@ class Monitor:
 
 	def updateGraphtot(self):
 				
-		self.graph1.cla()
-				
-		
+		self.graph1.cla()	
 		
 		self.graph1.set_ylim(0,100)
 
 		#self.pltgra1.marker('+')
-		
+		print len(Var.Lista.graphOn_n)
 
 		#self.graph1.tick_params(axis='x', colors= 'white')
 		#self.graph1.tick_params(axis='y', colors= 'white')
@@ -1131,102 +1168,533 @@ class Monitor:
 		self.graph1.set_title("OnLine na ultima hora",color="white")
 
 
-		if len(Var.Lista.graphOn_n)>63:
-			list_n = Var.Lista.graphOn_n[-63:]
-			list_x = Var.Lista.graphOn_x[-63:]
-			list_y = Var.Lista.graphOn_y[-63:]
+		if len(Var.Lista.graphOn_n)>59:
+			print "case more 62"
+			list_n = Var.Lista.graphOn_n[-60:]
+			list_x = Var.Lista.graphOn_x[-60:]
+			list_y = Var.Lista.graphOn_y[-60:]
 
-			Var.Lista.graphOn_n = Var.Lista.graphOn_n[-63:]
-			Var.Lista.graphOn_x = Var.Lista.graphOn_x[-63:]
-			Var.Lista.graphOn_y = Var.Lista.graphOn_y[-63:]
-			
-			self.pltgra1.plot(list_n,list_y,"yellow",marker='o', linewidth=2.0)
-			self.pltgra1.xticks(list_n[::9],list_x[::9])
+			Var.Lista.graphOn_n = Var.Lista.graphOn_n[-59:]
+			Var.Lista.graphOn_x = Var.Lista.graphOn_x[-59:]
+			Var.Lista.graphOn_y = Var.Lista.graphOn_y[-59:]
+			self.graph1.set_xlim(list_n[0],list_n[60])
+			self.pltgra1.plot(list_n[::2],list_y[::2],"yellow", linewidth=1.0)
 
-		elif 56 > len(Var.Lista.graphOn_n)>49:
+			list_n = list_n[::10]
+			list_x = list_x[::10]
+			list_n.append(list_n[-1:])
+			list_x.append(list_x[-1:])
+			self.pltgra1.xticks(list_n,list_x)
+
+		elif 60>len(Var.Lista.graphOn_n)>56:
 			list_n = Var.Lista.graphOn_n
 			list_x = Var.Lista.graphOn_x
 			list_y = Var.Lista.graphOn_y
 
+			print "case more 56"
+
 			
-			self.pltgra1.plot(list_n,list_y,"yellow",marker='o', linewidth=2.0)
+			self.pltgra1.plot(list_n[::2],list_y[::2],"yellow", linewidth=1.0)
+			self.pltgra1.xticks((list_n[::2])[::4],(list_x[::2])[::4])
+
+		elif 57 > len(Var.Lista.graphOn_n)>49:
+			list_n = Var.Lista.graphOn_n
+			list_x = Var.Lista.graphOn_x
+			list_y = Var.Lista.graphOn_y
+			print "case more 49"
+			
+			self.pltgra1.plot(list_n,list_y,"yellow", linewidth=1.0)
 			self.pltgra1.xticks(list_n[::8],list_x[::8])
 
 
 
 		elif 50 > len(Var.Lista.graphOn_n)>42:
+			print "case more 42"
 			list_n = Var.Lista.graphOn_n
 			list_x = Var.Lista.graphOn_x
 			list_y = Var.Lista.graphOn_y
 
 			
-			self.pltgra1.plot(list_n,list_y,"yellow",marker='o', linewidth=2.0)
+			self.pltgra1.plot(list_n,list_y,"yellow", linewidth=1.0)
 			self.pltgra1.xticks(list_n[::7],list_x[::7])
 
 
 		elif 43 > len(Var.Lista.graphOn_n)>35:
+			print "case more 35"
 			list_n = Var.Lista.graphOn_n
 			list_x = Var.Lista.graphOn_x
 			list_y = Var.Lista.graphOn_y
 
 			
-			self.pltgra1.plot(list_n,list_y,"yellow",marker='o', linewidth=2.0)
+			self.pltgra1.plot(list_n,list_y,"yellow", linewidth=1.0)
 			self.pltgra1.xticks(list_n[::6],list_x[::6])
 
 
 		elif 36 > len(Var.Lista.graphOn_n)>28:
+			print "case more 28"
 			list_n = Var.Lista.graphOn_n
 			list_x = Var.Lista.graphOn_x
 			list_y = Var.Lista.graphOn_y
 
 			
-			self.pltgra1.plot(list_n,list_y,"yellow",marker='o', linewidth=2.0)
+			self.pltgra1.plot(list_n,list_y,"yellow", linewidth=1.0)
 			self.pltgra1.xticks(list_n[::5],list_x[::5])
 
 
 
 
 		elif 29 > len(Var.Lista.graphOn_n)>21:
+			print "case more 21"
 			list_n = Var.Lista.graphOn_n
 			list_x = Var.Lista.graphOn_x
 			list_y = Var.Lista.graphOn_y
 
 			
-			self.pltgra1.plot(list_n,list_y,"yellow",marker='o', linewidth=2.0)
+			self.pltgra1.plot(list_n,list_y,"yellow", linewidth=1.0)
 			self.pltgra1.xticks(list_n[::4],list_x[::4])
 
 		
 		elif 22 > len(Var.Lista.graphOn_n)>14:
+			print "case more 14"
 			list_n = Var.Lista.graphOn_n
 			list_x = Var.Lista.graphOn_x
 			list_y = Var.Lista.graphOn_y
 
 			
-			self.pltgra1.plot(list_n,list_y,"yellow",marker='o', linewidth=2.0)
+			self.pltgra1.plot(list_n,list_y,"yellow", linewidth=1.0)
 			self.pltgra1.xticks(list_n[::3],list_x[::3])
 		
 
 
 		elif 15 > len(Var.Lista.graphOn_n) > 7:
+			print "case more 7"
 			list_n = Var.Lista.graphOn_n
 			list_x = Var.Lista.graphOn_x
 			list_y = Var.Lista.graphOn_y
 
 			
-			self.pltgra1.plot(list_n,list_y,"yellow",marker='o', linewidth=2.0)
+			self.pltgra1.plot(list_n,list_y,"yellow", linewidth=1.0)
 			self.pltgra1.xticks(list_n[::2],list_x[::2])
 		
 
 
 		else:
-			
-			self.pltgra1.plot(Var.Lista.graphOn_n,Var.Lista.graphOn_y,"yellow",marker='o', linewidth=2.0)
+			print "case =("
+			self.pltgra1.plot(Var.Lista.graphOn_n,Var.Lista.graphOn_y,"yellow", linewidth=1.0)
 			self.pltgra1.xticks(Var.Lista.graphOn_n,Var.Lista.graphOn_x)
 		
 
 
 		self.canvas.draw()
 
+
+	def updateGraphtotOp(self):
+				
+		self.graph2.cla()	
+		
+		self.graph2.set_ylim(0,100)
+
+		#self.pltgra2.marker('+')
+		
+
+		#self.graph1.tick_params(axis='x', colors= 'white')
+		#self.graph1.tick_params(axis='y', colors= 'white')
+
+		self.graph2.grid( color='gray', linestyle='--', linewidth=0.5)
+		
+		#self.graph1.set_axis_bgcolor("black")
+
+		#self.graph1.spines['left'].set_color('white')
+		#self.graph1.spines['right'].set_color('white')	
+		#self.graph1.spines['top'].set_color('white')
+		#self.graph1.spines['bottom'].set_color('white')
+
+		self.graph2.set_ylabel("Valores em Porcentagem %",color="white")
+		self.graph2.set_title("OnLine na ultima hora",color="white")
+
+
+		if len(Var.Lista.graphOn_n)>63:
+			
+
+
+			listv_n = Var.Lista.graphVivo_n[-63:]
+			listv_x = Var.Lista.graphVivo_y[-63:]
+			listv_y = Var.Lista.graphVivo_x[-63:]
+
+			#listp_n = Var.Lista.graphPorto_n[-63:]
+			#listp_x = Var.Lista.graphPorto_x[-63:]
+			listp_y = Var.Lista.graphPorto_y[-63:]
+
+			#listc_n = Var.Lista.graphClaro_n[-63:]
+			#listc_x = Var.Lista.graphClaro_x[-63:]
+			listc_y = Var.Lista.graphClaro_y[-63:]
+
+			#listo_n = Var.Lista.graphOI_n[-63:]
+			#listo_x = Var.Lista.graphOI_x[-63:]
+			listo_y = Var.Lista.graphOI_y[-63:]
+
+			#listg_n = Var.Lista.graph4G_n[-63:]
+			#listg_x = Var.Lista.graph4G_x[-63:]
+			listg_y = Var.Lista.graph4G_y[-63:]
+
+
+			#Var.Lista.graphVivo_n = Var.Lista.graphVivo_n[-63:]
+			#Var.Lista.graphVivo_x = Var.Lista.graphVivo_y[-63:]
+			Var.Lista.graphVivo_y = Var.Lista.graphVivo_x[-63:]
+
+			#Var.Lista.graphPorto_n = Var.Lista.graphPorto_n[-63:]
+			#Var.Lista.graphPorto_x = Var.Lista.graphPorto_x[-63:]
+			Var.Lista.graphPorto_y = Var.Lista.graphPorto_y[-63:]
+
+			#Var.Lista.graphClaro_n = Var.Lista.graphClaro_n[-63:]
+			#Var.Lista.graphClaro_x = Var.Lista.graphClaro_x[-63:]
+			Var.Lista.graphClaro_y = Var.Lista.graphClaro_y[-63:]
+
+			#Var.Lista.graphOI_n = Var.Lista.graphOI_n[-63:]
+			#Var.Lista.graphOI_x = Var.Lista.graphOI_x[-63:]
+			Var.Lista.graphOI_y = Var.Lista.graphOI_y[-63:]
+
+			#Var.Lista.graph4G_n = Var.Lista.graph4G_n[-63:]
+			#Var.Lista.graph4G_x = Var.Lista.graph4G_x[-63:]
+			Var.Lista.graph4G_y = Var.Lista.graph4G_y[-63:]
+
+
+			self.pltgra2.plot(listv_n,listv_y,"green3", linewidth=1.0)
+			self.pltgra2.xticks(listv_n[::9],listv_x[::9])
+
+			self.pltgra2.plot(listv_n,listp_y,"blue", linewidth=1.0)
+			#self.pltgra2.xticks(listv_n[::9],listp_x[::9])
+
+			self.pltgra2.plot(listv_n,listc_y,"red", linewidth=1.0)
+			#self.pltgra2.xticks(listv_n[::9],list_x[::9])
+
+			self.pltgra2.plot(listv_n,listo_y,"orange", linewidth=1.0)
+			#self.pltgra2.xticks(listv_n[::9],list_x[::9])
+
+			self.pltgra2.plot(listv_n,listg_y,"purple", linewidth=1.0)
+			#self.pltgra2.xticks(listv_n[::9],list_x[::9])
+
+
+
+
+
+
+		elif 56 > len(Var.Lista.graphOn_n)>49:
+			
+			listv_n = Var.Lista.graphVivo_n
+			listv_x = Var.Lista.graphVivo_y
+			listv_y = Var.Lista.graphVivo_x
+
+			#listp_n = Var.Lista.graphPorto_n
+			#listp_x = Var.Lista.graphPorto_x
+			listp_y = Var.Lista.graphPorto_y
+
+			#listc_n = Var.Lista.graphClaro_n
+			#listc_x = Var.Lista.graphClaro_x
+			listc_y = Var.Lista.graphClaro_y
+
+			#listo_n = Var.Lista.graphOI_n
+			#listo_x = Var.Lista.graphOI_x
+			listo_y = Var.Lista.graphOI_y
+
+			#listg_n = Var.Lista.graph4G_n
+			#listg_x = Var.Lista.graph4G_x
+			listg_y = Var.Lista.graph4G_y
+
+			
+
+			self.pltgra2.plot(listv_n,listv_y,"green3", linewidth=1.0)
+			self.pltgra2.xticks(listv_n[::8],listv_y[::8])
+
+			self.pltgra2.plot(listv_n,listp_y,"blue", linewidth=1.0)
+			#self.pltgra2.xticks(listv_n[::9],listp_x[::9])
+
+			self.pltgra2.plot(listv_n,listc_y,"red", linewidth=1.0)
+			#self.pltgra2.xticks(listv_n[::9],list_x[::9])
+
+			self.pltgra2.plot(listv_n,listo_y,"orange", linewidth=1.0)
+			#self.pltgra2.xticks(listv_n[::9],list_x[::9])
+
+			self.pltgra2.plot(listv_n,listg_y,"purple", linewidth=1.0)
+			#self.pltgra2.xticks(listv_n[::9],list_x[::9])
+
+		elif 50 > len(Var.Lista.graphOn_n)>42:
+			listv_n = Var.Lista.graphVivo_n
+			listv_x = Var.Lista.graphVivo_y
+			listv_y = Var.Lista.graphVivo_x
+
+			#listp_n = Var.Lista.graphPorto_n
+			#listp_x = Var.Lista.graphPorto_x
+			listp_y = Var.Lista.graphPorto_y
+
+			#listc_n = Var.Lista.graphClaro_n
+			#listc_x = Var.Lista.graphClaro_x
+			listc_y = Var.Lista.graphClaro_y
+
+			#listo_n = Var.Lista.graphOI_n
+			#listo_x = Var.Lista.graphOI_x
+			listo_y = Var.Lista.graphOI_y
+
+			#listg_n = Var.Lista.graph4G_n
+			#listg_x = Var.Lista.graph4G_x
+			listg_y = Var.Lista.graph4G_y
+
+			
+
+			self.pltgra2.plot(listv_n,listv_y,"green3", linewidth=1.0)
+			self.pltgra2.xticks(listv_n[::7],listv_y[::7])
+
+			self.pltgra2.plot(listv_n,listp_y,"blue", linewidth=1.0)
+			#self.pltgra2.xticks(listv_n[::9],listp_x[::9])
+
+			self.pltgra2.plot(listv_n,listc_y,"red", linewidth=1.0)
+			#self.pltgra2.xticks(listv_n[::9],list_x[::9])
+
+			self.pltgra2.plot(listv_n,listo_y,"orange", linewidth=1.0)
+			#self.pltgra2.xticks(listv_n[::9],list_x[::9])
+
+			self.pltgra2.plot(listv_n,listg_y,"purple", linewidth=1.0)
+			#self.pltgra2.xticks(listv_n[::9],list_x[::9])
+
+
+		elif 43 > len(Var.Lista.graphOn_n)>35:
+			listv_n = Var.Lista.graphVivo_n
+			listv_x = Var.Lista.graphVivo_y
+			listv_y = Var.Lista.graphVivo_x
+
+			#listp_n = Var.Lista.graphPorto_n
+			#listp_x = Var.Lista.graphPorto_x
+			listp_y = Var.Lista.graphPorto_y
+
+			#listc_n = Var.Lista.graphClaro_n
+			#listc_x = Var.Lista.graphClaro_x
+			listc_y = Var.Lista.graphClaro_y
+
+			#listo_n = Var.Lista.graphOI_n
+			#listo_x = Var.Lista.graphOI_x
+			listo_y = Var.Lista.graphOI_y
+
+			#listg_n = Var.Lista.graph4G_n
+			#listg_x = Var.Lista.graph4G_x
+			listg_y = Var.Lista.graph4G_y
+
+			
+
+			self.pltgra2.plot(listv_n,listv_y,"green3", linewidth=1.0)
+			self.pltgra2.xticks(listv_n[::86],listv_y[::6])
+
+			self.pltgra2.plot(listv_n,listp_y,"blue", linewidth=1.0)
+			#self.pltgra2.xticks(listv_n[::9],listp_x[::9])
+
+			self.pltgra2.plot(listv_n,listc_y,"red", linewidth=1.0)
+			#self.pltgra2.xticks(listv_n[::9],list_x[::9])
+
+			self.pltgra2.plot(listv_n,listo_y,"orange", linewidth=1.0)
+			#self.pltgra2.xticks(listv_n[::9],list_x[::9])
+
+			self.pltgra2.plot(listv_n,listg_y,"purple", linewidth=1.0)
+			#self.pltgra2.xticks(listv_n[::9],list_x[::9])
+
+		elif 36 > len(Var.Lista.graphOn_n)>28:
+			listv_n = Var.Lista.graphVivo_n
+			listv_x = Var.Lista.graphVivo_y
+			listv_y = Var.Lista.graphVivo_x
+
+			#listp_n = Var.Lista.graphPorto_n
+			#listp_x = Var.Lista.graphPorto_x
+			listp_y = Var.Lista.graphPorto_y
+
+			#listc_n = Var.Lista.graphClaro_n
+			#listc_x = Var.Lista.graphClaro_x
+			listc_y = Var.Lista.graphClaro_y
+
+			#listo_n = Var.Lista.graphOI_n
+			#listo_x = Var.Lista.graphOI_x
+			listo_y = Var.Lista.graphOI_y
+
+			#listg_n = Var.Lista.graph4G_n
+			#listg_x = Var.Lista.graph4G_x
+			listg_y = Var.Lista.graph4G_y
+
+			
+
+			self.pltgra2.plot(listv_n,listv_y,"green3", linewidth=1.0)
+			self.pltgra2.xticks(listv_n[::5],listv_y[::5])
+
+			self.pltgra2.plot(listv_n,listp_y,"blue", linewidth=1.0)
+			#self.pltgra2.xticks(listv_n[::9],listp_x[::9])
+
+			self.pltgra2.plot(listv_n,listc_y,"red", linewidth=1.0)
+			#self.pltgra2.xticks(listv_n[::9],list_x[::9])
+
+			self.pltgra2.plot(listv_n,listo_y,"orange", linewidth=1.0)
+			#self.pltgra2.xticks(listv_n[::9],list_x[::9])
+
+			self.pltgra2.plot(listv_n,listg_y,"purple", linewidth=1.0)
+			#self.pltgra2.xticks(listv_n[::9],list_x[::9])
+
+
+
+		elif 29 > len(Var.Lista.graphOn_n)>21:
+			listv_n = Var.Lista.graphVivo_n
+			listv_x = Var.Lista.graphVivo_y
+			listv_y = Var.Lista.graphVivo_x
+
+			#listp_n = Var.Lista.graphPorto_n
+			#listp_x = Var.Lista.graphPorto_x
+			listp_y = Var.Lista.graphPorto_y
+
+			#listc_n = Var.Lista.graphClaro_n
+			#listc_x = Var.Lista.graphClaro_x
+			listc_y = Var.Lista.graphClaro_y
+
+			#listo_n = Var.Lista.graphOI_n
+			#listo_x = Var.Lista.graphOI_x
+			listo_y = Var.Lista.graphOI_y
+
+			#listg_n = Var.Lista.graph4G_n
+			#listg_x = Var.Lista.graph4G_x
+			listg_y = Var.Lista.graph4G_y
+
+			
+
+			self.pltgra2.plot(listv_n,listv_y,"green3", linewidth=1.0)
+			self.pltgra2.xticks(listv_n[::4],listv_y[::4])
+
+			self.pltgra2.plot(listv_n,listp_y,"blue", linewidth=1.0)
+			#self.pltgra2.xticks(listv_n[::9],listp_x[::9])
+
+			self.pltgra2.plot(listv_n,listc_y,"red", linewidth=1.0)
+			#self.pltgra2.xticks(listv_n[::9],list_x[::9])
+
+			self.pltgra2.plot(listv_n,listo_y,"orange", linewidth=1.0)
+			#self.pltgra2.xticks(listv_n[::9],list_x[::9])
+
+			self.pltgra2.plot(listv_n,listg_y,"purple", linewidth=1.0)
+			#self.pltgra2.xticks(listv_n[::9],list_x[::9])
+
+		
+		elif 22 > len(Var.Lista.graphOn_n)>14:
+			listv_n = Var.Lista.graphVivo_n
+			listv_x = Var.Lista.graphVivo_y
+			listv_y = Var.Lista.graphVivo_x
+
+			#listp_n = Var.Lista.graphPorto_n
+			#listp_x = Var.Lista.graphPorto_x
+			listp_y = Var.Lista.graphPorto_y
+
+			#listc_n = Var.Lista.graphClaro_n
+			#listc_x = Var.Lista.graphClaro_x
+			listc_y = Var.Lista.graphClaro_y
+
+			#listo_n = Var.Lista.graphOI_n
+			#listo_x = Var.Lista.graphOI_x
+			listo_y = Var.Lista.graphOI_y
+
+			#listg_n = Var.Lista.graph4G_n
+			#listg_x = Var.Lista.graph4G_x
+			listg_y = Var.Lista.graph4G_y
+
+			
+
+			self.pltgra2.plot(listv_n,listv_y,"green3", linewidth=1.0)
+			self.pltgra2.xticks(listv_n[::3],listv_y[::3])
+
+			self.pltgra2.plot(listv_n,listp_y,"blue", linewidth=1.0)
+			#self.pltgra2.xticks(listv_n[::9],listp_x[::9])
+
+			self.pltgra2.plot(listv_n,listc_y,"red", linewidth=1.0)
+			#self.pltgra2.xticks(listv_n[::9],list_x[::9])
+
+			self.pltgra2.plot(listv_n,listo_y,"orange", linewidth=1.0)
+			#self.pltgra2.xticks(listv_n[::9],list_x[::9])
+
+			self.pltgra2.plot(listv_n,listg_y,"purple", linewidth=1.0)
+			#self.pltgra2.xticks(listv_n[::9],list_x[::9])
+		
+
+
+		elif 15 > len(Var.Lista.graphOn_n) > 7:
+			listv_n = Var.Lista.graphVivo_n
+			listv_x = Var.Lista.graphVivo_y
+			listv_y = Var.Lista.graphVivo_x
+
+			#listp_n = Var.Lista.graphPorto_n
+			#listp_x = Var.Lista.graphPorto_x
+			listp_y = Var.Lista.graphPorto_y
+
+			#listc_n = Var.Lista.graphClaro_n
+			#listc_x = Var.Lista.graphClaro_x
+			listc_y = Var.Lista.graphClaro_y
+
+			#listo_n = Var.Lista.graphOI_n
+			#listo_x = Var.Lista.graphOI_x
+			listo_y = Var.Lista.graphOI_y
+
+			#listg_n = Var.Lista.graph4G_n
+			#listg_x = Var.Lista.graph4G_x
+			listg_y = Var.Lista.graph4G_y
+
+			
+
+			self.pltgra2.plot(listv_n,listv_y,"green3", linewidth=1.0)
+			self.pltgra2.xticks(listv_n[::2],listv_y[::2])
+
+			self.pltgra2.plot(listv_n,listp_y,"blue", linewidth=1.0)
+			#self.pltgra2.xticks(listv_n[::9],listp_x[::9])
+
+			self.pltgra2.plot(listv_n,listc_y,"red", linewidth=1.0)
+			#self.pltgra2.xticks(listv_n[::9],list_x[::9])
+
+			self.pltgra2.plot(listv_n,listo_y,"orange", linewidth=1.0)
+			#self.pltgra2.xticks(listv_n[::9],list_x[::9])
+
+			self.pltgra2.plot(listv_n,listg_y,"purple", linewidth=1.0)
+			#self.pltgra2.xticks(listv_n[::9],list_x[::9])
+		
+
+
+		else:
+			
+			listv_n = Var.Lista.graphVivo_n
+			listv_x = Var.Lista.graphVivo_y
+			listv_y = Var.Lista.graphVivo_x
+
+			#listp_n = Var.Lista.graphPorto_n
+			#listp_x = Var.Lista.graphPorto_x
+			listp_y = Var.Lista.graphPorto_y
+
+			#listc_n = Var.Lista.graphClaro_n
+			#listc_x = Var.Lista.graphClaro_x
+			listc_y = Var.Lista.graphClaro_y
+
+			#listo_n = Var.Lista.graphOI_n
+			#listo_x = Var.Lista.graphOI_x
+			listo_y = Var.Lista.graphOI_y
+
+			#listg_n = Var.Lista.graph4G_n
+			#listg_x = Var.Lista.graph4G_x
+			listg_y = Var.Lista.graph4G_y
+
+			
+
+			self.pltgra2.plot(listv_n,listv_y,"green3", linewidth=1.0)
+			self.pltgra2.xticks(listv_n,listv_y)
+
+			self.pltgra2.plot(listv_n,listp_y,"blue", linewidth=1.0)
+			#self.pltgra2.xticks(listv_n[::9],listp_x[::9])
+
+			self.pltgra2.plot(listv_n,listc_y,"red", linewidth=1.0)
+			#self.pltgra2.xticks(listv_n[::9],list_x[::9])
+
+			self.pltgra2.plot(listv_n,listo_y,"orange", linewidth=1.0)
+			#self.pltgra2.xticks(listv_n[::9],list_x[::9])
+
+			self.pltgra2.plot(listv_n,listg_y,"purple", linewidth=1.0)
+			#self.pltgra2.xticks(listv_n[::9],list_x[::9])
+
+
+		self.canvas2.draw()
 
 	def up2(self):
 		print "aqui"

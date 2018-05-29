@@ -37,6 +37,8 @@ class GraphOn:
 		self.minutos  = "0"
 		self.n = 0
 
+		self.datainit = self.hora.completa()
+
 	def insert(self,value,number):
 
 		self.hora2 = GetTime()
@@ -51,7 +53,7 @@ class GraphOn:
 			data = self.hora2.completa()
 
 
-			loggeral = open ("LogPercentsTotal.csv","ab+")
+			loggeral = open ("LogPercentsTotal"+ self.datainit + ".csv","ab+")
 			loggeral.write  (str(self.n)+";"+str(number)+";"+ data +" \n")
 			loggeral.close
 			
