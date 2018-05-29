@@ -142,7 +142,35 @@ class Monitor:
 		self.canvas.get_tk_widget().grid(row=0,column = 0)
 		self.canvas.draw()
 
-
+	def Calc_Op(self):
+		self.total_vivo   = 0
+		self.total_claro   = 0
+		self.total_porto   = 0
+		self.total_oi     = 0
+		self.total_4G     = 0
+	
+		for item in  range (len(Var.Lista.Relogios)):
+			ips = Var.Lista.Relogios[item][3]
+			if ips[0:5] == "10.26":
+				Var.Lista.Relogios[item][13] = 1
+				self.total_vivo = self.total_vivo + 1
+		
+			elif ips[0:6] == "172.40":
+				Var.Lista.Relogios[item][13] = 2
+				self.total_claro = self.total_claro + 1
+		
+			elif ips[0:6] == "10.115":
+				Var.Lista.Relogios[item][13] = 3
+				self.total_porto = self.total_porto + 1
+		
+			elif ips[0:5] == "10.50":
+				Var.Lista.Relogios[item][13] = 4
+				self.total_oi = self.total_oi + 1
+		
+			elif ips[0] != "1":
+				Var.Lista.Relogios[item][13] = 5
+				self.total_4G = self.total_4G + 1
+		
 
 	def Create_Status(self):
 
@@ -825,8 +853,8 @@ class Monitor:
 		self.MsgContageON.append		("")
 		self.MsgContagetot.append 		("")
 
-		qnt = len(Var.Lista.Empresas)/3
-		rest = len(Var.Lista.Empresas) % 3
+		qnt = (len(Var.Lista.Empresas)+1)/3
+		
 
 		name_emp 			= Var.Lista.Empresas[id_emp][1]
 		On_Line_rep			= 00
@@ -835,12 +863,12 @@ class Monitor:
 
 
 
-		if (qnt*2 + rest) >= id_emp > (qnt + rest):
+		if (qnt*2 ) > id_emp >= (qnt):
 			coluna = 4
-			row_line = id_emp - 30 + 1
-		elif id_emp >= (qnt*2 + rest):
+			row_line = id_emp - (qnt)  + 1
+		elif id_emp >= (qnt*2):
 			coluna = 8
-			row_line = id_emp - 40 + 1
+			row_line = id_emp - (qnt*2 ) + 1
 		else:
 			coluna = 0
 			row_line = id_emp + 1
