@@ -45,32 +45,129 @@ class Monitor:
 		
 
 
-		self.listl_n = Var.Lista.graphOn_n		
-		self.list_n = Var.Lista.graphOn_n
-		self.list_x = Var.Lista.graphOn_x
-		self.list_y = Var.Lista.graphOn_y
+		fig = plt.figure(figsize=(12,6),facecolor="black")
 
 
-		self.listlv_n = Var.Lista.graphVivo_n
-		self.listv_n = Var.Lista.graphVivo_n
-		self.listv_x = Var.Lista.graphVivo_y
-		self.listv_y = Var.Lista.graphVivo_x
+		ax = plt.subplot(2,1,1)
+		plt.ylim(0,100)
+
+		#count = (len(self.list_n))
+		#plt.xlim(self.list_n[0],self.list_n[count-1])
+
+		plt.plot(0,0,"yellow", linewidth=1.0)		
+		#plt.xticks(self.listl_n,self.list_x)
+		ax.set_axis_bgcolor("black")
+		ax.spines['left'].set_color('white')
+		ax.spines['right'].set_color('white')	
+		ax.spines['top'].set_color('white')
+		ax.spines['bottom'].set_color('white')
+		plt.tick_params(axis='x', colors= 'white')
+		plt.tick_params(axis='y', colors= 'white')
+		plt.ylabel("Valores em Porcentagem %",color="white")
+		plt.title("OnLine na ultima hora",color="white")
+		plt.grid( color='gray', linewidth=0.5)
+
+
+
+		ax = plt.subplot(2,1,2)
+
+		#count = (len(self.list_n))
+		#plt.xlim(self.list_n[0],self.list_n[count-1])
+		plt.ylim(0,100)
+		plt.plot(0,0,"green", linewidth=1.0)
+		plt.plot(0,0,"blue", linewidth=1.0)	
+		plt.plot(0,0,"red", linewidth=1.0)	
+		plt.plot(0,0,"orange", linewidth=1.0)	
+		plt.plot(0,0,"purple", linewidth=1.0)		
+
+		ax.set_axis_bgcolor("black")
+		ax.spines['left'].set_color('white')
+		ax.spines['right'].set_color('white')	
+		ax.spines['top'].set_color('white')
+		ax.spines['bottom'].set_color('white')
+		#plt.xticks(self.listl_n,self.list_x)
+		plt.tick_params(axis='x', colors= 'white')
+		plt.tick_params(axis='y', colors= 'white')
+		plt.ylabel("Valores em Porcentagem %",color="white")
+		plt.title("OnLine na ultima hora",color="white")
+		plt.grid( color='gray', linewidth=0.5)
+
+
+		ax = plt.subplot(2,2,1)
+		plt.ylim(0,100)
+
+		#count = (len(self.listhnum))
+		#plt.xlim(self.listhnum[0],self.listhnum[count-1])
+
+		plt.plot(0,0,"yellow", linewidth=1.0)		
+		#plt.xticks(self.listhlabelnum,self.listhlabel)
+		ax.set_axis_bgcolor("black")
+		ax.spines['left'].set_color('white')
+		ax.spines['right'].set_color('white')	
+		ax.spines['top'].set_color('white')
+		ax.spines['bottom'].set_color('white')
+		plt.tick_params(axis='x', colors= 'white')
+		plt.tick_params(axis='y', colors= 'white')
+		plt.ylabel("Valores em Porcentagem %",color="white")
+		plt.title("OnLine nas ultimas 24 hora",color="white")
+		plt.grid( color='gray', linewidth=0.5)
+
+
+
+		ax = plt.subplot(2,2,2)
+
+		#count = (len(self.listhnum))
+		#plt.xlim(self.listhnum[0],self.listhnum[count-1])
+		plt.ylim(0,100)
+		plt.plot(0,0,"green", linewidth=1.0)
+		plt.plot(0,0,"blue", linewidth=1.0)	
+		plt.plot(0,0,"red", linewidth=1.0)	
+		plt.plot(0,0,"orange", linewidth=1.0)	
+		plt.plot(0,0,"purple", linewidth=1.0)		
+
+		ax.set_axis_bgcolor("black")
+		ax.spines['left'].set_color('white')
+		ax.spines['right'].set_color('white')	
+		ax.spines['top'].set_color('white')
+		ax.spines['bottom'].set_color('white')
+		#plt.xticks(self.listhlabelnum,self.listhlabel)
+		plt.tick_params(axis='x', colors= 'white')
+		plt.tick_params(axis='y', colors= 'white')
+		plt.ylabel("Valores em Porcentagem %",color="white")
+		plt.title("OnLine nas ultimas 24 hora",color="white")
+		plt.grid( color='gray', linewidth=0.5)
+
+
+		self.canvas = FigureCanvasTkAgg(fig,master = self.ContainerGrafc)
+		self.canvas.get_tk_widget().grid(row=0,column = 0)
+		self.canvas.draw()
+
+
+		#self.listl_n = Var.Lista.graphOn_n		
+		#self.list_n = Var.Lista.graphOn_n
+		#self.list_x = Var.Lista.graphOn_x
+		#self.list_y = Var.Lista.graphOn_y
+
+
+		
+		#self.listv_x = Var.Lista.graphVivo_y
+		
 
 		#listp_n = Var.Lista.graphPorto_n[-63:]
 		#listp_x = Var.Lista.graphPorto_x[-63:]
-		self.listp_y = Var.Lista.graphPorto_y
+		#self.listp_y = Var.Lista.graphPorto_y
 
 		#listc_n = Var.Lista.graphClaro_n[-63:]
 		#listc_x = Var.Lista.graphClaro_x[-63:]
-		self.listc_y = Var.Lista.graphClaro_y
+		#self.listc_y = Var.Lista.graphClaro_y
 
 		#listo_n = Var.Lista.graphOI_n[-63:]
 		#listo_x = Var.Lista.graphOI_x[-63:]
-		self.listo_y = Var.Lista.graphOI_y
+		#self.listo_y = Var.Lista.graphOI_y
 
 		#listg_n = Var.Lista.graph4G_n[-63:]
 		#listg_x = Var.Lista.graph4G_x[-63:]
-		self.listg_y = Var.Lista.graph4G_y
+		#self.listg_y = Var.Lista.graph4G_y
 
 
 	def Create_GraphToOp(self):
@@ -1153,29 +1250,93 @@ class Monitor:
 		self.listg_y = Var.Lista.graph4G_y
 
 
-		if len(Var.Lista.graphOn_n)>59:
-			print "case more 62"
+		self.listhlabel	= Var.Lista.graphHLabel
+		self.listhnum = Var.Lista.graphHnum
+		self.listhlabelnum = self.listhnum
+		self.listt_h = Var.Lista.graphH_t
 
-			self.list_n = Var.Lista.graphOn_n[-60:]
-			self.list_x = Var.Lista.graphOn_x[-60:]
-			self.list_y = Var.Lista.graphOn_y[-60:]
+		self.listv_h = Var.Lista.graphH_v
+		self.listc_h = Var.Lista.graphH_c
+		self.listp_h = Var.Lista.graphH_p
+		self.listo_h = Var.Lista.graphH_o
+		self.listg_h = Var.Lista.graphH_g
 
-			self.listv_y = Var.Lista.graphVivo_y[-60:]
-			self.listc_y = Var.Lista.graphClaro_y[-60:]
-			self.listp_y = Var.Lista.graphPorto_y[-60:]
-			self.listo_y = Var.Lista.graphOI_y[-60:]
-			self.listg_y = Var.Lista.graph4G_y[-60:]
 
-			Var.Lista.graphOn_n = Var.Lista.graphOn_n[-59:]
-			Var.Lista.graphOn_x = Var.Lista.graphOn_x[-59:]
-			Var.Lista.graphOn_y = Var.Lista.graphOn_y[-59:]
+
+		if len(Var.Lista.graphHnum)>23:
+
+			self.listhnum = Var.Lista.graphHnum[-24:]
+			self.listhlabel = Var.Lista.graphHLabel[-24:]
+			
+			self.listt_h = Var.Lista.graphH_t[-24:]
+
+			self.listv_h = Var.Lista.graphH_v[-24:]
+			self.listc_h = Var.Lista.graphH_c[-24:]
+			self.listp_h = Var.Lista.graphH_p[-24:]
+			self.listo_h = Var.Lista.graphH_o[-24:]
+			self.listg_h = Var.Lista.graphH_g[-24:]
+
+			Var.Lista.graphOn_n = Var.Lista.graphOn_n[-24:]
+			Var.Lista.graphOn_x = Var.Lista.graphOn_x[-24:]
+			Var.Lista.graphOn_y = Var.Lista.graphOn_y[-24:]
 			
 
-			Var.Lista.graphVivo_y = Var.Lista.graphVivo_y[-59:]
-			Var.Lista.graphClaro_y = Var.Lista.graphClaro_y[-59:]
-			Var.Lista.graphPorto_y = Var.Lista.graphPorto_y[-59:]
-			Var.Lista.graphOI_y = Var.Lista.graphOI_y[-59:]
-			Var.Lista.graph4G_y = Var.Lista.graph4G_y[-59:]
+			Var.Lista.graphVivo_y = Var.Lista.graphVivo_y[-23:]
+			Var.Lista.graphClaro_y = Var.Lista.graphClaro_y[-23:]
+			Var.Lista.graphPorto_y = Var.Lista.graphPorto_y[-23:]
+			Var.Lista.graphOI_y = Var.Lista.graphOI_y[-23:]
+			Var.Lista.graph4G_y = Var.Lista.graph4G_y[-23:]
+
+
+			self.listhlabelnum = self.listhnum[::4]
+			self.listhlabel = self.listhlabel[::4]
+
+		elif 24>len(Var.Lista.graphHnum)>17:
+					
+			self.listhlabelnum = self.listhnum[::4]
+			self.listhlabel = self.listhlabel[::4]
+
+		elif 18>len(Var.Lista.graphHnum)>11:
+					
+			self.listhlabelnum = self.listhnum[::3]
+			self.listhlabel = self.listhlabel[::3]
+
+		elif 12>len(Var.Lista.graphHnum)>5:
+					
+			self.listhlabelnum = self.listhnum[::2]
+			self.listhlabel = self.listhlabel[::2]
+
+		else:
+			self.listhlabelnum = self.listhnum
+			self.listhlabel = self.listhlabel
+
+
+
+
+
+		if len(Var.Lista.graphOn_n)>60:
+			print "case more 62"
+
+			self.list_n = Var.Lista.graphOn_n[-61:]
+			self.list_x = Var.Lista.graphOn_x[-61:]
+			self.list_y = Var.Lista.graphOn_y[-61:]
+
+			self.listv_y = Var.Lista.graphVivo_y[-61:]
+			self.listc_y = Var.Lista.graphClaro_y[-61:]
+			self.listp_y = Var.Lista.graphPorto_y[-61:]
+			self.listo_y = Var.Lista.graphOI_y[-61:]
+			self.listg_y = Var.Lista.graph4G_y[-61:]
+
+			Var.Lista.graphOn_n = Var.Lista.graphOn_n[-61:]
+			Var.Lista.graphOn_x = Var.Lista.graphOn_x[-61:]
+			Var.Lista.graphOn_y = Var.Lista.graphOn_y[-61:]
+			
+
+			Var.Lista.graphVivo_y = Var.Lista.graphVivo_y[-60:]
+			Var.Lista.graphClaro_y = Var.Lista.graphClaro_y[-60:]
+			Var.Lista.graphPorto_y = Var.Lista.graphPorto_y[-60:]
+			Var.Lista.graphOI_y = Var.Lista.graphOI_y[-60:]
+			Var.Lista.graph4G_y = Var.Lista.graph4G_y[-60:]
 
 
 			self.listl_n = self.list_n[::10]
@@ -1184,7 +1345,7 @@ class Monitor:
 			#self.list_x.append(self.list_x[-1:])
 	
 
-		elif 60>len(Var.Lista.graphOn_n)>56:
+		elif 61>len(Var.Lista.graphOn_n)>56:
 			
 			print "case more 56"
 
@@ -1711,7 +1872,7 @@ class Monitor:
 
 		plt.cla()	
 		
-		fig = plt.figure(figsize=(6,6),facecolor="black")
+		fig = plt.figure(figsize=(12,6),facecolor="black")
 
 
 		ax = plt.subplot(2,1,1)
@@ -1737,7 +1898,7 @@ class Monitor:
 
 		ax = plt.subplot(2,1,2)
 
-		count = (len(self.listv_n))
+		count = (len(self.list_n))
 		plt.xlim(self.list_n[0],self.list_n[count-1])
 		plt.ylim(0,100)
 		plt.plot(self.list_n,self.listv_y,"green", linewidth=1.0)
@@ -1756,6 +1917,51 @@ class Monitor:
 		plt.tick_params(axis='y', colors= 'white')
 		plt.ylabel("Valores em Porcentagem %",color="white")
 		plt.title("OnLine na ultima hora",color="white")
+		plt.grid( color='gray', linewidth=0.5)
+
+
+		ax = plt.subplot(2,2,1)
+		plt.ylim(0,100)
+
+		count = (len(self.listhnum))
+		plt.xlim(self.listhnum[0],self.listhnum[count-1])
+
+		plt.plot(self.listhnum,self.listt_h,"yellow", linewidth=1.0)		
+		plt.xticks(self.listhlabelnum,self.listhlabel)
+		ax.set_axis_bgcolor("black")
+		ax.spines['left'].set_color('white')
+		ax.spines['right'].set_color('white')	
+		ax.spines['top'].set_color('white')
+		ax.spines['bottom'].set_color('white')
+		plt.tick_params(axis='x', colors= 'white')
+		plt.tick_params(axis='y', colors= 'white')
+		plt.ylabel("Valores em Porcentagem %",color="white")
+		plt.title("OnLine nas ultimas 24 hora",color="white")
+		plt.grid( color='gray', linewidth=0.5)
+
+
+
+		ax = plt.subplot(2,2,2)
+
+		count = (len(self.listhnum))
+		plt.xlim(self.listhnum[0],self.listhnum[count-1])
+		plt.ylim(0,100)
+		plt.plot(self.listhnum,self.listv_h,"green", linewidth=1.0)
+		plt.plot(self.listhnum,self.listp_h,"blue", linewidth=1.0)	
+		plt.plot(self.listhnum,self.listc_h,"red", linewidth=1.0)	
+		plt.plot(self.listhnum,self.listo_h,"orange", linewidth=1.0)	
+		plt.plot(self.listhnum,self.listg_h,"purple", linewidth=1.0)		
+
+		ax.set_axis_bgcolor("black")
+		ax.spines['left'].set_color('white')
+		ax.spines['right'].set_color('white')	
+		ax.spines['top'].set_color('white')
+		ax.spines['bottom'].set_color('white')
+		plt.xticks(self.listhlabelnum,self.listhlabel)
+		plt.tick_params(axis='x', colors= 'white')
+		plt.tick_params(axis='y', colors= 'white')
+		plt.ylabel("Valores em Porcentagem %",color="white")
+		plt.title("OnLine nas ultimas 24 hora",color="white")
 		plt.grid( color='gray', linewidth=0.5)
 
 

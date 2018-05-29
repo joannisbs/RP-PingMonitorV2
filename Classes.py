@@ -20,13 +20,18 @@ class GetTime(object):
 
 	def sominuto(self):
 		
-		minutos = str(self.minuto).zfill(2)			
-		return minutos
+		time = str(self.minuto).zfill(2)			
+		return time
 
 	def sohora(self):
 		
-		sohora = str(self.hora).zfill(2)			
-		return sohora
+		time = str(self.hora).zfill(2)			
+		return time
+
+	def sosegundo(self):
+		
+		time = str(self.segundo).zfill(2)			
+		return time
 
 	def completa(self):
 		date = (str(self.year).zfill(4)+"_"+
@@ -36,4 +41,9 @@ class GetTime(object):
 				str(self.minuto).zfill(2))
 		return date
 	
-
+	def comp_dia(self):
+		date = (str(self.mes).zfill(2)+"/"+
+				str(self.day).zfill(2)+"-"+
+				str(self.hora).zfill(2)+":"+
+				str(self.minuto).zfill(2))
+		return date

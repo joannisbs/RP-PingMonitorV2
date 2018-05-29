@@ -35,18 +35,30 @@ class GraphOn:
 	def __init__(self):
 		self.hora = GetTime()
 		self.minutos1  = "0"
+		self.horinha = '0'
 
 		self.n = 0
-
+		self.num_hor	= 0
 		self.datainit = self.hora.completa()
+
+		#ar.Lista.graphHLabel=[]
+		#Var.Lista.graphHnum=[]
+		#Var.Lista.graphH_t=[]
+		
+		#Var.Lista.graphH_v =[]
+		#Var.Lista.graphH_p =[]
+		#Var.Lista.graphH_c =[]
+		#Var.Lista.graphH_o =[]
+		#Var.Lista.graphH_g =[]
 
 	def insertmin(self,percentt,percentv,percentc,percentp,percento,percentg):
 
 		self.hora2 = GetTime()
 
 		
-		if self.hora2.sominuto() != self.minutos1:
-			self.minutos1 = self.hora2.sominuto()
+		if self.hora2.sosegundo() != self.minutos1 and int(self.hora2.sosegundo()) % 3 == 0:
+
+			self.minutos1 = self.hora2.sosegundo()
 
 			Var.Lista.graphOn_x.append(self.hora2.horaminuto())
 			Var.Lista.graphOn_y.append(percentt)
@@ -71,6 +83,93 @@ class GraphOn:
 
 
 			self.n = self.n + 1
+
+			if self.hora2.sominuto() != self.horinha:
+				ho_dia = self.hora2.comp_dia()
+				if self.horinha == '0':
+					
+					Var.Lista.graphHLabel.append(ho_dia)
+					Var.Lista.graphHnum.append(self.num_hor)
+					Var.Lista.graphH_t.append(percentt)
+					
+					Var.Lista.graphH_v.append(percentv)
+					Var.Lista.graphH_p.append(percentp)
+					Var.Lista.graphH_c.append(percentc)
+					Var.Lista.graphH_o.append(percento)
+					Var.Lista.graphH_g.append(percentg)
+
+				else:
+					Var.Lista.graphHLabel.append(ho_dia)
+					Var.Lista.graphHnum.append(self.num_hor)
+
+
+					soma = 0
+					qnt_elements = len(Var.Lista.graphOn_y)
+					for item in range (qnt_elements):
+						soma = soma + Var.Lista.graphOn_y[item]
+
+					media = soma/qnt_elements
+
+					Var.Lista.graphH_t.append(media)
+
+
+
+					soma = 0
+					qnt_elements = len(Var.Lista.graphVivo_y)
+					for item in range (qnt_elements):
+						soma = soma + Var.Lista.graphVivo_y[item]
+
+					media = soma/qnt_elements
+
+					Var.Lista.graphH_v.append(media)
+
+
+
+					soma = 0
+					qnt_elements = len(Var.Lista.graphPorto_y)
+					for item in range (qnt_elements):
+						soma = soma + Var.Lista.graphPorto_y[item]
+
+					media = soma/qnt_elements
+
+					Var.Lista.graphH_p.append(media)
+
+
+
+
+					soma = 0
+					qnt_elements = len(Var.Lista.graphClaro_y)
+					for item in range (qnt_elements):
+						soma = soma + Var.Lista.graphClaro_y[item]
+
+					media = soma/qnt_elements
+
+					Var.Lista.graphH_c.append(media)
+
+					soma = 0
+					qnt_elements = len(Var.Lista.graphOI_y)
+					for item in range (qnt_elements):
+						soma = soma + Var.Lista.graphOI_y[item]
+
+					media = soma/qnt_elements
+
+					Var.Lista.graphH_o.append(media)
+
+
+					soma = 0
+					qnt_elements = len(Var.Lista.graph4G_y)
+					for item in range (qnt_elements):
+						soma = soma + Var.Lista.graph4G_y[item]
+
+					media = soma/qnt_elements
+
+					Var.Lista.graphH_g.append(media)
+
+
+				self.horinha = self.hora2.sominuto()
+
+				self.num_hor = self.num_hor + 1
+					
 			Telas.GUI_Monitor.updateGraphtot()
 
 class Servico:

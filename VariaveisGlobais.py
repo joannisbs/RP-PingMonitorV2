@@ -16,22 +16,20 @@ class Var(object):
 		graphOn_x		= []
 		graphOn_y		= []
 		graphOn_n		= []
-		graphVivo_x		= []
 		graphVivo_y		= []
-		graphVivo_n		= []
-		graphPorto_x	= []
 		graphPorto_y	= []
-		graphPorto_n	= []
-		graphClaro_x	= []
 		graphClaro_y	= []
-		graphClaro_n	= []
-		graphOI_x		= []
 		graphOI_y		= []
-		graphOI_n		= []
-		graph4G_x		= []
 		graph4G_y		= []
-		graph4G_n		= []
-
+		
+		graphHLabel		= []
+		graphHnum		= []
+		graphH_t		= []
+		graphH_v		= []
+		graphH_c		= []
+		graphH_p		= []
+		graphH_o		= []
+		graphH_g		= []
 
 	class Lista2(object):
 		
