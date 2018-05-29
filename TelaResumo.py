@@ -1165,14 +1165,7 @@ class Monitor:
 			Var.Lista.graphOn_y = Var.Lista.graphOn_y[-59:]
 			
 
-			self.list_n = self.list_n[::2]
-			
-			self.list_y = self.list_y[::2]
-			self.listv_y = self.listv_y[::2]
-			self.listc_y = self.listc_y[::2]
-			self.listp_y = self.listp_y[::2]
-			self.listo_y = self.listo_y[::2]
-			self.listg_y = self.listg_y[::2]
+
 
 
 			self.listl_n = self.list_n[::10]
@@ -1186,17 +1179,10 @@ class Monitor:
 			print "case more 56"
 
 			
-			self.list_n = self.list_n[::2]
-			
-			self.list_y = self.list_y[::2]
-			self.listv_y = self.listv_y[::2]
-			self.listc_y = self.listc_y[::2]
-			self.listp_y = self.listp_y[::2]
-			self.listo_y = self.listo_y[::2]
-			self.listg_y = self.listg_y[::2]
 
 
-			self.listl_n = self.self.list_n[::9]
+
+			self.listl_n = self.list_n[::9]
 			self.list_x = self.list_x[::9]
 			#self.listl_n.append(self.list_n[-1:])
 			#self.list_x.append(self.list_x[-1:])
@@ -1208,7 +1194,6 @@ class Monitor:
 
 
 			
-			self.list_n = self.list_n[::2]
 
 			self.listl_n = self.list_n[::8]
 			self.list_x = self.list_x[::8]
@@ -1743,7 +1728,7 @@ class Monitor:
 		ax = plt.subplot(2,1,2)
 
 		count = (len(self.listv_n))
-		#plt.xlim(self.listv_n[0],self.listv_n[count-1])
+		plt.xlim(self.list_n[0],self.list_n[count-1])
 		plt.ylim(0,100)
 		plt.plot(self.list_n,self.listv_y,"green", linewidth=1.0)
 		plt.plot(self.list_n,self.listp_y,"blue", linewidth=1.0)	
