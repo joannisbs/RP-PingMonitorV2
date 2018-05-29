@@ -48,54 +48,54 @@ class Monitor:
 		fig = plt.figure(figsize=(12,6),facecolor="black")
 
 
-		ax = plt.subplot(2,1,1)
-		plt.ylim(0,100)
-
-		#count = (len(self.list_n))
-		#plt.xlim(self.list_n[0],self.list_n[count-1])
-
-		plt.plot(0,0,"yellow", linewidth=1.0)		
-		#plt.xticks(self.listl_n,self.list_x)
-		ax.set_axis_bgcolor("black")
-		ax.spines['left'].set_color('white')
-		ax.spines['right'].set_color('white')	
-		ax.spines['top'].set_color('white')
-		ax.spines['bottom'].set_color('white')
-		plt.tick_params(axis='x', colors= 'white')
-		plt.tick_params(axis='y', colors= 'white')
-		plt.ylabel("Valores em Porcentagem %",color="white")
-		plt.title("OnLine na ultima hora",color="white")
-		plt.grid( color='gray', linewidth=0.5)
-
-
-
-		ax = plt.subplot(2,1,2)
-
-		#count = (len(self.list_n))
-		#plt.xlim(self.list_n[0],self.list_n[count-1])
-		plt.ylim(0,100)
-		plt.plot(0,0,"green", linewidth=1.0)
-		plt.plot(0,0,"blue", linewidth=1.0)	
-		plt.plot(0,0,"red", linewidth=1.0)	
-		plt.plot(0,0,"orange", linewidth=1.0)	
-		plt.plot(0,0,"purple", linewidth=1.0)		
-
-		ax.set_axis_bgcolor("black")
-		ax.spines['left'].set_color('white')
-		ax.spines['right'].set_color('white')	
-		ax.spines['top'].set_color('white')
-		ax.spines['bottom'].set_color('white')
-		#plt.xticks(self.listl_n,self.list_x)
-		plt.tick_params(axis='x', colors= 'white')
-		plt.tick_params(axis='y', colors= 'white')
-		plt.ylabel("Valores em Porcentagem %",color="white")
-		plt.title("OnLine na ultima hora",color="white")
-		plt.grid( color='gray', linewidth=0.5)
-
-
 		ax = plt.subplot(2,2,1)
 		plt.ylim(0,100)
 
+		#count = (len(self.list_n))
+		#plt.xlim(self.list_n[0],self.list_n[count-1])
+
+		plt.plot(0,0,"yellow", linewidth=1.0)		
+		#plt.xticks(self.listl_n,self.list_x)
+		ax.set_axis_bgcolor("black")
+		ax.spines['left'].set_color('white')
+		ax.spines['right'].set_color('white')	
+		ax.spines['top'].set_color('white')
+		ax.spines['bottom'].set_color('white')
+		plt.tick_params(axis='x', colors= 'white')
+		plt.tick_params(axis='y', colors= 'white')
+		plt.ylabel("Valores em Porcentagem %",color="white")
+		plt.title("OnLine na ultima hora",color="white")
+		plt.grid( color='gray', linewidth=0.5)
+
+
+
+		ax = plt.subplot(2,2,3)
+
+		#count = (len(self.list_n))
+		#plt.xlim(self.list_n[0],self.list_n[count-1])
+		plt.ylim(0,100)
+		plt.plot(0,0,"green", linewidth=1.0)
+		plt.plot(0,0,"blue", linewidth=1.0)	
+		plt.plot(0,0,"red", linewidth=1.0)	
+		plt.plot(0,0,"orange", linewidth=1.0)	
+		plt.plot(0,0,"purple", linewidth=1.0)		
+
+		ax.set_axis_bgcolor("black")
+		ax.spines['left'].set_color('white')
+		ax.spines['right'].set_color('white')	
+		ax.spines['top'].set_color('white')
+		ax.spines['bottom'].set_color('white')
+		#plt.xticks(self.listl_n,self.list_x)
+		plt.tick_params(axis='x', colors= 'white')
+		plt.tick_params(axis='y', colors= 'white')
+		plt.ylabel("Valores em Porcentagem %",color="white")
+		plt.title("OnLine na ultima hora",color="white")
+		plt.grid( color='gray', linewidth=0.5)
+
+
+		ax = plt.subplot(2,2,2)
+		plt.ylim(0,100)
+
 		#count = (len(self.listhnum))
 		#plt.xlim(self.listhnum[0],self.listhnum[count-1])
 
@@ -114,7 +114,7 @@ class Monitor:
 
 
 
-		ax = plt.subplot(2,2,2)
+		ax = plt.subplot(2,2,4)
 
 		#count = (len(self.listhnum))
 		#plt.xlim(self.listhnum[0],self.listhnum[count-1])
@@ -142,191 +142,6 @@ class Monitor:
 		self.canvas.get_tk_widget().grid(row=0,column = 0)
 		self.canvas.draw()
 
-
-		#self.listl_n = Var.Lista.graphOn_n		
-		#self.list_n = Var.Lista.graphOn_n
-		#self.list_x = Var.Lista.graphOn_x
-		#self.list_y = Var.Lista.graphOn_y
-
-
-		
-		#self.listv_x = Var.Lista.graphVivo_y
-		
-
-		#listp_n = Var.Lista.graphPorto_n[-63:]
-		#listp_x = Var.Lista.graphPorto_x[-63:]
-		#self.listp_y = Var.Lista.graphPorto_y
-
-		#listc_n = Var.Lista.graphClaro_n[-63:]
-		#listc_x = Var.Lista.graphClaro_x[-63:]
-		#self.listc_y = Var.Lista.graphClaro_y
-
-		#listo_n = Var.Lista.graphOI_n[-63:]
-		#listo_x = Var.Lista.graphOI_x[-63:]
-		#self.listo_y = Var.Lista.graphOI_y
-
-		#listg_n = Var.Lista.graph4G_n[-63:]
-		#listg_x = Var.Lista.graph4G_x[-63:]
-		#self.listg_y = Var.Lista.graph4G_y
-
-
-	def Create_GraphToOp(self):
-
-		x = [0,1,2,3,4,5]
-		y = [50,57,60,68,63,64]
-
-		label= ['a','b','c','d','e','f']
-		
-		#self.pltgra2 = plt
-
-		#fig2 = self.pltgra2.figure(figsize=(6,3),facecolor="black")
-		
-
-		#self.graph2 = self.pltgra2.subplot(111)
-		
-		#self.graph2.set_ylim(0,100)
-
-
-		self.graph2.plot(x,y,"yellow", linewidth=1.0)
-		#self.graph2.xticks(x,label)
-		
-
-		self.graph2.tick_params(axis='x', colors= 'white')
-		self.graph2.tick_params(axis='y', colors= 'white')
-
-		self.graph2.grid( color='gray', linestyle='--', linewidth=0.5)
-		
-		self.graph2.set_axis_bgcolor("black")
-
-		self.graph2.spines['left'].set_color('white')
-		self.graph2.spines['right'].set_color('white')	
-		self.graph2.spines['top'].set_color('white')
-		self.graph2.spines['bottom'].set_color('white')
-
-		#self.canvas2 = FigureCanvasTkAgg(fig2,master = self.ContainerGrafc)
-		#self.canvas2.get_tk_widget().grid(row=1,column = 0)
-		#self.canvas2.draw()
-		self.canvas.draw()
-	
-	def Create_Graph(self):
-
-
-		x = [0,1,2,3,4,5]
-		y = [50,57,60,68,63,64]
-		label= ['a','b','c','d','e','f']
-
-		fig = Figure(figsize=(6,3),facecolor="black")
-
-		self.graph1 = plt.subplot(111)
-		self.graph1.set_axis_bgcolor("black")
-		self.graph1.spines['left'].set_color('white')
-		self.graph1.spines['right'].set_color('white')	
-		self.graph1.spines['top'].set_color('white')
-		self.graph1.spines['bottom'].set_color('white')
-
-		self.graph1.tick_params(axis='x', colors= 'white')
-		self.graph1.tick_params(axis='y', colors= 'white')
-		self.graph1.set_ylabel("Valores em Porcentagem %",color="white")
-		self.graph1.set_title("OnLine na ultima hora",color="white")
-		self.graph1.set_xlabel("Ultima Hora",color="white")
-		
-
-		self.graph1.grid( color='gray', linestyle='--', linewidth=0.5)
-		self.graph1.plot(label,y,"yellow", linewidth=2.0)
-		
-		#self.graph1.set_xticklabels(label, rotation = 'vertical', color='white')
-
-		self.canvas = FigureCanvasTkAgg(fig,master = self.ContainerGrafc)
-		self.canvas.get_tk_widget().grid(row=0,column = 0)
-		self.canvas.draw()
-
-
-
-
-		fig2 = Figure(figsize=(6,3),facecolor="black")
-		self.graph2 = fig2.add_subplot(111)
-
-		self.graph2.plot(x,y)
-		self.graph2.set_title("OnLine ao longo do dia")
-		self.canva2 = FigureCanvasTkAgg(fig,master = self.ContainerGrafc)
-		self.canva2.get_tk_widget().grid(row=0,column = 1)
-		self.canva2.draw()
-
-
-		fig3 = Figure(figsize=(6,3),facecolor="black")
-
-		self.graph3 = fig3.add_subplot(111)
-		self.graph3.plot(x,y)
-		self.graph3.set_ylabel("Vivo ao longo do dia")
-		self.canva3 = FigureCanvasTkAgg(fig,master = self.ContainerGrafc)
-		self.canva3.get_tk_widget().grid(row=1,column = 0)
-		self.canva3.draw()
-
-		fig4 = Figure(figsize=(6,3),facecolor="black")
-
-
-		self.graph4 = fig4.add_subplot(111)
-		self.graph4.plot(x,y)
-		self.graph4.set_ylabel("Claro ao longo do dia")
-		self.canva4 = FigureCanvasTkAgg(fig,master = self.ContainerGrafc)
-		self.canva4.get_tk_widget().grid(row=1,column = 1)
-		self.canva4.draw()
-
-		fig5 = Figure(figsize=(6,3),facecolor="black")
-
-		self.graph5 = fig5.add_subplot(111)
-		self.graph5.plot(x,y)
-		self.graph5.set_ylabel("Porto ao longo do dia")
-		self.canva5 = FigureCanvasTkAgg(fig,master = self.ContainerGrafc)
-		self.canva5.get_tk_widget().grid(row=2,column = 0)
-		self.canva5.draw()
-
-		fig6 = Figure(figsize=(6,3),facecolor="black")
-
-		self.graph6 = fig6.add_subplot(111)
-		self.graph6.plot(x,y)
-		self.graph6.set_ylabel("Oi ao longo do dia")
-		self.canva6 = FigureCanvasTkAgg(fig,master = self.ContainerGrafc)
-		self.canva6.get_tk_widget().grid(row=2,column = 1)
-		self.canva6.draw()
-
-		fig7 = Figure(figsize=(6,3),facecolor="black")
-
-		self.graph7 = fig7.add_subplot(111)
-		self.graph7.plot(x,y)
-		self.graph7.set_ylabel("4G ao longo do dia")
-		self.canva7 = FigureCanvasTkAgg(fig,master = self.ContainerGrafc)
-		self.canva7.get_tk_widget().grid(row=3,column = 0)
-		self.canva7.draw()
-
-	def Calc_Op(self):
-		self.total_vivo 	= 0
-		self.total_claro 	= 0
-		self.total_porto 	= 0
-		self.total_oi 		= 0
-		self.total_4G 		= 0
-
-		for item in  range (len(Var.Lista.Relogios)):
-			ips = Var.Lista.Relogios[item][3]
-			if ips[0:5] == "10.26":
-				Var.Lista.Relogios[item][13] = 1
-				self.total_vivo = self.total_vivo + 1
-
-			elif ips[0:6] == "172.40":
-				Var.Lista.Relogios[item][13] = 2
-				self.total_claro = self.total_claro + 1
-
-			elif ips[0:6] == "10.115":
-				Var.Lista.Relogios[item][13] = 3
-				self.total_porto = self.total_porto + 1
-
-			elif ips[0:5] == "10.50":
-				Var.Lista.Relogios[item][13] = 4
-				self.total_oi = self.total_oi + 1
-
-			elif ips[0] != "1":
-				Var.Lista.Relogios[item][13] = 5
-				self.total_4G = self.total_4G + 1
 
 
 	def Create_Status(self):
@@ -1010,6 +825,8 @@ class Monitor:
 		self.MsgContageON.append		("")
 		self.MsgContagetot.append 		("")
 
+		qnt = len(Var.Lista.Empresas)/3
+		rest = len(Var.Lista.Empresas) % 3
 
 		name_emp 			= Var.Lista.Empresas[id_emp][1]
 		On_Line_rep			= 00
@@ -1017,10 +834,11 @@ class Monitor:
 		Var.Lista.Empresas[id_emp][12] = id_emp
 
 
-		if 40 > id_emp > 29:
+
+		if (qnt*2 + rest) >= id_emp > (qnt + rest):
 			coluna = 4
 			row_line = id_emp - 30 + 1
-		elif id_emp > 39:
+		elif id_emp >= (qnt*2 + rest):
 			coluna = 8
 			row_line = id_emp - 40 + 1
 		else:
@@ -1875,7 +1693,7 @@ class Monitor:
 		fig = plt.figure(figsize=(12,6),facecolor="black")
 
 
-		ax = plt.subplot(2,1,1)
+		ax = plt.subplot(2,2,1)
 		plt.ylim(0,100)
 
 		count = (len(self.list_n))
@@ -1896,7 +1714,7 @@ class Monitor:
 
 
 
-		ax = plt.subplot(2,1,2)
+		ax = plt.subplot(2,2,3)
 
 		count = (len(self.list_n))
 		plt.xlim(self.list_n[0],self.list_n[count-1])
@@ -1920,7 +1738,7 @@ class Monitor:
 		plt.grid( color='gray', linewidth=0.5)
 
 
-		ax = plt.subplot(2,2,1)
+		ax = plt.subplot(2,2,2)
 		plt.ylim(0,100)
 
 		count = (len(self.listhnum))
@@ -1941,7 +1759,7 @@ class Monitor:
 
 
 
-		ax = plt.subplot(2,2,2)
+		ax = plt.subplot(2,2,4)
 
 		count = (len(self.listhnum))
 		plt.xlim(self.listhnum[0],self.listhnum[count-1])

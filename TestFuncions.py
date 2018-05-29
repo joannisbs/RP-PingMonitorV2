@@ -85,7 +85,7 @@ class GraphOn:
 			self.n = self.n + 1
 
 			if self.hora2.sominuto() != self.horinha:
-				ho_dia = self.hora2.comp_dia()
+				ho_dia = self.hora2.horaminuto()
 				if self.horinha == '0':
 					
 					Var.Lista.graphHLabel.append(ho_dia)
