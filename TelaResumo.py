@@ -42,40 +42,35 @@ class Monitor:
 
 
 	def Create_GraphTotal(self):
-		x = [0,1,2,3,4,5]
-		y = [50,57,60,68,63,64]
-		label= ['a','b','c','d','e','f']
-		
-		self.pltgra1 = plt
-
-		fig = self.pltgra1.figure(figsize=(6,6),facecolor="black")
 		
 
-		self.graph1 = self.pltgra1.subplot(111)
-		
-		self.graph1.set_ylim(0,100)
+
+		self.listl_n = Var.Lista.graphOn_n		
+		self.list_n = Var.Lista.graphOn_n
+		self.list_x = Var.Lista.graphOn_x
+		self.list_y = Var.Lista.graphOn_y
 
 
-		self.pltgra1.plot(x,y,"yellow", linewidth=2.0)
-		self.pltgra1.xticks(x,label)
-		
+		self.listlv_n = Var.Lista.graphVivo_n
+		self.listv_n = Var.Lista.graphVivo_n
+		self.listv_x = Var.Lista.graphVivo_y
+		self.listv_y = Var.Lista.graphVivo_x
 
-		self.graph1.tick_params(axis='x', colors= 'white')
-		self.graph1.tick_params(axis='y', colors= 'white')
+		#listp_n = Var.Lista.graphPorto_n[-63:]
+		#listp_x = Var.Lista.graphPorto_x[-63:]
+		self.listp_y = Var.Lista.graphPorto_y
 
-		self.graph1.grid( color='gray', linestyle='--', linewidth=0.5)
-		
-		self.graph1.set_axis_bgcolor("black")
+		#listc_n = Var.Lista.graphClaro_n[-63:]
+		#listc_x = Var.Lista.graphClaro_x[-63:]
+		self.listc_y = Var.Lista.graphClaro_y
 
-		self.graph1.spines['left'].set_color('white')
-		self.graph1.spines['right'].set_color('white')	
-		self.graph1.spines['top'].set_color('white')
-		self.graph1.spines['bottom'].set_color('white')
+		#listo_n = Var.Lista.graphOI_n[-63:]
+		#listo_x = Var.Lista.graphOI_x[-63:]
+		self.listo_y = Var.Lista.graphOI_y
 
-		self.canvas = FigureCanvasTkAgg(fig,master = self.ContainerGrafc)
-		self.canvas.get_tk_widget().grid(row=0,column = 0)
-		self.canvas.draw()
-
+		#listg_n = Var.Lista.graph4G_n[-63:]
+		#listg_x = Var.Lista.graph4G_x[-63:]
+		self.listg_y = Var.Lista.graph4G_y
 
 
 	def Create_GraphToOp(self):
@@ -85,18 +80,18 @@ class Monitor:
 
 		label= ['a','b','c','d','e','f']
 		
-		self.pltgra2 = plt
+		#self.pltgra2 = plt
 
 		#fig2 = self.pltgra2.figure(figsize=(6,3),facecolor="black")
 		
 
-		self.graph2 = self.pltgra2.subplot(121)
+		#self.graph2 = self.pltgra2.subplot(111)
 		
-		self.graph2.set_ylim(0,100)
+		#self.graph2.set_ylim(0,100)
 
 
-		self.pltgra2.plot(x,y,"yellow", linewidth=1.0)
-		self.pltgra2.xticks(x,label)
+		self.graph2.plot(x,y,"yellow", linewidth=1.0)
+		#self.graph2.xticks(x,label)
 		
 
 		self.graph2.tick_params(axis='x', colors= 'white')
@@ -111,11 +106,13 @@ class Monitor:
 		self.graph2.spines['top'].set_color('white')
 		self.graph2.spines['bottom'].set_color('white')
 
-		#self.canvas2 = FigureCanvasTkAgg(fig,master = self.ContainerGrafc)
+		#self.canvas2 = FigureCanvasTkAgg(fig2,master = self.ContainerGrafc)
 		#self.canvas2.get_tk_widget().grid(row=1,column = 0)
 		#self.canvas2.draw()
 		self.canvas.draw()
+	
 	def Create_Graph(self):
+
 
 		x = [0,1,2,3,4,5]
 		y = [50,57,60,68,63,64]
@@ -366,7 +363,7 @@ class Monitor:
 									text = " Vivo " ,
 									font="arialblack 18 bold",
 									bg="black",
-									fg="white",
+									fg="green",
 									highlightbackground="black",
 									activebackground="black",
 									activeforeground="white",
@@ -468,7 +465,7 @@ class Monitor:
 									text = " Claro " ,
 									font="arialblack 18 bold",
 									bg="black",
-									fg="white",
+									fg="red",
 									highlightbackground="black",
 									activebackground="black",
 									activeforeground="white",
@@ -569,7 +566,7 @@ class Monitor:
 									text = " Porto " ,
 									font="arialblack 18 bold",
 									bg="black",
-									fg="white",
+									fg="blue",
 									highlightbackground="black",
 									activebackground="black",
 									activeforeground="white",
@@ -670,7 +667,7 @@ class Monitor:
 									text = " Oi " ,
 									font="arialblack 18 bold",
 									bg="black",
-									fg="white",
+									fg="orange",
 									highlightbackground="black",
 									activebackground="black",
 									activeforeground="white",
@@ -770,7 +767,7 @@ class Monitor:
 									text = " 4G " ,
 									font="arialblack 18 bold",
 									bg="black",
-									fg="white",
+									fg="purple",
 									highlightbackground="black",
 									activebackground="black",
 									activeforeground="white",
@@ -1114,12 +1111,10 @@ class Monitor:
 					qnt_On_4G = qnt_On_4G + 1
 
 		self.MsgContONTotal.config(text =  str(qnt_On_tot).zfill(4))
-		percent = ((qnt_On_tot*100)/len(Var.Lista.Relogios))
-		self.MesPercents.config(text = "  " + str(percent).zfill(2) + "% ") 
+		percentt = ((qnt_On_tot*100)/len(Var.Lista.Relogios))
+		self.MesPercents.config(text = "  " + str(percentt).zfill(2) + "% ") 
 
 
-
-		self.graphTot.insert(percent,qnt_On_tot)
 
 		self.MesVivoCountOn.config(text =str(qnt_On_vivo).zfill(3) )
 		self.MsgClaroCountOn.config(text =str(qnt_On_claro).zfill(3) )
@@ -1127,165 +1122,180 @@ class Monitor:
 		self.MsgOiCountOn.config(text =str(qnt_On_oi).zfill(3) )
 		self.Msg4GCountOn.config(text =str(qnt_On_4G).zfill(3) )
 
-		percent = ((qnt_On_vivo*100)/self.total_vivo)
-		self.MesVivoPerc.config(text =str(percent).zfill(2) + "% " )
+		percentv = ((qnt_On_vivo*100)/self.total_vivo)
+		self.MesVivoPerc.config(text =str(percentv).zfill(2) + "% " )
 
-		percent = ((qnt_On_claro*100)/self.total_claro)
-		self.MsgClaroPerc.config(text =str(percent).zfill(2) + "% " )
+		percentc = ((qnt_On_claro*100)/self.total_claro)
+		self.MsgClaroPerc.config(text =str(percentc).zfill(2) + "% " )
 
-		percent = ((qnt_On_porto*100)/self.total_porto )
-		self.MsgPortoPerc.config(text =str(percent).zfill(2) + "% " )
+		percentp = ((qnt_On_porto*100)/self.total_porto )
+		self.MsgPortoPerc.config(text =str(percentp).zfill(2) + "% " )
 
-		percent = ((qnt_On_oi*100)//self.total_oi )
-		self.MsgOiPerc.config(text =str(percent).zfill(2) + "% " )
+		percento = ((qnt_On_oi*100)//self.total_oi )
+		self.MsgOiPerc.config(text =str(percento).zfill(2) + "% " )
 
-		percent = ((qnt_On_4G*100)//self.total_4G )
-		self.Msg4GPerc.config(text =str(percent).zfill(2) + "% " )
+		percentg = ((qnt_On_4G*100)//self.total_4G )
+		self.Msg4GPerc.config(text =str(percentg).zfill(2) + "% " )
 
+		self.graphTot.insertmin(percentt,percentv,percentc,percentp,percento,percentg)
 
 	def updateGraphtot(self):
-				
-		self.graph1.cla()	
 		
-		self.graph1.set_ylim(0,100)
+		self.listl_n = Var.Lista.graphOn_n		
+		self.list_n = Var.Lista.graphOn_n
+		self.list_x = Var.Lista.graphOn_x
+		self.list_y = Var.Lista.graphOn_y
 
-		#self.pltgra1.marker('+')
-		print len(Var.Lista.graphOn_n)
-
-		#self.graph1.tick_params(axis='x', colors= 'white')
-		#self.graph1.tick_params(axis='y', colors= 'white')
-
-		self.graph1.grid( color='gray', linestyle='--', linewidth=0.5)
-		
-		#self.graph1.set_axis_bgcolor("black")
-
-		#self.graph1.spines['left'].set_color('white')
-		#self.graph1.spines['right'].set_color('white')	
-		#self.graph1.spines['top'].set_color('white')
-		#self.graph1.spines['bottom'].set_color('white')
-
-		self.graph1.set_ylabel("Valores em Porcentagem %",color="white")
-		self.graph1.set_title("OnLine na ultima hora",color="white")
+		self.listv_y = Var.Lista.graphVivo_y
+		self.listc_y = Var.Lista.graphClaro_y
+		self.listp_y = Var.Lista.graphPorto_y
+		self.listo_y = Var.Lista.graphOI_y
+		self.listg_y = Var.Lista.graph4G_y
 
 
 		if len(Var.Lista.graphOn_n)>59:
 			print "case more 62"
-			list_n = Var.Lista.graphOn_n[-60:]
-			list_x = Var.Lista.graphOn_x[-60:]
-			list_y = Var.Lista.graphOn_y[-60:]
+
+			self.list_n = Var.Lista.graphOn_n[-60:]
+			self.list_x = Var.Lista.graphOn_x[-60:]
+			self.list_y = Var.Lista.graphOn_y[-60:]
 
 			Var.Lista.graphOn_n = Var.Lista.graphOn_n[-59:]
 			Var.Lista.graphOn_x = Var.Lista.graphOn_x[-59:]
 			Var.Lista.graphOn_y = Var.Lista.graphOn_y[-59:]
-			self.graph1.set_xlim(list_n[0],list_n[60])
-			self.pltgra1.plot(list_n[::2],list_y[::2],"yellow", linewidth=1.0)
+			
 
-			list_n = list_n[::10]
-			list_x = list_x[::10]
-			list_n.append(list_n[-1:])
-			list_x.append(list_x[-1:])
-			self.pltgra1.xticks(list_n,list_x)
+			self.list_n = self.list_n[::2]
+			
+			self.list_y = self.list_y[::2]
+			self.listv_y = self.listv_y[::2]
+			self.listc_y = self.listc_y[::2]
+			self.listp_y = self.listp_y[::2]
+			self.listo_y = self.listo_y[::2]
+			self.listg_y = self.listg_y[::2]
+
+
+			self.listl_n = self.list_n[::10]
+			self.list_x = self.list_x[::10]
+			#self.listl_n.append(self.list_n[-1:])
+			#self.list_x.append(self.list_x[-1:])
+	
 
 		elif 60>len(Var.Lista.graphOn_n)>56:
-			list_n = Var.Lista.graphOn_n
-			list_x = Var.Lista.graphOn_x
-			list_y = Var.Lista.graphOn_y
-
+			
 			print "case more 56"
 
 			
-			self.pltgra1.plot(list_n[::2],list_y[::2],"yellow", linewidth=1.0)
-			self.pltgra1.xticks((list_n[::2])[::4],(list_x[::2])[::4])
+			self.list_n = self.list_n[::2]
+			
+			self.list_y = self.list_y[::2]
+			self.listv_y = self.listv_y[::2]
+			self.listc_y = self.listc_y[::2]
+			self.listp_y = self.listp_y[::2]
+			self.listo_y = self.listo_y[::2]
+			self.listg_y = self.listg_y[::2]
+
+
+			self.listl_n = self.self.list_n[::9]
+			self.list_x = self.list_x[::9]
+			#self.listl_n.append(self.list_n[-1:])
+			#self.list_x.append(self.list_x[-1:])
+	
 
 		elif 57 > len(Var.Lista.graphOn_n)>49:
-			list_n = Var.Lista.graphOn_n
-			list_x = Var.Lista.graphOn_x
-			list_y = Var.Lista.graphOn_y
-			print "case more 49"
 			
-			self.pltgra1.plot(list_n,list_y,"yellow", linewidth=1.0)
-			self.pltgra1.xticks(list_n[::8],list_x[::8])
+			print "case more 49"
 
+
+			
+			self.list_n = self.list_n[::2]
+
+			self.listl_n = self.list_n[::8]
+			self.list_x = self.list_x[::8]
+			#self.listl_n.append(self.list_n[-1:])
+			#self.list_x.append(self.list_x[-1:])
 
 
 		elif 50 > len(Var.Lista.graphOn_n)>42:
 			print "case more 42"
-			list_n = Var.Lista.graphOn_n
-			list_x = Var.Lista.graphOn_x
-			list_y = Var.Lista.graphOn_y
+		
 
-			
-			self.pltgra1.plot(list_n,list_y,"yellow", linewidth=1.0)
-			self.pltgra1.xticks(list_n[::7],list_x[::7])
+
+
+			self.listl_n = self.list_n[::7]
+			self.list_x = self.list_x[::7]
+			#self.listl_n.append(self.list_n[-1:])
+			#self.list_x.append(self.list_x[-1:])
 
 
 		elif 43 > len(Var.Lista.graphOn_n)>35:
 			print "case more 35"
-			list_n = Var.Lista.graphOn_n
-			list_x = Var.Lista.graphOn_x
-			list_y = Var.Lista.graphOn_y
 
-			
-			self.pltgra1.plot(list_n,list_y,"yellow", linewidth=1.0)
-			self.pltgra1.xticks(list_n[::6],list_x[::6])
+
+
+	
+
+
+			self.listl_n = self.list_n[::6]
+			self.list_x = self.list_x[::6]
+			#self.listl_n.append(self.list_n[-1:])
+			#self.list_x.append(self.list_x[-1:])
 
 
 		elif 36 > len(Var.Lista.graphOn_n)>28:
 			print "case more 28"
-			list_n = Var.Lista.graphOn_n
-			list_x = Var.Lista.graphOn_x
-			list_y = Var.Lista.graphOn_y
 
-			
-			self.pltgra1.plot(list_n,list_y,"yellow", linewidth=1.0)
-			self.pltgra1.xticks(list_n[::5],list_x[::5])
 
+			self.listl_n = self.list_n[::5]
+			self.list_x = self.list_x[::5]
+			#self.listl_n.append(self.list_n[-1:])
+			#self.list_x.append(self.list_x[-1:])
 
 
 
 		elif 29 > len(Var.Lista.graphOn_n)>21:
 			print "case more 21"
-			list_n = Var.Lista.graphOn_n
-			list_x = Var.Lista.graphOn_x
-			list_y = Var.Lista.graphOn_y
 
-			
-			self.pltgra1.plot(list_n,list_y,"yellow", linewidth=1.0)
-			self.pltgra1.xticks(list_n[::4],list_x[::4])
+
+			self.listl_n = self.list_n[::4]
+			self.list_x = self.list_x[::4]
+			#self.listl_n.append(self.list_n[-1:])
+			#self.list_x.append(self.list_x[-1:])
 
 		
 		elif 22 > len(Var.Lista.graphOn_n)>14:
 			print "case more 14"
-			list_n = Var.Lista.graphOn_n
-			list_x = Var.Lista.graphOn_x
-			list_y = Var.Lista.graphOn_y
 
-			
-			self.pltgra1.plot(list_n,list_y,"yellow", linewidth=1.0)
-			self.pltgra1.xticks(list_n[::3],list_x[::3])
-		
+
+			self.listl_n = self.list_n[::3]
+			self.list_x = self.list_x[::3]
+			#self.listl_n.append(self.list_n[-1:])
+			#self.list_x.append(self.list_x[-1:])
 
 
 		elif 15 > len(Var.Lista.graphOn_n) > 7:
 			print "case more 7"
-			list_n = Var.Lista.graphOn_n
-			list_x = Var.Lista.graphOn_x
-			list_y = Var.Lista.graphOn_y
 
-			
-			self.pltgra1.plot(list_n,list_y,"yellow", linewidth=1.0)
-			self.pltgra1.xticks(list_n[::2],list_x[::2])
-		
+
+			self.listl_n = self.list_n[::2]
+			self.list_x = self.list_x[::2]
+			#self.listl_n.append(self.list_n[-1:])
+			#self.list_x.append(self.list_x[-1:])
+
 
 
 		else:
 			print "case =("
-			self.pltgra1.plot(Var.Lista.graphOn_n,Var.Lista.graphOn_y,"yellow", linewidth=1.0)
-			self.pltgra1.xticks(Var.Lista.graphOn_n,Var.Lista.graphOn_x)
+
+			self.listl_n =self.list_n
+			#self.list_x = list_x
+			#self.listl_n.append(list_n[-1:])
+			#self.list_x.append(list_x[-1:])
+
 		
 
 
-		self.canvas.draw()
+		self.updategraphcsgeneric()
 
 
 	def updateGraphtotOp(self):
@@ -1696,33 +1706,64 @@ class Monitor:
 
 		self.canvas2.draw()
 
-	def up2(self):
+	def close(self):
+		plt.close()
+
+
+
+	def updategraphcsgeneric(self):
 		print "aqui"
-		self.graph1.cla()		
 
-
-		self.graph1.tick_params(axis='x', colors= 'white')
-		self.graph1.tick_params(axis='y', colors= 'white')
-		self.graph1.set_ylabel("Valores em Porcentagem %",color="white")
-		self.graph1.set_title("OnLine na ultima hora",color="white")
-		#self.graph1.set_xlabel("Ultima Hora",color="white")
-		self.graph1.grid( color='gray', linestyle='-.', linewidth=0.5)
-
-		#self.graph1.set_ylabel("Valores em Porcentagem %")
-		#self.graph1.set_title("OnLine na ultima hora")
+		plt.cla()	
 		
-		if len(Var.Lista.graphOn_n)>50:
-			list_n = Var.Lista.graphOn_n[-50:]
-			list_x = Var.Lista.graphOn_x[-50:]
-			list_y = Var.Lista.graphOn_y[-50:]
+		fig = plt.figure(figsize=(6,6),facecolor="black")
 
-			self.graph1.plot(list_n,list_y,"yellow", linewidth=2.0)
-			#self.graph1.set_xticklabels(list_x, rotation = 'vertical', color='white')
-		else:
-			self.graph1.plot(Var.Lista.graphOn_x,Var.Lista.graphOn_y,"yellow", linewidth=2.0)
-			#self.graph1.set_xticklabels(Var.Lista.graphOn_x, rotation = 'vertical', color='white')
-		
-		
 
-	
+		ax = plt.subplot(2,1,1)
+		plt.ylim(0,100)
+
+		count = (len(self.list_n))
+		plt.xlim(self.list_n[0],self.list_n[count-1])
+
+		plt.plot(self.list_n,self.list_y,"yellow", linewidth=1.0)		
+		plt.xticks(self.listl_n,self.list_x)
+		ax.set_axis_bgcolor("black")
+		ax.spines['left'].set_color('white')
+		ax.spines['right'].set_color('white')	
+		ax.spines['top'].set_color('white')
+		ax.spines['bottom'].set_color('white')
+		plt.tick_params(axis='x', colors= 'white')
+		plt.tick_params(axis='y', colors= 'white')
+		plt.ylabel("Valores em Porcentagem %",color="white")
+		plt.title("OnLine na ultima hora",color="white")
+		plt.grid( color='gray', linewidth=0.5)
+
+
+
+		ax = plt.subplot(2,1,2)
+
+		count = (len(self.listv_n))
+		#plt.xlim(self.listv_n[0],self.listv_n[count-1])
+		plt.ylim(0,100)
+		plt.plot(self.list_n,self.listv_y,"green", linewidth=1.0)
+		plt.plot(self.list_n,self.listp_y,"blue", linewidth=1.0)	
+		plt.plot(self.list_n,self.listc_y,"red", linewidth=1.0)	
+		plt.plot(self.list_n,self.listo_y,"orange", linewidth=1.0)	
+		plt.plot(self.list_n,self.listg_y,"purple", linewidth=1.0)		
+
+		ax.set_axis_bgcolor("black")
+		ax.spines['left'].set_color('white')
+		ax.spines['right'].set_color('white')	
+		ax.spines['top'].set_color('white')
+		ax.spines['bottom'].set_color('white')
+		plt.xticks(self.listl_n,self.list_x)
+		plt.tick_params(axis='x', colors= 'white')
+		plt.tick_params(axis='y', colors= 'white')
+		plt.ylabel("Valores em Porcentagem %",color="white")
+		plt.title("OnLine na ultima hora",color="white")
+		plt.grid( color='gray', linewidth=0.5)
+
+
+		self.canvas = FigureCanvasTkAgg(fig,master = self.ContainerGrafc)
+		self.canvas.get_tk_widget().grid(row=0,column = 0)
 		self.canvas.draw()

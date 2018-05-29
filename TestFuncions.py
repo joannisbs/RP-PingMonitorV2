@@ -34,29 +34,40 @@ class Threads(threading.Thread):
 class GraphOn:
 	def __init__(self):
 		self.hora = GetTime()
-		self.minutos  = "0"
+		self.minutos1  = "0"
+
 		self.n = 0
 
 		self.datainit = self.hora.completa()
 
-	def insert(self,value,number):
+	def insertmin(self,percentt,percentv,percentc,percentp,percento,percentg):
 
 		self.hora2 = GetTime()
 
-		if self.hora2.sominuto() != self.minutos:
-			self.minutos = self.hora2.sominuto()
+		
+		if self.hora2.sominuto() != self.minutos1:
+			self.minutos1 = self.hora2.sominuto()
 
 			Var.Lista.graphOn_x.append(self.hora2.horaminuto())
-			Var.Lista.graphOn_y.append(value)
+			Var.Lista.graphOn_y.append(percentt)
 			Var.Lista.graphOn_n.append(self.n)
+
+			
+			Var.Lista.graphVivo_y.append(percentv)
+			Var.Lista.graphPorto_y.append(percentp)
+			Var.Lista.graphClaro_y.append(percentc)
+			Var.Lista.graphOI_y.append(percento)
+			Var.Lista.graph4G_y.append(percentg)
+
+
 
 			data = self.hora2.completa()
 
 
 			loggeral = open ("LogPercentsTotal"+ self.datainit + ".csv","ab+")
-			loggeral.write  (str(self.n)+";"+str(number)+";"+ data +" \n")
+			loggeral.write  (str(self.n)+";"+str(percentt)+";"+ data +" \n")
 			loggeral.close
-			
+				
 
 
 			self.n = self.n + 1
