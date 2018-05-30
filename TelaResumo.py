@@ -12,7 +12,7 @@ matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg 
-
+from Popups import PopupRep
 
 import sys
 import os
@@ -778,6 +778,12 @@ class Monitor:
 		menubar.add_cascade(label = 'Sobre',menu=menuAbout)
 
 		menuDatabase.add_command(label="AtualizarDB", command=self.AtualizarDatabase)
+		menuReports.add_command(label="Historico Rep", command=self.historyrep)
+
+
+	def historyrep(self):
+		PopupRep()
+
 
 	def IniciaList(self):
 		self.MsgName 		=[]

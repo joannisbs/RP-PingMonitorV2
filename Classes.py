@@ -40,7 +40,19 @@ class GetTime(object):
 				str(self.hora).zfill(2)+"-"+
 				str(self.minuto).zfill(2))
 		return date
-	
+
+	def completedb(self):
+		#[18_06_04]10h12
+		date = ("["+str(self.year)[2]+
+					str(self.year)[3]+"_"+
+				str(self.mes).zfill(2)+"_"+
+				str(self.day).zfill(2)+"]"+
+				str(self.hora).zfill(2)+"h"+
+				str(self.minuto).zfill(2))
+		return date
+
+
+
 	def comp_dia(self):
 		date = (str(self.mes).zfill(2)+"/"+
 				str(self.day).zfill(2)+"-"+

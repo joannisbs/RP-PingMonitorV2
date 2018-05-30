@@ -9,6 +9,8 @@ from Classes import *
 from VariaveisGlobais import * 
 import tkMessageBox as messagebox
 
+from LeBanco import Mysqldb
+
 class StopThread(StopIteration):
 	pass
 threading.SystemExit = SystemExit, StopThread
@@ -16,6 +18,7 @@ threading.SystemExit = SystemExit, StopThread
 class Threads(threading.Thread):
 	def stop(self):
 		self.__stop = True
+		#Controle.db.close()
 
 
 	def _bootstrap(self, stop_thread=False):
@@ -212,9 +215,9 @@ def TestaPorta(ip,port):
 	#print ip + " porta = " + port
 	#print "Test Ping"
 	if TestaPing(ip):
-		if Controle.Stop : return 5
+		#if Controle.Stop : return 5
 		try:
-			if Controle.Stop : return 5
+			#if Controle.Stop : return 5
 			s.connect((ip,int(port)))		
 			s.close()
 			return 3
@@ -268,7 +271,8 @@ def Loop2():
 	Controle.Roda = True
 	volta = 0
 	#while Controle.Roda:
-
+	#Controle.db = Mysqldb()
+	#Controle.db.connect()
 	if volta > 0:
 		pass
 	else:
@@ -276,11 +280,30 @@ def Loop2():
 		for index_emp in range (qnt_emp):
 			RT = Threads(target=TestaEmp,kwargs={'Emp_index':index_emp})
 			RT.start()
-		time.sleep(1)
+		time.sleep(60)
+		RT = Threads(target=GravaBanco)
+		RT.start()
 		#volta = volta + 1
 		#if volta > 200:
 			#volta = 0
 		#if Controle.Stop : break
+
+def GravaBanco():
+	Controle.db = Mysqldb()
+	Controle.db.connect()
+
+	for row in rage (len(Var.Lista.events)):
+		ids = row[0]
+		result = row[1]
+		date = row[2]
+
+		Controle.db.insert(ids, result, date)
+
+	Controle.db.close()
+
+	if Controle.Stop:return
+	sleep(60)
+	GravaBanco()
 
 
 
@@ -355,6 +378,24 @@ def RepOff(Rp_index):
 
 	if Var.Lista.Relogios[Rp_index][10] != 4:
 		
+		if resultado == 3:
+			if (Var.Lista.Relogios[Rp_index][14] != resultado and 
+			resultado!= 4 and Var.Lista.Relogios[Rp_index][10]!= "0"
+			and Var.Lista.Relogios[Rp_index][10]!= 4):
+
+				Var.Lista.Relogios[Rp_index][14] = resultado
+				repins = Var.Lista.Relogios[Rp_index][0]
+				timer = GetTime()
+				times = timer.completedb()
+				value = []
+				value.append(repins)
+				value.append(resultado)
+				value.append(times)
+				Var.Lista.events.append(value)
+				
+				#Controle.db.insert(repins,resultado,times)
+
+
 		Var.Lista.Relogios[Rp_index][10] = resultado
 		
 		if Controle.Stop : return
@@ -366,6 +407,7 @@ def RepOff(Rp_index):
 		
 
 		if Var.Lista.Relogios[Rp_index][10] == 3:
+			
 			
 			if Var.Lista.Relogios[Rp_index][11]:
 				messagebox.showinfo("Relogio On", 
@@ -393,6 +435,7 @@ def TestaEmp(Emp_index):
 			IP_rep			= Var.Lista.Relogios[rep][3]
 			Porta_rep		= Var.Lista.Relogios[rep][4]
 			name_rep		= Var.Lista.Relogios[rep][2]
+			teste = Var.Lista.Relogios[rep][10]
 			Var.Lista.Relogios[rep][10] = 4
 			if Controle.Stop : break
 			#pinta de azul
@@ -402,8 +445,29 @@ def TestaEmp(Emp_index):
 				Telas.GUI_Tela2.update(rep)
 			#testa:
 			if Controle.Stop : break
-			Var.Lista.Relogios[rep][10] =TestaPorta(IP_rep,Porta_rep)
+			resultado = TestaPorta(IP_rep,Porta_rep)
+			
 
+			if (Var.Lista.Relogios[rep][14] != resultado and 
+			 teste!= "0" and Var.Lista.Relogios[rep][14]!= 0):
+				#print Var.Lista.Relogios[rep][14]
+				#print resultado
+				Var.Lista.Relogios[rep][14] = resultado
+				#print Var.Lista.Relogios[rep][14]
+				repins = Var.Lista.Relogios[rep][0]
+				timer = GetTime()
+				times = timer.completedb()
+				value = []
+				value.append(repins)
+				value.append(resultado)
+				value.append(times)
+				Var.Lista.events.append(value)
+				#Controle.db.insert(repins,resultado,times)
+
+			if Var.Lista.Relogios[rep][14]== 0:
+				Var.Lista.Relogios[rep][14] = resultado
+			
+			Var.Lista.Relogios[rep][10] = resultado	
 
 			if Var.Lista.Relogios[rep][10] == 1:
 				if not Var.Lista.Relogios[rep][12]:

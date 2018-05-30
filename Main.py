@@ -56,10 +56,13 @@ def on_closing():
 		serv.Stop()
 		Telas.GUI_Monitor.close()
 		print "closing"
+		Controle.db.close()
+		time.sleep(2)
+		Telas.root.quit()
 		for x in range (5):
 			print x
 			time.sleep(1)
-		Telas.root.quit()
+		
 		time.sleep(1)
 		Telas.root.destroy()
 

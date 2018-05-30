@@ -13,6 +13,9 @@ class Var(object):
 		Total     	="null"
 		Hora		='null'
 		Atencao		="null"
+
+		Historico	=	[]
+
 		graphOn_x		= []
 		graphOn_y		= []
 		graphOn_n		= []
@@ -30,6 +33,8 @@ class Var(object):
 		graphH_p		= []
 		graphH_o		= []
 		graphH_g		= []
+
+		events	= []
 
 	class Lista2(object):
 		
@@ -51,7 +56,8 @@ class Controle(object):
 	TotalON2						= 0
 	TotalRelogios					= 0
 	Finished						= False
-
+	db								=	'0'
+	conect							= False
 
 class Telas(object):
 
