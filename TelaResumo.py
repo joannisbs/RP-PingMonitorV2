@@ -120,6 +120,7 @@ class Monitor:
 		plt.title("OnLine nas ultimas 24 hora",color="white")
 		plt.grid( color='gray', linewidth=0.5)
 
+		self.fig.tight_layout()
 
 		self.canvas = FigureCanvasTkAgg(self.fig,master = self.ContainerGrafc)
 		self.canvas.get_tk_widget().grid(row=0,column = 0)
@@ -1001,14 +1002,10 @@ class Monitor:
 	def updateContage(self,index_empp,qnt_On):
 
 
-		
 		Id_scream 	= Var.Lista.Empresas[index_empp][12]
 	
 		
 		self.MsgContageON[Id_scream].config ( text= (str(qnt_On)).zfill(2))
-
-
-
 
 
 		qnt_On_tot 		= 0

@@ -55,8 +55,12 @@ def on_closing():
 		serv = Servico()
 		serv.Stop()
 		Telas.GUI_Monitor.close()
-		
-		time.sleep(10)
+		print "closing"
+		for x in range (5):
+			print x
+			time.sleep(1)
+		Telas.root.quit()
+		time.sleep(1)
 		Telas.root.destroy()
 
 
