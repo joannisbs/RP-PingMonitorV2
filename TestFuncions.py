@@ -293,23 +293,26 @@ def GravaBanco():
 	try:
 		Controle.db = Mysqldb()
 		Controle.db.connect()
+		
+		if len(Var.Lista.events) > 0:
+			for row in range (0,len(Var.Lista.events)):
+				
+				ids = Var.Lista.events[row][0]
+				result = Var.Lista.events[row][1]
+				date = Var.Lista.events[row][2]
+				
+				Controle.db.insert(ids, result, date)
 
-		for row in rage (len(Var.Lista.events)):
-			ids = row[0]
-			result = row[1]
-			date = row[2]
-
-			Controle.db.insert(ids, result, date)
-
-		Controle.db.close()
-
-		Var.Lista.events = 0
+			Controle.db.close()
+			
+			Var.Lista.events = []
+	
 
 	except:
-		print "erro de conexão"
+		print "erro de conexao"
 
 	if Controle.Stop:return
-	sleep(60)
+	time.sleep(60)
 	GravaBanco()
 
 

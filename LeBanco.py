@@ -91,7 +91,7 @@ class Mysqldb:
 
 		query = ("INSERT INTO db_teste.tbl_events (id_rep, status, dates) VALUES (%s, %s, %s)")
 		datos = (rep, status, date)
-
+		print query,datos
 		self.cursor.execute(query,datos)
 
 		self.connection.commit()
