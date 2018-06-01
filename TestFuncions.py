@@ -289,17 +289,24 @@ def Loop2():
 		#if Controle.Stop : break
 
 def GravaBanco():
-	Controle.db = Mysqldb()
-	Controle.db.connect()
+	
+	try:
+		Controle.db = Mysqldb()
+		Controle.db.connect()
 
-	for row in rage (len(Var.Lista.events)):
-		ids = row[0]
-		result = row[1]
-		date = row[2]
+		for row in rage (len(Var.Lista.events)):
+			ids = row[0]
+			result = row[1]
+			date = row[2]
 
-		Controle.db.insert(ids, result, date)
+			Controle.db.insert(ids, result, date)
 
-	Controle.db.close()
+		Controle.db.close()
+
+		Var.Lista.events = 0
+
+	except:
+		print "erro de conexão"
 
 	if Controle.Stop:return
 	sleep(60)
