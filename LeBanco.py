@@ -91,10 +91,12 @@ class Mysqldb:
 
 		query = ("INSERT INTO db_teste.tbl_events (id_rep, status, dates) VALUES (%s, %s, %s)")
 		datos = (rep, status, date)
-		print query,datos
+		#print query,datos
 		self.cursor.execute(query,datos)
 
 		self.connection.commit()
+		
+
 		#self.close()
 
 
@@ -102,5 +104,7 @@ class Mysqldb:
 
 	def get_history(self,id_rep):
 		self.cursor.execute("SELECT * FROM db_teste.tbl_events WHERE id_rep = " + str(id_rep) )
+		Var.Lista.History = []
 		for row in self.cursor.fetchall():
-			print row
+			Var.Lista.History.append(row)
+		

@@ -56,7 +56,12 @@ def on_closing():
 		serv.Stop()
 		Telas.GUI_Monitor.close()
 		print "closing"
-		Controle.db.close()
+		try:
+			Controle.db.close()
+		
+		except:
+			pass
+			
 		time.sleep(2)
 		Telas.root.quit()
 		for x in range (5):

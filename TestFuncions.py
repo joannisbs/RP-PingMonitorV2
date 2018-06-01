@@ -479,11 +479,11 @@ def TestaEmp(Emp_index):
 			
 			Var.Lista.Relogios[rep][10] = resultado	
 
-			if Var.Lista.Relogios[rep][10] == 1:
-				if not Var.Lista.Relogios[rep][12]:
-					Var.Lista.Relogios[rep][12] = True
-					RT = Threads(target=RepOff,kwargs={'Rp_index':rep})
-					RT.start()
+			#if Var.Lista.Relogios[rep][10] == 1:
+				#if not Var.Lista.Relogios[rep][12]:
+					#Var.Lista.Relogios[rep][12] = True
+					#RT = Threads(target=RepOff,kwargs={'Rp_index':rep})
+					#RT.start()
 
 
 
